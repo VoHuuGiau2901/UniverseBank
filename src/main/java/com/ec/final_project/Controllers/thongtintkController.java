@@ -22,7 +22,8 @@ public class thongtintkController {
             return "new account added";
         }
     }
-    @RequestMapping("/Login")
+    @RequestMapping(value = "/Login", method = RequestMethod.POST)
+    @ResponseBody
 //    @PostMapping("/Login")
     public String logIn(@RequestBody thongtintk tk) {
         if (tkService.timthongtin(tk) != null) {
