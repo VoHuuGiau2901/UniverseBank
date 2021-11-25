@@ -5,6 +5,8 @@ import com.ec.final_project.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Welcome")
 @CrossOrigin
@@ -22,11 +24,16 @@ public class thongtintkController {
             return "new account added";
         }
     }
-    @RequestMapping(value = "/Login", method = RequestMethod.POST)
-    @ResponseBody
-    public thongtintk logIn(@RequestBody thongtintk tk) {
-        if (tkService.timthongtin(tk) != null) {
-            return tkService.timthongtin(tk);
-        } else return null;
+//    @RequestMapping(value = "/Login", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String logIn(@RequestBody thongtintk tk) {
+//        if (tkService.timthongtin(tk) != null) {
+//            return tkService.timthongtin(tk);
+//        } else return null;
+//    }
+
+    @RequestMapping("/Login")
+    public List<thongtintk> findAll(){
+        return tkService.getalltk();
     }
 }
