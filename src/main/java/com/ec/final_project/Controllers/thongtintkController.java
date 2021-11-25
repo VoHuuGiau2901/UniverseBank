@@ -33,7 +33,7 @@ public class thongtintkController {
 //    }
 
     @RequestMapping("/Login")
-    public List<thongtintk> findAll(){
-        return tkService.getalltk();
+    public thongtintk findAll(){
+        return tkService.getalltk().get(0);
     }
 }
