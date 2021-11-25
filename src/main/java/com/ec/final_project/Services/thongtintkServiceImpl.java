@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class thongtintkServiceImpl implements thongtintkService {
@@ -24,12 +25,17 @@ public class thongtintkServiceImpl implements thongtintkService {
     }
 
     @Override
-    public String timthongtin(thongtintk tk) {
+    public thongtintk timthongtin(thongtintk tk) {
         return tkRepository.findBytaikhoanANDmatkhau(tk.getTaikhoan(), tk.getMatkhau());
     }
 
     @Override
     public List<thongtintk> getalltk() {
         return tkRepository.findAll();
+    }
+
+    @Override
+    public Optional<thongtintk> findbyID(thongtintk tk) {
+        return tkRepository.findById(tk.getAcc_id());
     }
 }

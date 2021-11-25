@@ -5,7 +5,7 @@ import com.ec.final_project.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Welcome")
@@ -33,7 +33,10 @@ public class thongtintkController {
 //    }
 
     @RequestMapping("/Login")
-    public thongtintk findAll(){
-        return tkService.getalltk().get(0);
+    public Optional<thongtintk> findAll(@RequestBody thongtintk tk) {
+        if (tkService.timthongtin(tk) != null) {
+            int id = tkService.timthongtin(tk).getAcc_id();
+            return tkService.findbyID(tk);
+        } else return null;
     }
 }
