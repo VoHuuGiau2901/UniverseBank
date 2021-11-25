@@ -32,11 +32,11 @@ public class thongtintkController {
 //        } else return null;
 //    }
 
-    @RequestMapping("/Login")
+    @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public Optional<thongtintk> findAll(@RequestBody thongtintk tk) {
-        if (tkService.timthongtin(tk) != null) {
-            int id = tkService.timthongtin(tk).getAcc_id();
-            return tkService.findbyID(tk);
+        if (tkService.timthongtin(tk) > 0) {
+            int id = tkService.timthongtin(tk);
+            return tkService.findbyID(id);
         } else return null;
     }
 }

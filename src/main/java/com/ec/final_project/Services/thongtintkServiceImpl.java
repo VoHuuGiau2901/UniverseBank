@@ -25,7 +25,7 @@ public class thongtintkServiceImpl implements thongtintkService {
     }
 
     @Override
-    public thongtintk timthongtin(thongtintk tk) {
+    public int timthongtin(thongtintk tk) {
         return tkRepository.findBytaikhoanANDmatkhau(tk.getTaikhoan(), tk.getMatkhau());
     }
 
@@ -35,7 +35,7 @@ public class thongtintkServiceImpl implements thongtintkService {
     }
 
     @Override
-    public Optional<thongtintk> findbyID(thongtintk tk) {
-        return tkRepository.findById(tk.getAcc_id());
+    public Optional<thongtintk> findbyID(int id) {
+        return tkRepository.findById(id);
     }
 }
