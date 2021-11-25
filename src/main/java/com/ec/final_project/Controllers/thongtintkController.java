@@ -26,7 +26,7 @@ public class thongtintkController {
     @ResponseBody
     public thongtintk logIn(@RequestBody thongtintk tk) {
         if (tkService.timthongtin(tk) != null) {
-            return tkService.timthongtin(tk);
+            return tkService.timthongtin(tk)s;
         } else return null;
     }
 }
