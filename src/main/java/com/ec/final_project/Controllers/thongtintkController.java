@@ -24,9 +24,9 @@ public class thongtintkController {
     }
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     @ResponseBody
-    public String logIn(@RequestBody thongtintk tk) {
+    public thongtintk logIn(@RequestBody thongtintk tk) {
         if (tkService.timthongtin(tk) != null) {
-            return "login Successfully";
-        } else return "login failed";
+            return tkService.timthongtin(tk);
+        } else return null;
     }
 }
