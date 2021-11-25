@@ -18,4 +18,12 @@ public class thongtintkController {
         tkService.savethongtintk(tk);
         return "new account added";
     }
+
+    @PostMapping("/Login")
+    public String logIn (@RequestBody thongtintk tk){
+        if (tkService.timthongtin(tk) != null) {
+            return "login Successfully";
+        }
+        else return "login failed";
+    }
 }

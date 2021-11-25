@@ -14,4 +14,9 @@ public class thongtintkServiceImpl implements thongtintkService{
     public thongtintk savethongtintk(thongtintk tk) {
         return tkRepository.saveAndFlush(tk);
     }
+
+    @Override
+    public thongtintk timthongtin(thongtintk tk) {
+        return tkRepository.findBytaikhoanANDmatkhau(tk.getTaikhoan(),tk.getMatkhau());
+    }
 }
