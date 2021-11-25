@@ -14,16 +14,19 @@ public class thongtintkController {
     private thongtintkService tkService;
 
     @PostMapping("/Register")
-    public String add(@RequestBody thongtintk tk){
-        tkService.savethongtintk(tk);
-        return "new account added";
+    public String add(@RequestBody thongtintk tk) {
+        if (tkService.kiemtratk(tk) != null) {
+            return "account already taken";
+        } else {
+            tkService.savethongtintk(tk);
+            return "new account added";
+        }
     }
 
     @PostMapping("/Login")
-    public String logIn (@RequestBody thongtintk tk){
+    public String logIn(@RequestBody thongtintk tk) {
         if (tkService.timthongtin(tk) != null) {
             return "login Successfully";
-        }
-        else return "login failed";
+        } else return "login failed";
     }
 }
