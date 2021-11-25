@@ -12,6 +12,6 @@ public class thongtintkServiceImpl implements thongtintkService{
    private thongtintkRepository tkRepository;
     @Override
     public thongtintk savethongtintk(thongtintk tk) {
-        return tkRepository.save(tk);
+        return tkRepository.saveAndFlush(tk);
     }
 }

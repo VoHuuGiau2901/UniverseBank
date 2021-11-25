@@ -1,29 +1,43 @@
 package com.ec.final_project.Beans;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class thongtintk {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Acc_id;
     private String taikhoan;
     private String matkhau;
+    private String ten;
     private int role;
     private String sdt;
     private String email;
     private String soCMND;
 
+
     public thongtintk() {
     }
 
-    public thongtintk(String taikhoan, String matkhau, int role, String sdt, String email, String soCMND) {
+    public thongtintk(String taikhoan, String matkhau, String ten, int role, String sdt, String email, String soCMND) {
         this.taikhoan = taikhoan;
         this.matkhau = matkhau;
+        this.ten = ten;
         this.role = role;
         this.sdt = sdt;
         this.email = email;
         this.soCMND = soCMND;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
     }
 
     public int getAcc_id() {
