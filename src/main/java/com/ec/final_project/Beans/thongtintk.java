@@ -22,6 +22,17 @@ public class thongtintk {
     public thongtintk() {
     }
 
+    public thongtintk(int acc_id, String taikhoan, String matkhau, String ten, int role, String sdt, String email, String soCMND) {
+        Acc_id = acc_id;
+        this.taikhoan = taikhoan;
+        this.matkhau = matkhau;
+        this.ten = ten;
+        this.role = role;
+        this.sdt = sdt;
+        this.email = email;
+        this.soCMND = soCMND;
+    }
+
     public thongtintk(String taikhoan, String matkhau, String ten, int role, String sdt, String email, String soCMND) {
         this.taikhoan = taikhoan;
         this.matkhau = matkhau;

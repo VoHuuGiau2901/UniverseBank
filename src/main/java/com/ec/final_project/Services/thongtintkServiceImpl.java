@@ -20,12 +20,12 @@ public class thongtintkServiceImpl implements thongtintkService {
     }
 
     @Override
-    public thongtintk savethongtintk(thongtintk tk) {
-        return tkRepository.saveAndFlush(tk);
+    public void savethongtintk(thongtintk tk) {
+        tkRepository.saveAndFlush(tk);
     }
 
     @Override
-    public int timthongtin(thongtintk tk) {
+    public thongtintk timthongtin(thongtintk tk) {
         return tkRepository.findBytaikhoanANDmatkhau(tk.getTaikhoan(), tk.getMatkhau());
     }
 

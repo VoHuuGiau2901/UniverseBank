@@ -34,8 +34,8 @@ public class thongtintkController {
 
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public Optional<thongtintk> findAll(@RequestBody thongtintk tk) {
-        if (tkService.timthongtin(tk) > 0) {
-            int id = tkService.timthongtin(tk);
+        if (tkService.timthongtin(tk) != null) {
+            int id = tkService.timthongtin(tk).getAcc_id();
             return tkService.findbyID(id);
         } else return null;
     }
