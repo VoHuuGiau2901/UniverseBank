@@ -30,7 +30,7 @@ public class thongtintkServiceImpl implements thongtintkService {
     }
 
     @Override
-    public List<thongtintk> getalltk() {
+    public List<thongtintk> getAlltk() {
         return tkRepository.findAll();
     }
 

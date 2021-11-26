@@ -28,10 +28,8 @@ public class thongtintkController {
 //    @RequestMapping(value = "/Login", method = RequestMethod.POST)
 //    @ResponseBody
     @GetMapping("/Login")
-    public List<thongtintk> logIn(@RequestBody thongtintk tk) {
-        if (tkService.timthongtin(tk) != null) {
-            return tkService.getalltk();
-        } else return null;
+    public List<thongtintk> logIn() {
+            return tkService.getAlltk();
     }
 
 //    @RequestMapping(value = "/Login", method = RequestMethod.GET)
