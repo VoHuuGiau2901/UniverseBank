@@ -34,11 +34,11 @@ public class thongtintkController {
         } else return null;
     }
 
-    @RequestMapping(value = "/Login", method = RequestMethod.GET)
-    public Optional<thongtintk> findAll(@RequestBody thongtintk tk) {
-        if (tkService.timthongtin(tk) != null) {
-            int id = tkService.timthongtin(tk).getAcc_id();
-            return tkService.findbyID(id);
-        } else return null;
-    }
+//    @RequestMapping(value = "/Login", method = RequestMethod.GET)
+//    public String findAll(@RequestBody thongtintk tk) {
+//        if (tkService.timthongtin(tk) != null) {
+//            int id = tkService.timthongtin(tk).getAcc_id();
+//            return tkService.findbyID(id).toString();
+//        } else return null;
+//    }
 }
