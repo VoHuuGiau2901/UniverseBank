@@ -5,6 +5,7 @@ import com.ec.final_project.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,11 +27,12 @@ public class thongtintkController {
     }
 //    @RequestMapping(value = "/Login", method = RequestMethod.POST)
 //    @ResponseBody
-//    public String logIn(@RequestBody thongtintk tk) {
-//        if (tkService.timthongtin(tk) != null) {
-//            return tkService.timthongtin(tk);
-//        } else return null;
-//    }
+    @GetMapping("/Login")
+    public List<thongtintk> logIn(@RequestBody thongtintk tk) {
+        if (tkService.timthongtin(tk) != null) {
+            return tkService.getalltk();
+        } else return null;
+    }
 
     @RequestMapping(value = "/Login", method = RequestMethod.GET)
     public Optional<thongtintk> findAll(@RequestBody thongtintk tk) {
