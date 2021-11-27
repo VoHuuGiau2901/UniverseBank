@@ -15,5 +15,5 @@ public interface thongtintkRepository extends JpaRepository<thongtintk,Integer> 
     @Query("SELECT tk FROM thongtintk tk WHERE tk.taikhoan = :taikhoan AND tk.matkhau = :matkhau")
     thongtintk findBytaikhoanANDmatkhau(@Param("taikhoan") String taikhoan,@Param("matkhau") String matkhau);
 
-
+//    @Query("select taikhoantietkiem FROM ")
 }

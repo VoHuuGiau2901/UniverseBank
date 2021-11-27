@@ -22,6 +22,7 @@ public class thongtintkController {
             return "account already taken";
         } else {
             tkService.savethongtintk(tk);
+
             return "new account added";
         }
     }
