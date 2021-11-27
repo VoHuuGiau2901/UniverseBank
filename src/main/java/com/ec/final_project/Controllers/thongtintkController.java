@@ -39,4 +39,8 @@ public class thongtintkController {
 //            return tkService.findbyID(id).toString();
 //        } else return null;
 //    }
+    @GetMapping("/userArea")
+    public List<thongtintk> getDetail(){
+        return tkService.getAlltk();
+    }
 }
