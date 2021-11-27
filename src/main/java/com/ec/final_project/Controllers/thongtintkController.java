@@ -16,7 +16,7 @@ public class thongtintkController {
     @Autowired
     private thongtintkService tkService;
 
-    @PostMapping("/Register")
+    @PostMapping("/Register") // gửi post ở /register tại /welcome thì hàm dưới chạy
     public String add(@RequestBody thongtintk tk) {
         if (tkService.kiemtratk(tk) != null) {
             return "account already taken";
@@ -25,20 +25,12 @@ public class thongtintkController {
             return "new account added";
         }
     }
-//    @RequestMapping(value = "/Login", method = RequestMethod.POST)
-//    @ResponseBody
-    @GetMapping("/Login")
+
+    @GetMapping("/Login") //chỉ cần truy cập vào /Login tại /welcome thif chạy
     public List<thongtintk> logIn() {
-            return tkService.getAlltk();
+        return tkService.getAlltk();
     }
 
-//    @RequestMapping(value = "/Login", method = RequestMethod.GET)
-//    public String findAll(@RequestBody thongtintk tk) {
-//        if (tkService.timthongtin(tk) != null) {
-//            int id = tkService.timthongtin(tk).getAcc_id();
-//            return tkService.findbyID(id).toString();
-//        } else return null;
-//    }
     @GetMapping("/userArea")
     public List<thongtintk> getDetail(){
         return tkService.getAlltk();
