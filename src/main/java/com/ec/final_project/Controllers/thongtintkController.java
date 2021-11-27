@@ -1,6 +1,8 @@
 package com.ec.final_project.Controllers;
 
+import com.ec.final_project.Beans.taikhoan_tietkiem;
 import com.ec.final_project.Beans.thongtintk;
+import com.ec.final_project.Services.taikhoan_tietkiemService;
 import com.ec.final_project.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ public class thongtintkController {
     @Autowired
     private thongtintkService tkService;
 
+    @Autowired
+    private taikhoan_tietkiemService tkTKService;
+
     @PostMapping("/Register")
     public String add(@RequestBody thongtintk tk) {
         if (tkService.kiemtratk(tk) != null) {
@@ -25,18 +30,14 @@ public class thongtintkController {
             return "new account added";
         }
     }
-//    @RequestMapping(value = "/Login", method = RequestMethod.POST)
-//    @ResponseBody
+
     @GetMapping("/Login")
     public List<thongtintk> logIn() {
             return tkService.getAlltk();
     }
 
-//    @RequestMapping(value = "/Login", method = RequestMethod.GET)
-//    public String findAll(@RequestBody thongtintk tk) {
-//        if (tkService.timthongtin(tk) != null) {
-//            int id = tkService.timthongtin(tk).getAcc_id();
-//            return tkService.findbyID(id).toString();
-//        } else return null;
-//    }
+    @GetMapping("/userArea")
+    public List<taikhoan_tietkiem> get(){
+        return tkTKService.getAll();
+    }
 }
