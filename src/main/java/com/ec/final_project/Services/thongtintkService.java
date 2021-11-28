@@ -11,4 +11,5 @@ public interface thongtintkService {
         public thongtintk timthongtin(thongtintk tk);
         public List<thongtintk> getAlltk();
         public Optional<thongtintk> findbyID(int id);
+        public int getMaxID();
 }

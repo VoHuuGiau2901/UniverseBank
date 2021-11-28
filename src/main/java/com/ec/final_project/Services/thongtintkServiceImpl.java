@@ -38,4 +38,9 @@ public class thongtintkServiceImpl implements thongtintkService {
     public Optional<thongtintk> findbyID(int id) {
         return tkRepository.findById(id);
     }
+
+    @Override
+    public int getMaxID() {
+        return tkRepository.getMaxID();
+    }
 }

@@ -14,10 +14,10 @@ public class taikhoan_tietkiem {
     private int sotien;
     private Date ngaygui;
     private Date ngaydaohan;
-    private int tuychon;
+    private String tuychon;
     private String sotaikhoan;
     private int acc_id;
-    private int kyhan;
+    private String kyhan;
 
     public int getId() {
         return id;
@@ -51,11 +51,11 @@ public class taikhoan_tietkiem {
         this.ngaydaohan = ngaydaohan;
     }
 
-    public int getTuychon() {
+    public String getTuychon() {
         return tuychon;
     }
 
-    public void setTuychon(int tuychon) {
+    public void setTuychon(String tuychon) {
         this.tuychon = tuychon;
     }
 
@@ -75,15 +75,15 @@ public class taikhoan_tietkiem {
         this.acc_id = acc_id;
     }
 
-    public int getKyhan() {
+    public String getKyhan() {
         return kyhan;
     }
 
-    public void setKyhan(int kyhan) {
+    public void setKyhan(String kyhan) {
         this.kyhan = kyhan;
     }
 
-    public taikhoan_tietkiem(int sotien, Date ngaygui, Date ngaydaohan, int tuychon, String sotaikhoan, int acc_id, int kyhan) {
+    public taikhoan_tietkiem(int sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
         this.sotien = sotien;
         this.ngaygui = ngaygui;
         this.ngaydaohan = ngaydaohan;
@@ -96,7 +96,7 @@ public class taikhoan_tietkiem {
     public taikhoan_tietkiem() {
     }
 
-    public taikhoan_tietkiem(int id, int sotien, Date ngaygui, Date ngaydaohan, int tuychon, String sotaikhoan, int acc_id, int kyhan) {
+    public taikhoan_tietkiem(int id, int sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
         this.id = id;
         this.sotien = sotien;
         this.ngaygui = ngaygui;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +28,8 @@ public class thongtintkController {
             return "account already taken";
         } else {
             tkService.savethongtintk(tk);
+            int max_id=tkService.getMaxID();
+            tkTKService.addtkTK(0,"129120",max_id);
             return "new account added";
         }
     }
@@ -36,8 +39,13 @@ public class thongtintkController {
             return tkService.getAlltk();
     }
 
+//    @GetMapping("/userArea")
+//    public List<taikhoan_tietkiem> get(){
+//        return tkTKService.getAll();
+//    }
+
     @GetMapping("/userArea")
-    public List<taikhoan_tietkiem> get(){
-        return tkTKService.getAll();
+    public List<Object> get(){
+        return tkTKService.get_thongtintk_join_taikhoan_tietkiem();
     }
 }
