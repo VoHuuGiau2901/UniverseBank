@@ -27,4 +27,9 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService{
     public List<Object> get_thongtintk_join_taikhoan_tietkiem() {
         return tkTKRepository.get_thongtintk_join_taikhoan_tietkiem();
     }
+
+    @Override
+    public void updatetkTK(int acc_id, int sotien) {
+        tkTKRepository.updatetkTK(sotien,acc_id);
+    }
 }

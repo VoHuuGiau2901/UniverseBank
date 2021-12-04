@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class thongtintkController {
             return "account already taken";
         } else {
             tkService.savethongtintk(tk);
-            tkTKService.addtkTK(0,tk.getSdt(),tk.getAcc_id());
+            tkTKService.addtkTK(0, tk.getSdt(), tk.getAcc_id());
 
             return "new account added";
         }
@@ -36,7 +37,7 @@ public class thongtintkController {
 
     @GetMapping("/Login")
     public List<thongtintk> logIn() {
-            return tkService.getAlltk();
+        return tkService.getAlltk();
     }
 
 //    @GetMapping("/userArea")
@@ -45,7 +46,14 @@ public class thongtintkController {
 //    }
 
     @GetMapping("/userArea")
-    public List<Object> get(){
+    public List<Object> get() {
         return tkTKService.get_thongtintk_join_taikhoan_tietkiem();
     }
+
+    @PostMapping("/Deposite")
+    public String naptien(@RequestBody Map<String, String> json) {
+        tkTKService.updatetkTK(Integer.parseInt(json.get("sotien")),Integer.parseInt(json.get("acc_id")));
+        return "update Money Complete";
+    }
+
 }
