@@ -29,6 +29,7 @@ public class thongtintkController {
         } else {
             tkService.savethongtintk(tk);
             tkTKService.addtkTK(0,tk.getSdt(),tk.getAcc_id());
+
             return "new account added";
         }
     }
