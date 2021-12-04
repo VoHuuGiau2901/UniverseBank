@@ -28,8 +28,7 @@ public class thongtintkController {
             return "account already taken";
         } else {
             tkService.savethongtintk(tk);
-            int max_id=tkService.getMaxID();
-            tkTKService.addtkTK(0,"129120",max_id);
+            tkTKService.addtkTK(0,tk.getSdt(),tk.getAcc_id());
             return "new account added";
         }
     }
