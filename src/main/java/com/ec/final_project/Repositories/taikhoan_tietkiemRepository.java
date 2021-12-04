@@ -1,4 +1,5 @@
 package com.ec.final_project.Repositories;
+
 import com.ec.final_project.Beans.taikhoan_tietkiem;
 import com.ec.final_project.Beans.thongtintk;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,19 +10,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tietkiem,Integer> {
+public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tietkiem, Integer> {
     @Modifying
     @Query(value = "insert into taikhoan_tietkiem ( SoTien,SoTaiKhoan, Acc_id)\n" +
-            "values (:sotien,:sotaikhoan,:acc_id);",nativeQuery = true)
+            "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
     @Transactional
-    void addtkTK(@Param("sotien") int sotien,@Param("sotaikhoan") String sotaikhoan,@Param("acc_id") int acc_id);
+    void addtkTK(@Param("sotien") int sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
     @Query("SELECT tk,tkTK\n" +
             "FROM thongtintk tk LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.acc_id")
     List<Object> get_thongtintk_join_taikhoan_tietkiem();
 
-    @Modifying
-    @Query("update taikhoan_tietkiem tkTK set tkTK.sotien=:sotien where tkTK.acc_id=:acc_id")
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update taikhoan_tietkiem " +
+            "set SoTien=:sotien " +
+            "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
-    void updatetkTK(@Param("sotien") int sotien,@Param("acc_id") int acc_id);
+    void updatetkTK(@Param("sotien") int s, @Param("acc_id") int a);
 }
