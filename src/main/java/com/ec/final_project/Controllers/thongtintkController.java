@@ -52,13 +52,7 @@ public class thongtintkController {
 
     @PostMapping("/Deposite")
     public String naptien(@RequestBody Map<String, String> json) {
-        String a=json.get("sotien");
-        String b=json.get("acc_id");
-        int sotien=Integer.parseInt(a);
-        int acc_id=Integer.parseInt(b);
-
-        tkTKService.updatetkTK(acc_id,sotien);
-
+        tkTKService.updatetkTK(Integer.parseInt(json.get("acc_id")),Integer.parseInt(json.get("sotien")));
         return "new account added";
     }
 
