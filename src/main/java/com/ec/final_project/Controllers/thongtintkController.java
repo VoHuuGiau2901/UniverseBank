@@ -49,7 +49,7 @@ public class thongtintkController {
 
     @PostMapping("/Deposite")
     public String naptien(@RequestBody Map<String, String> json) {
-        String date=json.get("ngaynap");
+        String date=json.get("ngaygui");
         tkTKService.updatetkTK(Integer.parseInt(json.get("acc_id")),Integer.parseInt(json.get("sotien")), date);
         return "new account added";
     }
