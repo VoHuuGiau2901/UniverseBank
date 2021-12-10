@@ -1,7 +1,7 @@
 package com.ec.final_project.Controllers;
 
-import com.ec.final_project.Beans.taikhoan_tietkiem;
 import com.ec.final_project.Beans.thongtintk;
+import com.ec.final_project.Services.taikhoan_thanhtoanService;
 import com.ec.final_project.Services.taikhoan_tietkiemService;
 import com.ec.final_project.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +20,9 @@ public class thongtintkController {
     @Autowired
     private taikhoan_tietkiemService tkTKService;
 
+    @Autowired
+    private taikhoan_thanhtoanService tkTTService;
+
     @PostMapping("/Register")
     public String add(@RequestBody thongtintk tk) {
         if (tkService.kiemtratk(tk) != null) {
@@ -27,7 +30,7 @@ public class thongtintkController {
         } else {
             tkService.savethongtintk(tk);
             tkTKService.addtkTK(0, tk.getSdt(), tk.getAcc_id());
-
+            tkTTService.addtkTT(0,tk.getSdt(),tk.getAcc_id());
             return "new account added";
         }
     }
@@ -37,21 +40,8 @@ public class thongtintkController {
         return tkService.getAlltk();
     }
 
-//    @GetMapping("/userArea")
-//    public List<taikhoan_tietkiem> get(){
-//        return tkTKService.getAll();
-//    }
-
     @GetMapping("/userArea")
     public List<Object> get() {
-        return tkTKService.get_thongtintk_join_taikhoan_tietkiem();
+        return tkTKService.get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
     }
-
-    @PostMapping("/Deposite")
-    public String naptien(@RequestBody Map<String, String> json) {
-        String date=json.get("ngaygui");
-        tkTKService.updatetkTK(Integer.parseInt(json.get("acc_id")),Integer.parseInt(json.get("sotien")), date);
-        return "new account added";
-    }
-
 }
