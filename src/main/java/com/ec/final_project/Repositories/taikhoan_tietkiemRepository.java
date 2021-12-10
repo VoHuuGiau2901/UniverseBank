@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
+@Repository
 public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tietkiem, Integer> {
     @Modifying
     @Query(value = "insert into taikhoan_tietkiem ( SoTien,SoTaiKhoan, Acc_id)\n" +
@@ -24,7 +27,8 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     @Modifying(clearAutomatically = true)
     @Query(value = "update taikhoan_tietkiem " +
             "set SoTien=:sotien " +
+            ",NgayGui=:ngaygui " +
             "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
-    void updatetkTK(@Param("sotien") int s, @Param("acc_id") int a);
+    void updatetkTK(@Param("sotien") int s, @Param("acc_id") int a, @Param("ngaygui")String ngaygui);
 }

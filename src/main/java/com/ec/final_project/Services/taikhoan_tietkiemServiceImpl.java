@@ -6,10 +6,11 @@ import com.ec.final_project.Repositories.taikhoan_tietkiemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
-public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService{
+public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     @Autowired
     private taikhoan_tietkiemRepository tkTKRepository;
 
@@ -20,7 +21,7 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService{
 
     @Override
     public void addtkTK(int sotien, String sotaikhoan, int acc_id) {
-        tkTKRepository.addtkTK(sotien,sotaikhoan,acc_id);
+        tkTKRepository.addtkTK(sotien, sotaikhoan, acc_id);
     }
 
     @Override
@@ -29,7 +30,7 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService{
     }
 
     @Override
-    public void updatetkTK(int acc_id, int sotien) {
-        tkTKRepository.updatetkTK(sotien,acc_id);
+    public void updatetkTK(int acc_id, int sotien, String ngaygui) {
+        tkTKRepository.updatetkTK(sotien, acc_id, ngaygui);
     }
 }

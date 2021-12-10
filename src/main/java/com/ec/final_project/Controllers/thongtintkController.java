@@ -7,10 +7,7 @@ import com.ec.final_project.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/Welcome")
@@ -52,7 +49,8 @@ public class thongtintkController {
 
     @PostMapping("/Deposite")
     public String naptien(@RequestBody Map<String, String> json) {
-        tkTKService.updatetkTK(Integer.parseInt(json.get("acc_id")),Integer.parseInt(json.get("sotien")));
+        String date=json.get("ngaynap");
+        tkTKService.updatetkTK(Integer.parseInt(json.get("acc_id")),Integer.parseInt(json.get("sotien")), date);
         return "new account added";
     }
 
