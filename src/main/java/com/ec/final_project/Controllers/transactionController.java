@@ -13,7 +13,7 @@ public class transactionController {
     @Autowired
     private taikhoan_thanhtoanService tkTTService;
 
-    @PostMapping("/Deposite")
+    @PostMapping("/Deposit")
     public String naptien(@RequestBody Map<String, String> json) {
         tkTTService.updatetkTT(Integer.parseInt(json.get("sotien")),Integer.parseInt(json.get("acc_id")));
         return "money transfer completed";
