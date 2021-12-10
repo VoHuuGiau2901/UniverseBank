@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/UserArea")
+@RequestMapping("/Welcome/UserArea")
 @CrossOrigin
 public class transactionController {
     @Autowired
@@ -15,7 +15,7 @@ public class transactionController {
 
     @PostMapping("/Deposite")
     public String naptien(@RequestBody Map<String, String> json) {
-        tkTTService.updatetkTT(Integer.parseInt(json.get("acc_id")),Integer.parseInt(json.get("sotien")));
+        tkTTService.updatetkTT(Integer.parseInt(json.get("sotien")),Integer.parseInt(json.get("acc_id")));
         return "money transfer completed";
     }
 }
