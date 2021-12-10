@@ -10,7 +10,6 @@ import java.util.Map;
 @RequestMapping("/UserArea")
 @CrossOrigin
 public class transactionController {
-
     @Autowired
     private taikhoan_thanhtoanService tkTTService;
 
