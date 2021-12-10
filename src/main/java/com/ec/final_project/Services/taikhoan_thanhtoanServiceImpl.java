@@ -14,4 +14,9 @@ public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService 
     public void addtkTT(int sotien, String sotaikhoan, int acc_id) {
         tkTTRepository.addtkTT(sotien,sotaikhoan,acc_id);
     }
+
+    @Override
+    public void updatetkTT(int sotien, int acc_id) {
+        tkTTRepository.updatetkTT(sotien,acc_id);
+    }
 }
