@@ -29,5 +29,12 @@ public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_tha
             "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
     void updatetkTT_AfterCreate_tkTK(@Param("sotien") double s, @Param("acc_id") int a);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update taikhoan_thanhtoan " +
+            "set SoTien=SoTien-:sotienrut " +
+            "where Acc_id=:acc_id", nativeQuery = true)
+    @Transactional
+    void updatetkTT_After_Withdraw(@Param("sotienrut") double s, @Param("acc_id") int a);
 }
 
