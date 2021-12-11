@@ -11,7 +11,7 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     private taikhoan_tietkiemRepository tkTKRepository;
 
     @Override
-    public void addtkTK(int sotien, String sotaikhoan, int acc_id) {
+    public void addtkTK(double sotien, String sotaikhoan, int acc_id) {
         tkTKRepository.addtkTK(sotien, sotaikhoan, acc_id);
     }
 
@@ -21,7 +21,7 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     }
 
     @Override
-    public void updatetkTK(int acc_id, int sotien, String ngaygui) {
-        tkTKRepository.updatetkTK(sotien, acc_id, ngaygui);
+    public void updatetkTK(double sotien, String ngaygui,String ngaydaohan,String tuychon,String kyhan,int acc_id) {
+        tkTKRepository.updatetkTK(sotien,ngaygui,ngaydaohan,tuychon,kyhan,acc_id);
     }
 }

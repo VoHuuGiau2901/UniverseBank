@@ -14,13 +14,13 @@ public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_tha
     @Query(value = "insert into taikhoan_thanhtoan ( SoTien,SoTaiKhoan, Acc_id)\n" +
             "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
     @Transactional
-    void addtkTT(@Param("sotien") int sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
+    void addtkTT(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update taikhoan_thanhtoan " +
             "set SoTien=:sotien " +
             "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
-    void updatetkTT(@Param("sotien") int s, @Param("acc_id") int a);
+    void updatetkTT(@Param("sotien") double s, @Param("acc_id") int a);
 }
 

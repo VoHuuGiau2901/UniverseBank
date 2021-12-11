@@ -16,7 +16,7 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     @Query(value = "insert into taikhoan_tietkiem ( SoTien,SoTaiKhoan, Acc_id)\n" +
             "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
     @Transactional
-    void addtkTK(@Param("sotien") int sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
+    void addtkTK(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
     @Query("SELECT tk,tkTK,tkTT FROM thongtintk tk LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.acc_id LEFT join taikhoan_thanhtoan tkTT on tk.Acc_id=tkTT.acc_id")
     List<Object> get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
@@ -25,7 +25,10 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     @Query(value = "update taikhoan_tietkiem " +
             "set SoTien=:sotien " +
             ",NgayGui=:ngaygui " +
+            ",NgayDaoHan=:ngaydaohan " +
+            ",TuyChon=:tuychon " +
+            ",KyHan=:kyhan " +
             "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
-    void updatetkTK(@Param("sotien") int s, @Param("acc_id") int a, @Param("ngaygui")String ngaygui);
+    void updatetkTK(@Param("sotien") double s, @Param("ngaygui")String ngaygui,@Param("ngaydaohan") String d,@Param("tuychon") String t,@Param("kyhan") String k, @Param("acc_id") int a);
 }

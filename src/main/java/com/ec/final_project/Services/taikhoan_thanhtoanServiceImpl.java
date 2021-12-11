@@ -11,12 +11,12 @@ public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService 
     private taikhoan_thanhtoanRepository tkTTRepository;
 
     @Override
-    public void addtkTT(int sotien, String sotaikhoan, int acc_id) {
+    public void addtkTT(double sotien, String sotaikhoan, int acc_id) {
         tkTTRepository.addtkTT(sotien,sotaikhoan,acc_id);
     }
 
     @Override
-    public void updatetkTT(int sotien, int acc_id) {
+    public void updatetkTT(double sotien, int acc_id) {
         tkTTRepository.updatetkTT(sotien,acc_id);
     }
 }

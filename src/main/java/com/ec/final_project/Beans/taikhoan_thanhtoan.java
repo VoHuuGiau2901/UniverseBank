@@ -12,7 +12,7 @@ public class taikhoan_thanhtoan {
     private int id;
     private int acc_id;
     private int sotaikhoan;
-    private int sotien;
+    private double sotien;
 
     public int getId() {
         return id;
@@ -38,27 +38,27 @@ public class taikhoan_thanhtoan {
         this.sotaikhoan = sotaikhoan;
     }
 
-    public int getSotien() {
+    public double getSotien() {
         return sotien;
     }
 
-    public void setSotien(int sotien) {
+    public void setSotien(double sotien) {
         this.sotien = sotien;
     }
 
-    public taikhoan_thanhtoan(int acc_id, int sotaikhoan, int sotien) {
+    public taikhoan_thanhtoan(int id, int acc_id, int sotaikhoan, double sotien) {
+        this.id = id;
+        this.acc_id = acc_id;
+        this.sotaikhoan = sotaikhoan;
+        this.sotien = sotien;
+    }
+
+    public taikhoan_thanhtoan(int acc_id, int sotaikhoan, double sotien) {
         this.acc_id = acc_id;
         this.sotaikhoan = sotaikhoan;
         this.sotien = sotien;
     }
 
     public taikhoan_thanhtoan() {
-    }
-
-    public taikhoan_thanhtoan(int id, int acc_id, int sotaikhoan, int sotien) {
-        this.id = id;
-        this.acc_id = acc_id;
-        this.sotaikhoan = sotaikhoan;
-        this.sotien = sotien;
     }
 }

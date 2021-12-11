@@ -11,13 +11,11 @@ public class taikhoan_tietkiem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int sotien;
+    private double sotien;
     private Date ngaygui;
     private Date ngaydaohan;
     private String tuychon;
     private String sotaikhoan;
-    private int acc_id;
-    private String kyhan;
 
     public int getId() {
         return id;
@@ -27,11 +25,11 @@ public class taikhoan_tietkiem {
         this.id = id;
     }
 
-    public int getSotien() {
+    public double getSotien() {
         return sotien;
     }
 
-    public void setSotien(int sotien) {
+    public void setSotien(double sotien) {
         this.sotien = sotien;
     }
 
@@ -83,7 +81,18 @@ public class taikhoan_tietkiem {
         this.kyhan = kyhan;
     }
 
-    public taikhoan_tietkiem(int sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
+    public taikhoan_tietkiem(int id, double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
+        this.id = id;
+        this.sotien = sotien;
+        this.ngaygui = ngaygui;
+        this.ngaydaohan = ngaydaohan;
+        this.tuychon = tuychon;
+        this.sotaikhoan = sotaikhoan;
+        this.acc_id = acc_id;
+        this.kyhan = kyhan;
+    }
+
+    public taikhoan_tietkiem(double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
         this.sotien = sotien;
         this.ngaygui = ngaygui;
         this.ngaydaohan = ngaydaohan;
@@ -96,14 +105,7 @@ public class taikhoan_tietkiem {
     public taikhoan_tietkiem() {
     }
 
-    public taikhoan_tietkiem(int id, int sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
-        this.id = id;
-        this.sotien = sotien;
-        this.ngaygui = ngaygui;
-        this.ngaydaohan = ngaydaohan;
-        this.tuychon = tuychon;
-        this.sotaikhoan = sotaikhoan;
-        this.acc_id = acc_id;
-        this.kyhan = kyhan;
-    }
+    private int acc_id;
+    private String kyhan;
+
 }
