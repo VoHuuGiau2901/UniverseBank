@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_thanhtoan,Integer> {
+public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_thanhtoan, Integer> {
     @Modifying
     @Query(value = "insert into taikhoan_thanhtoan ( SoTien,SoTaiKhoan, Acc_id)\n" +
             "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
@@ -18,7 +18,7 @@ public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_tha
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update taikhoan_thanhtoan " +
-            "set SoTien=:sotien " +
+            "set SoTien=SoTien+:sotien " +
             "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
     void updatetkTT(@Param("sotien") double s, @Param("acc_id") int a);
