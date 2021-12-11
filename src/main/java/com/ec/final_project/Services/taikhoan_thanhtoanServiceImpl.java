@@ -19,4 +19,9 @@ public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService 
     public void updatetkTT(double sotien, int acc_id) {
         tkTTRepository.updatetkTT(sotien,acc_id);
     }
+
+    @Override
+    public void updatetkTT_AfterCreate_tkTK(double sotien, int acc_id) {
+        tkTTRepository.updatetkTT_AfterCreate_tkTK(sotien,acc_id);
+    }
 }

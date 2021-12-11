@@ -27,13 +27,7 @@ public class transactionController {
     @PostMapping("/SaveMoney")
     public String guitietkiem(@RequestBody taikhoan_tietkiem tkTK){
         tkTKService.addtkTK(tkTK);
-//        System.out.println(json.get("sotien"));
-//        System.out.println(json.get("ngaygui"));
-//        System.out.println(json.get("ngaydaohan"));
-//        System.out.println(json.get("tuychon"));
-//        System.out.println(json.get("kyhan"));
-//        System.out.println(json.get("acc_id"));
-//        tkTKService.updatetkTK(Double.parseDouble(json.get("sotien")),json.get("ngaygui"),json.get("ngaydaohan"),json.get("tuychon"),json.get("kyhan"),Integer.parseInt(json.get("acc_id")));
+        tkTTService.updatetkTT_AfterCreate_tkTK(tkTK.getSotien(),tkTK.getAcc_id());
         return "cc";
     }
 }
