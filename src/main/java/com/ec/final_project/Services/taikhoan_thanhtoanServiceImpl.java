@@ -4,6 +4,8 @@ import com.ec.final_project.Repositories.taikhoan_thanhtoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService {
 
@@ -28,5 +30,10 @@ public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService 
     @Override
     public void updatetkTT_After_Withdraw(double sotien, int acc_id) {
         tkTTRepository.updatetkTT_After_Withdraw(sotien,acc_id);
+    }
+
+    @Override
+    public List<Object> thongtinTK_and_tong_sotien_thanhtoan() {
+        return tkTTRepository.thongtinTK_and_tong_sotien_thanhtoan();
     }
 }

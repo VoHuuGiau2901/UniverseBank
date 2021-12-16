@@ -2,6 +2,7 @@ package com.ec.final_project.Controllers;
 
 import com.ec.final_project.Beans.taikhoan_tietkiem;
 import com.ec.final_project.Services.lichsugiaodichService;
+import com.ec.final_project.Services.taikhoan_thanhtoanService;
 import com.ec.final_project.Services.taikhoan_tietkiemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ public class AdminController {
     @Autowired
     private taikhoan_tietkiemService tkTKService;
 
+    @Autowired
+    private taikhoan_thanhtoanService tkTTService;
+
     @GetMapping("/AllUserStatus")
     public Object GetAllUser_Status() {
         return lsGDService.get_total_user_and_money();
@@ -32,5 +36,10 @@ public class AdminController {
     @PostMapping("/All_Saving_Account")
     public List<taikhoan_tietkiem> getall(){
         return tkTKService.getAll();
+    }
+
+    @GetMapping("/AllCustomers_And_their_Pay_money")
+    public List<Object> thongtinTK_and_sotien_thanhtoan(){
+        return tkTTService.thongtinTK_and_tong_sotien_thanhtoan();
     }
 }

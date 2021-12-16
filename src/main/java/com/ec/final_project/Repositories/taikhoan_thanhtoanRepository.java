@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_thanhtoan, Integer> {
     @Modifying
@@ -36,5 +38,9 @@ public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_tha
             "where Acc_id=:acc_id", nativeQuery = true)
     @Transactional
     void updatetkTT_After_Withdraw(@Param("sotienrut") double s, @Param("acc_id") int a);
+
+    @Query(value = "select ttTK.*,tkTT.SoTien from\n" +
+            "thongtintk ttTK join taikhoan_thanhtoan tkTT on ttTK.Acc_id = tkTT.Acc_id;",nativeQuery = true)
+    List<Object> thongtinTK_and_tong_sotien_thanhtoan();
 }
 
