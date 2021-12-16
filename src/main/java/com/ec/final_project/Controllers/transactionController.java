@@ -64,9 +64,14 @@ public class transactionController {
         return "money transfer completed";
     }
 
-    @PostMapping("/CheckMy_Saving_tk")
-    public List<taikhoan_tietkiem> xem_tk_TK(@RequestBody Map<String, String> json) {
-        int id = Integer.parseInt(json.get("acc_id"));
-        return tkTKService.getAllByAcc_id(id);
+//    @PostMapping("/CheckMy_Saving_tk")
+//    public List<taikhoan_tietkiem> xem_tk_TK(@RequestBody Map<String, String> json) {
+//        int id = Integer.parseInt(json.get("acc_id"));
+//        return tkTKService.getAllByAcc_id(id);
+//    }
+
+    @GetMapping("/CheckMy_Saving_tk")
+    public List<taikhoan_tietkiem> xem_tk_TK() {
+        return tkTKService.getAll();
     }
 }
