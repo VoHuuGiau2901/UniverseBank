@@ -5,6 +5,8 @@ import com.ec.final_project.Repositories.lichsugiaodichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class lichsugiaodichServiceImpl implements lichsugiaodichService{
 
@@ -17,7 +19,14 @@ public class lichsugiaodichServiceImpl implements lichsugiaodichService{
     }
 
     @Override
+    public List<Object> get_money_percent_stonk_per_period() {
+        return lsGDRepository.get_money_percent_stonk_per_period();
+    }
+
+    @Override
     public Object get_total_user_and_money() {
         return lsGDRepository.get_total_user_and_money();
     }
+
+
 }
