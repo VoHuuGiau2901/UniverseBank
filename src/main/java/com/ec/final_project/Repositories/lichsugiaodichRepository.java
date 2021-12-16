@@ -10,9 +10,8 @@ import java.util.List;
 @Repository
 public interface lichsugiaodichRepository extends JpaRepository<lichsugiaodich,Integer> {
 
-    @Query(value = "SELECT count(DISTINCT tk.Acc_id) as total_customers,sum(tkTK.sotien) as total_saving_money,sum(tkTT.sotien) as total_payment_money" +
-            " FROM thongtintk tk " +
-            "LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.acc_id " +
-            "LEFT join taikhoan_thanhtoan tkTT on tk.Acc_id=tkTT.acc_id",nativeQuery = true)
+    @Query(value = "SELECT (SELECT count(DISTINCT tk.Acc_id) from thongtintk tk)a,\n" +
+            "       (SELECT sum(tkTK.SoTien) as total_payment_money FROM taikhoan_tietkiem tkTK)b,\n" +
+            "       (SELECT sum(tkTT.SoTien) FROM taikhoan_thanhtoan tkTT)c;",nativeQuery = true)
     Object get_total_user_and_money();
 }
