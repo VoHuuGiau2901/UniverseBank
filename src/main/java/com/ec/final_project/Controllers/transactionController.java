@@ -21,7 +21,7 @@ import java.util.Map;
 @CrossOrigin
 public class transactionController {
 
-    private Date getCurrentDate(){
+    private Date getCurrentDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate d = LocalDate.now();
         dtf.format(d);
@@ -43,30 +43,30 @@ public class transactionController {
 
     @PostMapping("/Deposit")
     public String naptien(@RequestBody Map<String, String> json) {
-        tkTTService.updatetkTT(Double.parseDouble(json.get("sotien")),Integer.parseInt(json.get("acc_id")));
-        lichsugiaodich lsGD=new lichsugiaodich(getCurrentDate(),Double.parseDouble(json.get("sotien")),1,Integer.parseInt(json.get("acc_id")));
+        tkTTService.updatetkTT(Double.parseDouble(json.get("sotien")), Integer.parseInt(json.get("acc_id")));
+        lichsugiaodich lsGD = new lichsugiaodich(getCurrentDate(), Double.parseDouble(json.get("sotien")), 1, Integer.parseInt(json.get("acc_id")));
         lsGDService.addNew_GiaoDich(lsGD);
         return "money transfer completed";
     }
 
     @PostMapping("/SaveMoney")
-    public String guitietkiem(@RequestBody taikhoan_tietkiem tkTK){
+    public String guitietkiem(@RequestBody taikhoan_tietkiem tkTK) {
         tkTKService.addtkTK(tkTK);
-        tkTTService.updatetkTT_AfterCreate_tkTK(tkTK.getSotien(),tkTK.getAcc_id());
+        tkTTService.updatetkTT_AfterCreate_tkTK(tkTK.getSotien(), tkTK.getAcc_id());
         return "cc";
     }
 
     @PostMapping("/Withdraw")
-    public String ruttien (@RequestBody Map<String, String> json){
-        tkTTService.updatetkTT_After_Withdraw(Double.parseDouble(json.get("sotienrut")),Integer.parseInt(json.get("acc_id")));
-        lichsugiaodich lsGD=new lichsugiaodich(getCurrentDate(),Double.parseDouble(json.get("sotienrut")),2,Integer.parseInt(json.get("acc_id")));
+    public String ruttien(@RequestBody Map<String, String> json) {
+        tkTTService.updatetkTT_After_Withdraw(Double.parseDouble(json.get("sotienrut")), Integer.parseInt(json.get("acc_id")));
+        lichsugiaodich lsGD = new lichsugiaodich(getCurrentDate(), Double.parseDouble(json.get("sotienrut")), 2, Integer.parseInt(json.get("acc_id")));
         lsGDService.addNew_GiaoDich(lsGD);
         return "money transfer completed";
     }
 
     @PostMapping("/CheckMy_Saving_tk")
-    public List<taikhoan_tietkiem> xem_tk_TK(@RequestBody Map<String, String> json){
-        int id=Integer.parseInt(json.get("acc_id"));
+    public List<taikhoan_tietkiem> xem_tk_TK(@RequestBody Map<String, String> json) {
+        int id = Integer.parseInt(json.get("acc_id"));
         return tkTKService.getAllByAcc_id(id);
     }
 }
