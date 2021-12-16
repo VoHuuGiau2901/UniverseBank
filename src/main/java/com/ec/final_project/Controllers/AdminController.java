@@ -4,12 +4,10 @@ import com.ec.final_project.Beans.taikhoan_tietkiem;
 import com.ec.final_project.Services.lichsugiaodichService;
 import com.ec.final_project.Services.taikhoan_tietkiemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Welcome/Administrator")
@@ -31,8 +29,8 @@ public class AdminController {
             return lsGDService.get_money_percent_stonk_per_period();
     }
 
-    @GetMapping("/All_Saving_Account")
-    public List<taikhoan_tietkiem> getall(){
-       return tkTKService.getAll();
+    @PostMapping("/All_Saving_Account")
+    public List<taikhoan_tietkiem> getall(@RequestBody Map<String, String> json){
+        return tkTKService.getAll();
     }
 }

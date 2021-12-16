@@ -13,6 +13,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -61,5 +62,11 @@ public class transactionController {
         lichsugiaodich lsGD=new lichsugiaodich(getCurrentDate(),Double.parseDouble(json.get("sotienrut")),2,Integer.parseInt(json.get("acc_id")));
         lsGDService.addNew_GiaoDich(lsGD);
         return "money transfer completed";
+    }
+
+    @PostMapping("/CheckMy_Saving_tk")
+    public List<taikhoan_tietkiem> xem_tk_TK(@RequestBody Map<String, String> json){
+        int id=Integer.parseInt(json.get("acc_id"));
+        return tkTKService.getAllByAcc_id(id);
     }
 }

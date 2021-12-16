@@ -17,6 +17,11 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     }
 
     @Override
+    public List<taikhoan_tietkiem> getAllByAcc_id(int id) {
+        return tkTKRepository.getAllByAcc_id(id);
+    }
+
+    @Override
     public void addtkTK(taikhoan_tietkiem tkTK) {
         tkTKRepository.saveAndFlush(tkTK);
     }
