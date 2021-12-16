@@ -12,6 +12,11 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     private taikhoan_tietkiemRepository tkTKRepository;
 
     @Override
+    public List<taikhoan_tietkiem> getAll() {
+        return tkTKRepository.findAll();
+    }
+
+    @Override
     public void addtkTK(taikhoan_tietkiem tkTK) {
         tkTKRepository.saveAndFlush(tkTK);
     }
@@ -20,9 +25,4 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     public List<Object> get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan() {
         return tkTKRepository.get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
     }
-
-//    @Override
-//    public void updatetkTK(double sotien, String ngaygui,String ngaydaohan,String tuychon,String kyhan,int acc_id) {
-//        tkTKRepository.updatetkTK(sotien,ngaygui,ngaydaohan,tuychon,kyhan,acc_id);
-//    }
 }
