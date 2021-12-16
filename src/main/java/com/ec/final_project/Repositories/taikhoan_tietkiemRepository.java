@@ -23,4 +23,7 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
 
     @Query(value = "SELECT * from taikhoan_tietkiem where Acc_id=:acc_id",nativeQuery = true)
     List<taikhoan_tietkiem> getAllByAcc_id(@Param("acc_id") int acc_id);
+
+    @Query(value = "SELECT * from taikhoan_tietkiem;",nativeQuery = true)
+    List<taikhoan_tietkiem> getAll();
 }

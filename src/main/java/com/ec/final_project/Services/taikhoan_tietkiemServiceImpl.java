@@ -13,7 +13,7 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
 
     @Override
     public List<taikhoan_tietkiem> getAll() {
-        return tkTKRepository.findAll();
+        return tkTKRepository.getAll();
     }
 
     @Override
