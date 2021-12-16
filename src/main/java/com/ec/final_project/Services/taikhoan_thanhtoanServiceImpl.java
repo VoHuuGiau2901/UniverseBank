@@ -33,7 +33,8 @@ public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService 
     }
 
     @Override
-    public List<Object> thongtinTK_and_tong_sotien_thanhtoan() {
-        return tkTTRepository.thongtinTK_and_tong_sotien_thanhtoan();
+    public List<Object> thongtinTK_and_tong_sotien_thanhtoan_and_tong_so_taikhoan_tietkiem() {
+        return tkTTRepository.thongtinTK_and_tong_sotien_thanhtoan_and_tong_so_taikhoan_tietkiem();
     }
+
 }
