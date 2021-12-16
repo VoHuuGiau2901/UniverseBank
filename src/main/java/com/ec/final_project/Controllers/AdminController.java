@@ -30,7 +30,7 @@ public class AdminController {
     }
 
     @PostMapping("/All_Saving_Account")
-    public List<taikhoan_tietkiem> getall(@RequestBody Map<String, String> json){
+    public List<taikhoan_tietkiem> getall(){
         return tkTKService.getAll();
     }
 }
