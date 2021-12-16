@@ -11,7 +11,7 @@ public class taikhoan_thanhtoan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int acc_id;
-    private int sotaikhoan;
+    private String sotaikhoan;
     private double sotien;
 
     public int getId() {
@@ -30,11 +30,11 @@ public class taikhoan_thanhtoan {
         this.acc_id = acc_id;
     }
 
-    public int getSotaikhoan() {
+    public String getSotaikhoan() {
         return sotaikhoan;
     }
 
-    public void setSotaikhoan(int sotaikhoan) {
+    public void setSotaikhoan(String sotaikhoan) {
         this.sotaikhoan = sotaikhoan;
     }
 
@@ -46,14 +46,14 @@ public class taikhoan_thanhtoan {
         this.sotien = sotien;
     }
 
-    public taikhoan_thanhtoan(int id, int acc_id, int sotaikhoan, double sotien) {
+    public taikhoan_thanhtoan(int id, int acc_id, String sotaikhoan, double sotien) {
         this.id = id;
         this.acc_id = acc_id;
         this.sotaikhoan = sotaikhoan;
         this.sotien = sotien;
     }
 
-    public taikhoan_thanhtoan(int acc_id, int sotaikhoan, double sotien) {
+    public taikhoan_thanhtoan(int acc_id, String sotaikhoan, double sotien) {
         this.acc_id = acc_id;
         this.sotaikhoan = sotaikhoan;
         this.sotien = sotien;

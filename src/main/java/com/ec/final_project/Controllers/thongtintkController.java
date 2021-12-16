@@ -39,7 +39,7 @@ public class thongtintkController {
         return tkService.getAlltk();
     }
 
-    @GetMapping("/userArea")
+    @GetMapping("/UserArea")
     public List<Object> get() {
         return tkTKService.get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
     }

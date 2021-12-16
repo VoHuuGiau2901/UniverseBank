@@ -15,4 +15,9 @@ public class lichsugiaodichServiceImpl implements lichsugiaodichService{
     public void addNew_GiaoDich(lichsugiaodich lsGD) {
         lsGDRepository.saveAndFlush(lsGD);
     }
+
+    @Override
+    public Object get_total_user_and_money() {
+        return lsGDRepository.get_total_user_and_money();
+    }
 }
