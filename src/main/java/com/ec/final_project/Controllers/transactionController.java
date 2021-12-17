@@ -75,4 +75,10 @@ public class transactionController {
     public List<taikhoan_tietkiem> xem_tk_TK() {
         return tkTKService.getAll();
     }
+
+    @PostMapping("/Cancel_Saving")
+    public String cancel(@RequestBody Map<String, String> json){
+        tkTKService.cancel_saving(Integer.parseInt(json.get("id")));
+        return "cancel success";
+    }
 }

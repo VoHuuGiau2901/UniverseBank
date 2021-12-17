@@ -1,4 +1,5 @@
 package com.ec.final_project.Services;
+
 import com.ec.final_project.Beans.taikhoan_tietkiem;
 import com.ec.final_project.Repositories.taikhoan_tietkiemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,11 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
     @Override
     public List<Object> get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan() {
         return tkTKRepository.get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
+    }
+
+    @Override
+    public void cancel_saving(int id) {
+        tkTKRepository.cancel_saving(id);
+        tkTKRepository.deleteById(id);
     }
 }
