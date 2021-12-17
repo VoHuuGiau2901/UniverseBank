@@ -15,7 +15,7 @@ public interface lichsugiaodichRepository extends JpaRepository<lichsugiaodich,I
             "       (SELECT sum(tkTT.SoTien) FROM taikhoan_thanhtoan tkTT)c;",nativeQuery = true)
     Object get_total_user_and_money();
 
-    @Query(value = "SELECT b.tongtien, (b.tongtien/a.tongtien)*100, b.KyHan\n" +
+    @Query(value = "SELECT b.tongtien, (b.tongtien/a.tongtien)*100 -100 , b.KyHan\n" +
             "from (SELECT sum(tkTK.SoTien) as tongtien, tkTK.KyHan\n" +
             "      FROM taikhoan_tietkiem tkTK\n" +
             "      WHERE YEAR(tkTK.NgayGui) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)\n" +
