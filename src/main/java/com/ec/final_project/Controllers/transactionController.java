@@ -62,8 +62,7 @@ public class transactionController {
     }
 
     @PostMapping("/My_Transaction_History")
-    public String get_history(){
-        lsGDService.getAll();
-        return "history sent";
+    public List<lichsugiaodich> get_history(){
+        return lsGDService.getAll();
     }
 }
