@@ -14,6 +14,11 @@ public class lichsugiaodichServiceImpl implements lichsugiaodichService{
     private lichsugiaodichRepository lsGDRepository;
 
     @Override
+    public List<lichsugiaodich> getAll() {
+        return lsGDRepository.findAll();
+    }
+
+    @Override
     public void addNew_GiaoDich(lichsugiaodich lsGD) {
         lsGDRepository.saveAndFlush(lsGD);
     }
