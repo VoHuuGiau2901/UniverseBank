@@ -29,4 +29,8 @@ public interface lichsugiaodichRepository extends JpaRepository<lichsugiaodich,I
             "where b.KyHan = a.KyHan\n" +
             "group by b.KyHan;",nativeQuery = true)
     List<Object> get_money_percent_stonk_per_period();
+
+
+    @Query(value = "SELECT *from lichsugiaodich",nativeQuery = true)
+    List<lichsugiaodich> getAll_lsGD();
 }

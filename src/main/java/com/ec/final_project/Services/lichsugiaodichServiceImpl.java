@@ -15,7 +15,7 @@ public class lichsugiaodichServiceImpl implements lichsugiaodichService{
 
     @Override
     public List<lichsugiaodich> getAll() {
-        return lsGDRepository.findAll();
+        return lsGDRepository.getAll_lsGD();
     }
 
     @Override
