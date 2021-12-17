@@ -44,6 +44,8 @@ public class transactionController {
     public String guitietkiem(@RequestBody taikhoan_tietkiem tkTK) {
         tkTKService.addtkTK(tkTK);
         tkTTService.updatetkTT_AfterCreate_tkTK(tkTK.getSotien(), tkTK.getAcc_id());
+        lichsugiaodich lsGD=new lichsugiaodich (getCurrentDate(),tkTK.getSotien(), 3, tkTK.getAcc_id());
+        lsGDService.addNew_GiaoDich(lsGD);
         return "cc";
     }
 
