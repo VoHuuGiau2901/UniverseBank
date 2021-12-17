@@ -1,0 +1,52 @@
+drop event Check_ngay_dao_han_neu_toi_thi_tang_tien;
+# auto check moi ngay de tang tien
+CREATE EVENT Check_ngay_dao_han_neu_toi_thi_tang_tien
+    ON SCHEDULE
+        EVERY 1 DAY
+            STARTS '2021-12-17 11:32:00' ON COMPLETION PRESERVE ENABLE
+    DO
+    begin
+        #  them vao lich su tang tien
+        insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk,thongtintk_Acc_id)
+        select tkTK.id, tkTK.NgayDaoHan, LS.LaiSuat, tkTK.SoTien * LS.LaiSuat,tkTK.Acc_id
+        from taikhoan_tietkiem tkTK
+                 join laisuat LS on tkTK.KyHan = LS.KyHan
+        where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
+          and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
+          and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE);
+
+        # cap nhat tk thanh toan
+        update taikhoan_thanhtoan tkTT
+        set tkTT.SoTien=tkTT.SoTien + (
+            select sum(tkTK.SoTien * ls.LaiSuat)
+            from taikhoan_tietkiem tkTK
+                     join laisuat ls on ls.KyHan = tkTK.KyHan
+            where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
+              and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
+              and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE));
+
+        # cong vao lai trong tk tt neu la tat toan
+        update taikhoan_thanhtoan tkTT
+        set tkTT.SoTien=tkTT.SoTien + (
+            select sum(tkTK.SoTien)
+            from taikhoan_tietkiem tkTK
+            where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
+              and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
+              and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE)
+              and tkTK.TuyChon = 2);
+        # check tuy chon de xem co xoa tai khooan tietkiem k
+        delete
+        from taikhoan_tietkiem tkTK
+        where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
+          and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
+          and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE)
+          and tkTK.TuyChon = 2;
+
+        #update lai cac tai khoan tai tuc
+        update taikhoan_tietkiem tkTK
+        set tkTK.NgayDaoHan=DATE_ADD(tkTK.NgayDaoHan, INTERVAL tkTK.KyHan month),tkTK.NgayGui= CURDATE()
+        where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
+          and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
+          and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE)
+          and tkTK.TuyChon = 1;
+    end;
