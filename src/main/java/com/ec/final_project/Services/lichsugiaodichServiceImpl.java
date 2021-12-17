@@ -1,5 +1,6 @@
 package com.ec.final_project.Services;
 
+import com.ec.final_project.Beans.laisuat;
 import com.ec.final_project.Beans.lichsugiaodich;
 import com.ec.final_project.Repositories.lichsugiaodichRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class lichsugiaodichServiceImpl implements lichsugiaodichService{
     public List<Object> get_money_percent_stonk_per_period() {
         return lsGDRepository.get_money_percent_stonk_per_period();
     }
+
 
     @Override
     public Object get_total_user_and_money() {

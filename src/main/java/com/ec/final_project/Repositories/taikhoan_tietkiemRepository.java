@@ -28,7 +28,8 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     List<taikhoan_tietkiem> getAll();
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "update taikhoan_thanhtoan tkTT set tkTT.SoTien=tkTT.SoTien+(select tkTK.SoTien*0.001*(DATEDIFF(CURDATE(),tkTK.NgayGui)/360)  from taikhoan_tietkiem tkTK where tkTK.id=:id)" ,nativeQuery = true)
+    @Query(value = "update taikhoan_thanhtoan tkTT set tkTT.SoTien=tkTT.SoTien+(select tkTK.SoTien*0.001*(DATEDIFF(CURDATE(),tkTK.NgayGui)/360)  from taikhoan_tietkiem tkTK where tkTK.id=:id)" +
+            " + (select tkTK.SoTien from taikhoan_tietkiem tkTK where tkTK.id=:id)" ,nativeQuery = true)
     @Transactional
     void cancel_saving(@Param("id") int id);
 }

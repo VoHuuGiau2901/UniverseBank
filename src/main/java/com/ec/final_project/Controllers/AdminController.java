@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/Welcome/Administrator")
@@ -41,5 +40,10 @@ public class AdminController {
     @GetMapping("/AllCustomers_And_their_Pay_money")
     public List<Object> thongtinTK_and_sotien_thanhtoan(){
         return tkTTService.thongtinTK_and_tong_sotien_thanhtoan_and_tong_so_taikhoan_tietkiem();
+    }
+
+    @GetMapping("/All_laisuat")
+    public void getAll_laiSuat(){
+
     }
 }
