@@ -29,11 +29,8 @@ public class lichsugiaodichServiceImpl implements lichsugiaodichService{
         return lsGDRepository.get_money_percent_stonk_per_period();
     }
 
-
     @Override
     public Object get_total_user_and_money() {
         return lsGDRepository.get_total_user_and_money();
     }
-
-
 }
