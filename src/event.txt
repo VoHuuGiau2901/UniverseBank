@@ -7,13 +7,11 @@ CREATE EVENT Check_ngay_dao_han_neu_toi_thi_tang_tien
     DO
     begin
         #  them vao lich su tang tien
-        insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk,thongtintk_Acc_id)
-        select tkTK.id, tkTK.NgayDaoHan, LS.LaiSuat, tkTK.SoTien * LS.LaiSuat,tkTK.Acc_id
+        insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk, thongtintk_Acc_id)
+        select tkTK.id, tkTK.NgayDaoHan, LS.LaiSuat, tkTK.SoTien * LS.LaiSuat, tkTK.Acc_id
         from taikhoan_tietkiem tkTK
                  join laisuat LS on tkTK.KyHan = LS.KyHan
-        where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
-          and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
-          and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE);
+        where tkTK.NgayDaoHan = CURDATE();
 
         # cap nhat tk thanh toan
         update taikhoan_thanhtoan tkTT
@@ -21,32 +19,30 @@ CREATE EVENT Check_ngay_dao_han_neu_toi_thi_tang_tien
             select sum(tkTK.SoTien * ls.LaiSuat)
             from taikhoan_tietkiem tkTK
                      join laisuat ls on ls.KyHan = tkTK.KyHan
-            where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
-              and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
-              and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE));
+            where tkTK.NgayDaoHan = CURDATE());
 
         # cong vao lai trong tk tt neu la tat toan
         update taikhoan_thanhtoan tkTT
         set tkTT.SoTien=tkTT.SoTien + (
             select sum(tkTK.SoTien)
             from taikhoan_tietkiem tkTK
-            where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
-              and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
-              and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE)
+            where tkTK.NgayDaoHan = CURDATE()
               and tkTK.TuyChon = 2);
         # check tuy chon de xem co xoa tai khooan tietkiem k
         delete
         from taikhoan_tietkiem tkTK
-        where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
-          and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
-          and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE)
+        where tkTK.NgayDaoHan = CURDATE()
           and tkTK.TuyChon = 2;
 
         #update lai cac tai khoan tai tuc
         update taikhoan_tietkiem tkTK
-        set tkTK.NgayDaoHan=DATE_ADD(tkTK.NgayDaoHan, INTERVAL tkTK.KyHan month),tkTK.NgayGui= CURDATE()
-        where YEAR(tkTK.NgayDaoHan) = YEAR(CURRENT_DATE)
-          and MONTH(tkTK.NgayDaoHan) = MONTH(CURRENT_DATE)
-          and DATE(tkTK.NgayDaoHan) = DATE(CURRENT_DATE)
+        set tkTK.NgayDaoHan=DATE_ADD(tkTK.NgayDaoHan, INTERVAL tkTK.KyHan month),
+            tkTK.NgayGui= CURDATE()
+        where tkTK.NgayDaoHan = CURDATE()
           and tkTK.TuyChon = 1;
     end;
+
+
+
+
+
