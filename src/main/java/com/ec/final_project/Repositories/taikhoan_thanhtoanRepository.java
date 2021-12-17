@@ -41,7 +41,7 @@ public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_tha
 
     @Query(value = "select ttTK.*,tkTT.SoTien,a.tong_so_taiKhoan from\n" +
             "thongtintk ttTK join taikhoan_thanhtoan tkTT on ttTK.Acc_id = tkTT.Acc_id\n" +
-            "join (select count(tkTK.id) as tong_so_taiKhoan,tkTK.Acc_id\n" +
+            " left join (select count(tkTK.id) as tong_so_taiKhoan,tkTK.Acc_id\n" +
             "      from taikhoan_tietkiem tkTK group by tkTK.Acc_id)a on ttTK.Acc_id=a.Acc_id",nativeQuery = true)
     List<Object> thongtinTK_and_tong_sotien_thanhtoan_and_tong_so_taikhoan_tietkiem();
 }
