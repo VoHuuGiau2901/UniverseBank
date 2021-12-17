@@ -61,7 +61,7 @@ public class transactionController {
         return "cancel success";
     }
 
-    @PostMapping("my_history")
+    @PostMapping("/My_Transaction_History")
     public String get_history(){
         lsGDService.getAll();
         return "history sent";
