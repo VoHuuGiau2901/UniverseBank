@@ -61,7 +61,7 @@ public class transactionController {
         return "cancel success";
     }
 
-    @PostMapping("/My_Transaction_History")
+    @GetMapping("/My_Transaction_History")
     public List<lichsugiaodich> get_history(){
         return lsGDService.getAll();
     }
