@@ -15,7 +15,7 @@ public class thongtintkServiceImpl implements thongtintkService {
 
     @Override
     public thongtintk kiemtratk(thongtintk tk) {
-        return tkRepository.checktaikhoanExists(tk.getTaikhoan());
+        return tkRepository.checktaikhoanExists(tk.getTaikhoan() ,tk.getSdt(),tk.getEmail(),tk.getSoCMND());
     }
 
     @Override
