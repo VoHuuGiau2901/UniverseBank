@@ -55,7 +55,10 @@ public class AdminController {
 
     @PostMapping("/Change_laisuat")
     public String change(@RequestBody Map<String, String> json) {
-        lsService.change(Float.parseFloat(json.get("laisuat")), json.get("kyhan"));
+        float l, k;
+        k = Float.parseFloat(json.get("kyhan"));
+        l = Float.parseFloat(json.get("laisuat")) / 1200 * k;
+        lsService.change(l, json.get("kyhan"));
         return "change complete";
     }
 }
