@@ -6,6 +6,7 @@ import org.sql2o.Sql2o;
 
 public class checkModel {
     public static void check_and_update() {
+
         final String query = "select *from taikhoan_tietkiem where NgayDaoHan = CURDATE();";
 
         final String query1 = "insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk, thongtintk_Acc_id)\n" +
