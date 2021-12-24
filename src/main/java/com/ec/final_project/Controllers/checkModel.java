@@ -38,10 +38,14 @@ public class checkModel {
                 "where tkTK.NgayDaoHan = CURDATE()\n" +
                 "  and tkTK.TuyChon = 2;";
 
-        final String query5 = "update taikhoan_tietkiem tkTK\n" +
-                "set tkTK.NgayDaoHan=DATE_ADD(tkTK.NgayDaoHan, INTERVAL tkTK.KyHan month),\n" +
-                "    tkTK.NgayGui= CURDATE()\n" +
-                "where tkTK.NgayDaoHan = CURDATE();";
+        final String query5 = "update taikhoan_tietkiem t ,(select tkTK.SoTien, tkTK.NgayGui, tkTK.NgayDaoHan, l.LaiSuat, l.KyHan\n" +
+                "                             from taikhoan_tietkiem tkTK\n" +
+                "                                      inner join laisuat l on tkTK.KyHan = l.KyHan\n" +
+                "                             where NgayDaoHan = CURDATE()) as TK\n" +
+                "set t.NgayDaoHan=DATE_ADD(t.NgayDaoHan, INTERVAL t.KyHan month),\n" +
+                "    t.NgayGui= CURDATE(),\n" +
+                "    t.SoTien=t.SoTien + (TK.SoTien * TK.LaiSuat)\n" +
+                "where TK.NgayDaoHan = CURDATE()";
 
         Sql2o s = new Sql2o("jdbc:mysql://database1-ec-p207.c4pgklhrrezb.us-east-2.rds.amazonaws.com:3306/digbank", "admin", "Lamdong#090411");
 
