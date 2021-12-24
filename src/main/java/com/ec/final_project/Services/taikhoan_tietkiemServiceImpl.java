@@ -37,4 +37,9 @@ public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
         tkTKRepository.cancel_saving(id);
         tkTKRepository.deleteById(id);
     }
+
+    @Override
+    public void check() {
+        tkTKRepository.check();
+    }
 }

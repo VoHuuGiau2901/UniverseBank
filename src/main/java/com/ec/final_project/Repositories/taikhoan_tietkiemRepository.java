@@ -32,4 +32,37 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
             " + (select tkTK.SoTien from taikhoan_tietkiem tkTK where tkTK.id=:id)" ,nativeQuery = true)
     @Transactional
     void cancel_saving(@Param("id") int id);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = " insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk, thongtintk_Acc_id)\n" +
+            "        select tkTK.id, tkTK.NgayDaoHan, LS.LaiSuat, tkTK.SoTien * LS.LaiSuat, tkTK.Acc_id\n" +
+            "        from taikhoan_tietkiem tkTK\n" +
+            "                 join laisuat LS on tkTK.KyHan = LS.KyHan\n" +
+            "        where tkTK.NgayDaoHan = CURDATE();\n" +
+            "\n" +
+            "        update taikhoan_thanhtoan tkTT\n" +
+            "        set tkTT.SoTien=tkTT.SoTien + (\n" +
+            "            select sum(tkTK.SoTien * ls.LaiSuat)\n" +
+            "            from taikhoan_tietkiem tkTK\n" +
+            "                     join laisuat ls on ls.KyHan = tkTK.KyHan\n" +
+            "            where tkTK.NgayDaoHan = CURDATE());\n" +
+            "\n" +
+            "        update taikhoan_thanhtoan tkTT\n" +
+            "        set tkTT.SoTien=tkTT.SoTien + (\n" +
+            "            select sum(tkTK.SoTien)\n" +
+            "            from taikhoan_tietkiem tkTK\n" +
+            "            where tkTK.NgayDaoHan = CURDATE()\n" +
+            "              and tkTK.TuyChon = 2);\n" +
+            "        delete\n" +
+            "        from taikhoan_tietkiem tkTK\n" +
+            "        where tkTK.NgayDaoHan = CURDATE()\n" +
+            "          and tkTK.TuyChon = 2;\n" +
+            "\n" +
+            "        update taikhoan_tietkiem tkTK\n" +
+            "        set tkTK.NgayDaoHan=DATE_ADD(tkTK.NgayDaoHan, INTERVAL tkTK.KyHan month),\n" +
+            "            tkTK.NgayGui= CURDATE()\n" +
+            "        where tkTK.NgayDaoHan = CURDATE()\n" +
+            "          and tkTK.TuyChon = 1;",nativeQuery = true)
+    @Transactional
+    void check();
 }

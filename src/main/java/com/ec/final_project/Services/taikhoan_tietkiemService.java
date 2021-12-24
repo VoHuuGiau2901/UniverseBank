@@ -10,4 +10,5 @@ public interface taikhoan_tietkiemService {
     void addtkTK(taikhoan_tietkiem tkTK);
     List<Object> get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
     void cancel_saving(int id);
+    void check();
 }
