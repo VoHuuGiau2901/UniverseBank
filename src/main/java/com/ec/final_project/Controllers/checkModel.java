@@ -46,7 +46,7 @@ public class checkModel {
                 "set t.NgayDaoHan=DATE_ADD(t.NgayDaoHan, INTERVAL t.KyHan month),\n" +
                 "    t.NgayGui= CURDATE(),\n" +
                 "    t.SoTien=t.SoTien + (TK.SoTien * TK.LaiSuat)\n" +
-                "where TK.NgayDaoHan = CURDATE()";
+                "where t.NgayDaoHan = CURDATE();";
 
         Sql2o s = new Sql2o("jdbc:mysql://database1-ec-p207.c4pgklhrrezb.us-east-2.rds.amazonaws.com:3306/digbank", "admin", "Lamdong#090411");
 
