@@ -14,6 +14,7 @@ public class check extends Thread {
         while (true) {
             try {
                 checkModel.check_and_update();
+
                 Thread.sleep(86400000);  // official
 //                Thread.sleep(60000); // test
             } catch (InterruptedException e) {
