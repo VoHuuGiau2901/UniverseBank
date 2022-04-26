@@ -4,7 +4,7 @@ import com.ec.final_project.Beans.taikhoan_tietkiem;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-public class checkModel {
+public class UpdateMoneyController {
     public static void check_and_update() {
 
         final String query = "select *from taikhoan_tietkiem where NgayDaoHan = CURDATE();";

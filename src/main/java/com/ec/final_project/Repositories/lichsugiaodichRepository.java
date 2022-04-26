@@ -29,7 +29,7 @@ public interface lichsugiaodichRepository extends JpaRepository<lichsugiaodich,I
             "      group by tkTK.KyHan) b\n" +
             "where b.KyHan = a.KyHan\n" +
             "group by b.KyHan;",nativeQuery = true)
-    List<Object> get_money_percent_stonk_per_period();
+    List<Object> getFlucts();
 
 
     @Query(value = "SELECT *from lichsugiaodich",nativeQuery = true)

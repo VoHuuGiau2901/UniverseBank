@@ -1,7 +1,8 @@
-package com.ec.final_project.Services;
+package com.ec.final_project.Services.ServiceImpl;
 
 import com.ec.final_project.Beans.thongtintk;
 import com.ec.final_project.Repositories.thongtintkRepository;
+import com.ec.final_project.Services.Services.thongtintkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,17 @@ public class thongtintkServiceImpl implements thongtintkService {
     private thongtintkRepository tkRepository;
 
     @Override
-    public thongtintk kiemtratk(thongtintk tk) {
+    public thongtintk CheckExist(thongtintk tk) {
         return tkRepository.checktaikhoanExists(tk.getTaikhoan() ,tk.getSdt(),tk.getEmail(),tk.getSoCMND());
     }
 
     @Override
-    public void savethongtintk(thongtintk tk) {
+    public void Create(thongtintk tk) {
         tkRepository.saveAndFlush(tk);
     }
 
     @Override
-    public List<thongtintk> getAlltk() {
+    public List<thongtintk> getAll() {
         return tkRepository.findAll();
     }
 }

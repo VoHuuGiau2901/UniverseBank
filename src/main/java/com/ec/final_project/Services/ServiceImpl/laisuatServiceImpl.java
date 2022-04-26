@@ -1,14 +1,15 @@
-package com.ec.final_project.Services;
+package com.ec.final_project.Services.ServiceImpl;
 
 import com.ec.final_project.Beans.laisuat;
 import com.ec.final_project.Repositories.laisuatRepository;
+import com.ec.final_project.Services.Services.laisuatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class laisuatServiceImpl implements laisuatService{
+public class laisuatServiceImpl implements laisuatService {
     @Autowired
     private laisuatRepository lsRepository;
 
@@ -18,7 +19,7 @@ public class laisuatServiceImpl implements laisuatService{
     }
 
     @Override
-    public void change(float l, String k) {
-        lsRepository.change(l,k);
+    public void Update(float l, String k) {
+        lsRepository.Update(l,k);
     }
 }

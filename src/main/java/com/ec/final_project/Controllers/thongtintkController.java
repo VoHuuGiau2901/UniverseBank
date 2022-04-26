@@ -1,9 +1,8 @@
 package com.ec.final_project.Controllers;
 
 import com.ec.final_project.Beans.thongtintk;
-import com.ec.final_project.Services.taikhoan_thanhtoanService;
-import com.ec.final_project.Services.taikhoan_tietkiemService;
-import com.ec.final_project.Services.thongtintkService;
+import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
+import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import java.util.*;
 public class thongtintkController {
 
     @Autowired
-    private thongtintkService tkService;
+    private com.ec.final_project.Services.Services.thongtintkService tkService;
 
     @Autowired
     private taikhoan_tietkiemService tkTKService;
@@ -25,22 +24,23 @@ public class thongtintkController {
 
     @PostMapping("/Register")
     public String add(@RequestBody thongtintk tk) {
-        if (tkService.kiemtratk(tk) != null) {
+        if (tkService.CheckExist(tk) != null) {
             return "account already taken";
         } else {
-            tkService.savethongtintk(tk);
-            tkTTService.addtkTT(0,tk.getSdt(),tk.getAcc_id());
+            System.out.println("cc");
+            tkService.Create(tk);
+            tkTTService.Create(0,tk.getSdt(),tk.getAcc_id());
             return "new account added";
         }
     }
 
     @GetMapping("/Login")
     public List<thongtintk> logIn() {
-        return tkService.getAlltk();
+        return tkService.getAll();
     }
 
     @GetMapping("/UserArea")
     public List<Object> get() {
-        return tkTKService.get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
+        return tkTKService.getAccount();
     }
 }

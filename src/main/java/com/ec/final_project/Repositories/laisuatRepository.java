@@ -12,5 +12,5 @@ public interface laisuatRepository extends JpaRepository<laisuat, String> {
     @Modifying
     @Query(value = "update laisuat ls set ls.LaiSuat=:laisuat where ls.KyHan=:kyhan", nativeQuery = true)
     @Transactional
-    void change(@Param("laisuat") float l, @Param("kyhan") String k);
+    void Update(@Param("laisuat") float l, @Param("kyhan") String k);
 }

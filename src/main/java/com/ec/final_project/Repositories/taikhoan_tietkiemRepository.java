@@ -19,7 +19,7 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     void addtkTK(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
     @Query("SELECT tk,tkTK,tkTT FROM thongtintk tk LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.acc_id LEFT join taikhoan_thanhtoan tkTT on tk.Acc_id=tkTT.acc_id")
-    List<Object> get_thongtintk_join_taikhoan_tietkiem_join_taikhoan_thanhtoan();
+    List<Object> getAccount();
 
     @Query(value = "SELECT * from taikhoan_tietkiem where Acc_id=:acc_id",nativeQuery = true)
     List<taikhoan_tietkiem> getAllByAcc_id(@Param("acc_id") int acc_id);
@@ -31,7 +31,7 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     @Query(value = "update taikhoan_thanhtoan tkTT set tkTT.SoTien=tkTT.SoTien+(select tkTK.SoTien*0.001*(DATEDIFF(CURDATE(),tkTK.NgayGui)/360)  from taikhoan_tietkiem tkTK where tkTK.id=:id)" +
             " + (select tkTK.SoTien from taikhoan_tietkiem tkTK where tkTK.id=:id)" ,nativeQuery = true)
     @Transactional
-    void cancel_saving(@Param("id") int id);
+    void Cancel_Saving(@Param("id") int id);
 
     @Modifying(clearAutomatically = true)
     @Query(value = " insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk, thongtintk_Acc_id)\n" +

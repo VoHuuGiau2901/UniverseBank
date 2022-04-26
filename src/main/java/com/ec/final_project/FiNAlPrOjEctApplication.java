@@ -1,5 +1,6 @@
 package com.ec.final_project;
 
+import com.ec.final_project.Services.UpdateMoneyService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,7 +10,7 @@ public class FiNAlPrOjEctApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(FiNAlPrOjEctApplication.class, args);
-        check c1 = new check();
+        UpdateMoneyService c1 = new UpdateMoneyService();
         c1.start();
     }
 
