@@ -3,6 +3,8 @@ package com.ec.final_project.Controllers;
 import com.ec.final_project.Beans.thongtintk;
 import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
 import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
+import com.ec.final_project.Services.Services.thongtintkService;
+import com.ec.final_project.middleware.AccountMiddleware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,34 +15,27 @@ import java.util.*;
 @CrossOrigin
 public class thongtintkController {
 
-    @Autowired
-    private com.ec.final_project.Services.Services.thongtintkService tkService;
-
-    @Autowired
-    private taikhoan_tietkiemService tkTKService;
-
-    @Autowired
-    private taikhoan_thanhtoanService tkTTService;
+    AccountMiddleware accountMiddleware;
 
     @PostMapping("/Register")
     public String add(@RequestBody thongtintk tk) {
-        if (tkService.CheckExist(tk) != null) {
+        if (accountMiddleware.CheckExist(tk) != null) {
             return "account already taken";
         } else {
             System.out.println("cc");
-            tkService.Create(tk);
-            tkTTService.Create(0,tk.getSdt(),tk.getAcc_id());
+            accountMiddleware.Create_New_Account(tk);
+            accountMiddleware.Create_New_Pay_Account(tk);
             return "new account added";
         }
     }
 
     @GetMapping("/Login")
     public List<thongtintk> logIn() {
-        return tkService.getAll();
+        return accountMiddleware.getAll_Account();
     }
 
     @GetMapping("/UserArea")
     public List<Object> get() {
-        return tkTKService.getAccount();
+        return accountMiddleware.getAccount();
     }
 }
