@@ -10,8 +10,9 @@ public class FiNAlPrOjEctApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(FiNAlPrOjEctApplication.class, args);
-        UpdateMoneyService c1 = new UpdateMoneyService();
-        c1.start();
+
+        UpdateMoneyService service = new UpdateMoneyService();
+        service.start();
     }
 
 }

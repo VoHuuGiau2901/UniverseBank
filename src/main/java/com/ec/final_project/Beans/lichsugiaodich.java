@@ -1,9 +1,6 @@
 package com.ec.final_project.Beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 
@@ -16,6 +13,9 @@ public class lichsugiaodich {
     private double sotiengiaodich;
     private int hinhthuc;
     private int acc_id;
+
+    @ManyToOne
+    private thongtintk Acc;
 
     public int getLichsu_id() {
         return lichsu_id;

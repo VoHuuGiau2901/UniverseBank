@@ -1,9 +1,6 @@
 package com.ec.final_project.Beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 
@@ -12,11 +9,19 @@ public class taikhoan_tietkiem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int acc_id;
+    private String kyhan;
     private double sotien;
     private Date ngaygui;
     private Date ngaydaohan;
     private String tuychon;
     private String sotaikhoan;
+
+    @ManyToOne
+    private thongtintk Acc;
+
+    @OneToOne
+    private laisuat ls;
 
     public int getId() {
         return id;
@@ -105,8 +110,4 @@ public class taikhoan_tietkiem {
 
     public taikhoan_tietkiem() {
     }
-
-    private int acc_id;
-    private String kyhan;
-
 }

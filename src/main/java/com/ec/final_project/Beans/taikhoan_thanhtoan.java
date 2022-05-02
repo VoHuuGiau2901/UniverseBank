@@ -1,9 +1,6 @@
 package com.ec.final_project.Beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class taikhoan_thanhtoan {
@@ -13,6 +10,9 @@ public class taikhoan_thanhtoan {
     private int acc_id;
     private String sotaikhoan;
     private double sotien;
+
+    @OneToOne
+    private thongtintk Acc;
 
     public int getId() {
         return id;
@@ -26,8 +26,8 @@ public class taikhoan_thanhtoan {
         return acc_id;
     }
 
-    public void setAcc_id(int acc_id) {
-        this.acc_id = acc_id;
+    public void setAcc_id(int Acc_id) {
+        this.acc_id = Acc_id;
     }
 
     public String getSotaikhoan() {
