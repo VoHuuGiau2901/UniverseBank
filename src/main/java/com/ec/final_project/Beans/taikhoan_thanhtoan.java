@@ -1,5 +1,7 @@
 package com.ec.final_project.Beans;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,12 +9,14 @@ public class taikhoan_thanhtoan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int acc_id;
     private String sotaikhoan;
     private double sotien;
 
     @OneToOne
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private thongtintk Acc;
+
+    private int acc_id;
 
     public int getId() {
         return id;

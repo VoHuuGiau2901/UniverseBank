@@ -4,7 +4,6 @@ import com.ec.final_project.Beans.thongtintk;
 import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
 import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
 import com.ec.final_project.Services.Services.thongtintkService;
-import com.ec.final_project.middleware.AccountMiddleware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,26 +14,33 @@ import java.util.*;
 @CrossOrigin
 public class thongtintkController {
 
-    AccountMiddleware accountMiddleware;
+    @Autowired
+    private thongtintkService Acc_Service;
+
+    @Autowired
+    private taikhoan_thanhtoanService pay_Acc_Service;
+
+    @Autowired
+    private taikhoan_tietkiemService saving_Acc_Service;
 
     @PostMapping("/Register")
     public String add(@RequestBody thongtintk tk) {
-        if (accountMiddleware.CheckExist(tk) != null) {
+        if (Acc_Service.CheckExist(tk)) {
             return "account already taken";
         } else {
-            accountMiddleware.Create_New_Account(tk);
-            accountMiddleware.Create_New_Pay_Account(tk);
+            Acc_Service.Create(tk);
+            pay_Acc_Service.Create(0, tk.getTaikhoan(), tk.getAcc_id());
             return "new account added";
         }
     }
 
     @GetMapping("/Login")
     public List<thongtintk> logIn() {
-        return accountMiddleware.getAll_Account();
+        return Acc_Service.getAll();
     }
 
     @GetMapping("/UserArea")
     public List<Object> get() {
-        return accountMiddleware.getAccount();
+        return saving_Acc_Service.getAccount();
     }
 }

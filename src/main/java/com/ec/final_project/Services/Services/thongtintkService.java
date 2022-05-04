@@ -5,7 +5,7 @@ import com.ec.final_project.Beans.thongtintk;
 import java.util.List;
 
 public interface thongtintkService {
-    thongtintk CheckExist(thongtintk tk);
+    boolean CheckExist(thongtintk tk);
     void Create(thongtintk tk);
     List<thongtintk> getAll();
 }

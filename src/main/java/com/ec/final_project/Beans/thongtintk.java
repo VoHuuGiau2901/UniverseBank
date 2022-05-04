@@ -1,9 +1,8 @@
 package com.ec.final_project.Beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 
 @Entity
 public class thongtintk {
@@ -17,7 +16,6 @@ public class thongtintk {
     private String sdt;
     private String email;
     private String soCMND;
-
 
     public thongtintk() {
     }

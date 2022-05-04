@@ -15,8 +15,8 @@ public class thongtintkServiceImpl implements thongtintkService {
     private thongtintkRepository tkRepository;
 
     @Override
-    public thongtintk CheckExist(thongtintk tk) {
-        return tkRepository.checktaikhoanExists(tk.getTaikhoan() ,tk.getSdt(),tk.getEmail(),tk.getSoCMND());
+    public boolean CheckExist(thongtintk tk) {
+        return tkRepository.checktaikhoanExists(tk.getTaikhoan(), tk.getSdt(), tk.getEmail(), tk.getSoCMND()) != null;
     }
 
     @Override
