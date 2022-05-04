@@ -22,7 +22,6 @@ public class thongtintkController {
         if (accountMiddleware.CheckExist(tk) != null) {
             return "account already taken";
         } else {
-            System.out.println("cc");
             accountMiddleware.Create_New_Account(tk);
             accountMiddleware.Create_New_Pay_Account(tk);
             return "new account added";
