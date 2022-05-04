@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface laisuatService {
     List<laisuat> getAll();
-    void Update(float l,String k);
- }
+
+    void Update(double l, String k);
+
+    void Insert_First(double l, String k);
+}

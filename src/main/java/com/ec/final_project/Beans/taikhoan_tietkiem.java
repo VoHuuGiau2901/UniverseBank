@@ -1,5 +1,7 @@
 package com.ec.final_project.Beans;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,8 +11,8 @@ public class taikhoan_tietkiem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int acc_id;
-    private String kyhan;
+//    private int acc_id;
+
     private double sotien;
     private Date ngaygui;
     private Date ngaydaohan;
@@ -18,9 +20,11 @@ public class taikhoan_tietkiem {
     private String sotaikhoan;
 
     @ManyToOne
+    @JoinColumn(name = "acc_id")
     private thongtintk Acc;
 
     @OneToOne
+    @JoinColumn(name = "kyhan")
     private laisuat ls;
 
     public int getId() {
@@ -72,41 +76,43 @@ public class taikhoan_tietkiem {
     }
 
     public int getAcc_id() {
-        return acc_id;
+        return this.Acc.getAcc_id();
     }
 
     public void setAcc_id(int acc_id) {
-        this.acc_id = acc_id;
+        Acc = new thongtintk();
+        this.Acc.setAcc_id(acc_id);
     }
 
     public String getKyhan() {
-        return kyhan;
+        return this.ls.getKyhan();
     }
 
     public void setKyhan(String kyhan) {
-        this.kyhan = kyhan;
+        ls = new laisuat();
+        this.ls.setKyhan(kyhan);
     }
 
-    public taikhoan_tietkiem(int id, double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
-        this.id = id;
-        this.sotien = sotien;
-        this.ngaygui = ngaygui;
-        this.ngaydaohan = ngaydaohan;
-        this.tuychon = tuychon;
-        this.sotaikhoan = sotaikhoan;
-        this.acc_id = acc_id;
-        this.kyhan = kyhan;
-    }
-
-    public taikhoan_tietkiem(double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
-        this.sotien = sotien;
-        this.ngaygui = ngaygui;
-        this.ngaydaohan = ngaydaohan;
-        this.tuychon = tuychon;
-        this.sotaikhoan = sotaikhoan;
-        this.acc_id = acc_id;
-        this.kyhan = kyhan;
-    }
+//    public taikhoan_tietkiem(int id, double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
+//        this.id = id;
+//        this.sotien = sotien;
+//        this.ngaygui = ngaygui;
+//        this.ngaydaohan = ngaydaohan;
+//        this.tuychon = tuychon;
+//        this.sotaikhoan = sotaikhoan;
+//        this.acc_id = acc_id;
+//        this.kyhan = kyhan;
+//    }
+//
+//    public taikhoan_tietkiem(double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
+//        this.sotien = sotien;
+//        this.ngaygui = ngaygui;
+//        this.ngaydaohan = ngaydaohan;
+//        this.tuychon = tuychon;
+//        this.sotaikhoan = sotaikhoan;
+//        this.acc_id = acc_id;
+//        this.kyhan = kyhan;
+//    }
 
     public taikhoan_tietkiem() {
     }

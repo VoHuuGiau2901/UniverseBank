@@ -43,4 +43,9 @@ public class thongtintkController {
     public List<Object> get() {
         return saving_Acc_Service.getAccount();
     }
+
+    @GetMapping("/Delete_Acc")
+    public void delete_Acc(@RequestBody Map<String, String> json) {
+        Acc_Service.delete_Acc(Integer.parseInt(json.get("id")));
+    }
 }

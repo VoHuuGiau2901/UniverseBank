@@ -3,8 +3,10 @@ package com.ec.final_project.Beans;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "thongtintk")
 public class thongtintk {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +18,14 @@ public class thongtintk {
     private String sdt;
     private String email;
     private String soCMND;
+
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @PrimaryKeyJoinColumn
+    private taikhoan_thanhtoan pay_Acc;
+
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @PrimaryKeyJoinColumn
+    private List<taikhoan_tietkiem> saving_Acc;
 
     public thongtintk() {
     }

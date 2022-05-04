@@ -2,6 +2,7 @@ package com.ec.final_project.Beans;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class laisuat {

@@ -8,4 +8,5 @@ public interface thongtintkService {
     boolean CheckExist(thongtintk tk);
     void Create(thongtintk tk);
     List<thongtintk> getAll();
+    void delete_Acc(int id);
 }

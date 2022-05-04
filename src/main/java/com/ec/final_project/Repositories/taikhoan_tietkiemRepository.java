@@ -18,7 +18,7 @@ public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tiet
     @Transactional
     void addtkTK(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
-    @Query("SELECT tk,tkTK,tkTT FROM thongtintk tk LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.acc_id LEFT join taikhoan_thanhtoan tkTT on tk.Acc_id=tkTT.acc_id")
+    @Query("SELECT tk,tkTK,tkTT FROM thongtintk tk LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.Acc.Acc_id LEFT join taikhoan_thanhtoan tkTT on tk.Acc_id=tkTT.Acc.Acc_id")
     List<Object> getAccount();
 
     @Query(value = "SELECT * from taikhoan_tietkiem where Acc_id=:acc_id", nativeQuery = true)

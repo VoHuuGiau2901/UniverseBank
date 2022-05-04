@@ -28,4 +28,9 @@ public class thongtintkServiceImpl implements thongtintkService {
     public List<thongtintk> getAll() {
         return tkRepository.findAll();
     }
+
+    @Override
+    public void delete_Acc(int id) {
+        tkRepository.deleteById(id);
+    }
 }

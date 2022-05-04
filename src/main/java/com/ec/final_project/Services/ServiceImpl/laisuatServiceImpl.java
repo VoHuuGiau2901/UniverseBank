@@ -19,7 +19,12 @@ public class laisuatServiceImpl implements laisuatService {
     }
 
     @Override
-    public void Update(float l, String k) {
-        lsRepository.Update(l,k);
+    public void Update(double l, String k) {
+        lsRepository.Update(l, k);
+    }
+
+    @Override
+    public void Insert_First(double l, String k) {
+        lsRepository.Insert_First(l, k);
     }
 }

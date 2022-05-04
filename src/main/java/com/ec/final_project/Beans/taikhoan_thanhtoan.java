@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "taikhoan_thanhtoan")
 public class taikhoan_thanhtoan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +14,8 @@ public class taikhoan_thanhtoan {
     private double sotien;
 
     @OneToOne
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinColumn(name = "acc_id")
     private thongtintk Acc;
-
-    private int acc_id;
 
     public int getId() {
         return id;
@@ -27,11 +26,11 @@ public class taikhoan_thanhtoan {
     }
 
     public int getAcc_id() {
-        return acc_id;
+        return Acc.getAcc_id();
     }
 
     public void setAcc_id(int Acc_id) {
-        this.acc_id = Acc_id;
+        this.Acc.setAcc_id(Acc_id);
     }
 
     public String getSotaikhoan() {
@@ -50,18 +49,18 @@ public class taikhoan_thanhtoan {
         this.sotien = sotien;
     }
 
-    public taikhoan_thanhtoan(int id, int acc_id, String sotaikhoan, double sotien) {
-        this.id = id;
-        this.acc_id = acc_id;
-        this.sotaikhoan = sotaikhoan;
-        this.sotien = sotien;
-    }
-
-    public taikhoan_thanhtoan(int acc_id, String sotaikhoan, double sotien) {
-        this.acc_id = acc_id;
-        this.sotaikhoan = sotaikhoan;
-        this.sotien = sotien;
-    }
+//    public taikhoan_thanhtoan(int id, int acc_id, String sotaikhoan, double sotien) {
+//        this.id = id;
+//        this.acc_id = acc_id;
+//        this.sotaikhoan = sotaikhoan;
+//        this.sotien = sotien;
+//    }
+//
+//    public taikhoan_thanhtoan(int acc_id, String sotaikhoan, double sotien) {
+//        this.acc_id = acc_id;
+//        this.sotaikhoan = sotaikhoan;
+//        this.sotien = sotien;
+//    }
 
     public taikhoan_thanhtoan() {
     }
