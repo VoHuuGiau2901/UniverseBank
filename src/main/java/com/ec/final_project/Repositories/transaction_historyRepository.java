@@ -1,7 +1,6 @@
 package com.ec.final_project.Repositories;
 
-import com.ec.final_project.Beans.laisuat;
-import com.ec.final_project.Beans.lichsugiaodich;
+import com.ec.final_project.Entity.transaction_history;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface lichsugiaodichRepository extends JpaRepository<lichsugiaodich,Integer> {
+public interface transaction_historyRepository extends JpaRepository<transaction_history,Integer> {
 
     @Query(value = "SELECT (SELECT count(DISTINCT tk.Acc_id) from thongtintk tk)a,\n" +
             "       (SELECT sum(tkTK.SoTien) as total_payment_money FROM taikhoan_tietkiem tkTK)b,\n" +
@@ -33,5 +32,5 @@ public interface lichsugiaodichRepository extends JpaRepository<lichsugiaodich,I
 
 
     @Query(value = "SELECT *from lichsugiaodich",nativeQuery = true)
-    List<lichsugiaodich> getAll_lsGD();
+    List<transaction_history> getAll_lsGD();
 }

@@ -1,21 +1,19 @@
-package com.ec.final_project.Beans;
-
-import org.hibernate.annotations.Cascade;
+package com.ec.final_project.Entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "taikhoan_thanhtoan")
-public class taikhoan_thanhtoan {
+@Table(name = "pay_account")
+public class pay_account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String sotaikhoan;
-    private double sotien;
+    private String account_number;
+    private double balance;
 
     @OneToOne
     @JoinColumn(name = "acc_id")
-    private thongtintk Acc;
+    private account Acc;
 
     public int getId() {
         return id;
@@ -33,20 +31,20 @@ public class taikhoan_thanhtoan {
         this.Acc.setAcc_id(Acc_id);
     }
 
-    public String getSotaikhoan() {
-        return sotaikhoan;
+    public String getAccount_number() {
+        return account_number;
     }
 
-    public void setSotaikhoan(String sotaikhoan) {
-        this.sotaikhoan = sotaikhoan;
+    public void setAccount_number(String sotaikhoan) {
+        this.account_number = sotaikhoan;
     }
 
-    public double getSotien() {
-        return sotien;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setSotien(double sotien) {
-        this.sotien = sotien;
+    public void setBalance(double sotien) {
+        this.balance = sotien;
     }
 
 //    public taikhoan_thanhtoan(int id, int acc_id, String sotaikhoan, double sotien) {
@@ -62,6 +60,6 @@ public class taikhoan_thanhtoan {
 //        this.sotien = sotien;
 //    }
 
-    public taikhoan_thanhtoan() {
+    public pay_account() {
     }
 }

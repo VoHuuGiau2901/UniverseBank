@@ -1,11 +1,11 @@
 package com.ec.final_project.Controllers;
 
-import com.ec.final_project.Beans.laisuat;
-import com.ec.final_project.Beans.taikhoan_tietkiem;
+import com.ec.final_project.Entity.interest_rate;
+import com.ec.final_project.Entity.saving_account;
 import com.ec.final_project.Services.Services.adminService;
-import com.ec.final_project.Services.Services.laisuatService;
-import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
-import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
+import com.ec.final_project.Services.Services.interest_rateService;
+import com.ec.final_project.Services.Services.pay_accountService;
+import com.ec.final_project.Services.Services.saving_accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +18,13 @@ import java.util.Map;
 public class AdminController {
 
     @Autowired
-    private taikhoan_thanhtoanService pay_Acc_Service;
+    private pay_accountService pay_Acc_Service;
 
     @Autowired
-    private taikhoan_tietkiemService saving_Acc_Service;
+    private saving_accountService saving_Acc_Service;
 
     @Autowired
-    private laisuatService IR_Service;
+    private interest_rateService IR_Service;
 
     @Autowired
     private adminService Admin_Service;
@@ -40,7 +40,7 @@ public class AdminController {
     }
 
     @PostMapping("/All_Saving_Account")
-    public List<taikhoan_tietkiem> getall() {
+    public List<saving_account> getall() {
         return saving_Acc_Service.getAll();
     }
 
@@ -50,7 +50,7 @@ public class AdminController {
     }
 
     @GetMapping("/All_laisuat")
-    public List<laisuat> getAll_laiSuat() {
+    public List<interest_rate> getAll_laiSuat() {
         return IR_Service.getAll();
     }
 

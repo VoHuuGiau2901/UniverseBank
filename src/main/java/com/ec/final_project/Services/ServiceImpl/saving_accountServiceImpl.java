@@ -1,30 +1,30 @@
 package com.ec.final_project.Services.ServiceImpl;
 
-import com.ec.final_project.Beans.taikhoan_tietkiem;
-import com.ec.final_project.Repositories.taikhoan_tietkiemRepository;
-import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
+import com.ec.final_project.Entity.saving_account;
+import com.ec.final_project.Repositories.saving_accountRepository;
+import com.ec.final_project.Services.Services.saving_accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class taikhoan_tietkiemServiceImpl implements taikhoan_tietkiemService {
+public class saving_accountServiceImpl implements saving_accountService {
     @Autowired
-    private taikhoan_tietkiemRepository tkTKRepository;
+    private saving_accountRepository tkTKRepository;
 
     @Override
-    public List<taikhoan_tietkiem> getAll() {
+    public List<saving_account> getAll() {
         return tkTKRepository.getAll();
     }
 
     @Override
-    public List<taikhoan_tietkiem> getAllByAcc_id(int id) {
+    public List<saving_account> getAllByAcc_id(int id) {
         return tkTKRepository.getAllByAcc_id(id);
     }
 
     @Override
-    public void Create(taikhoan_tietkiem tkTK) {
+    public void Create(saving_account tkTK) {
         tkTKRepository.saveAndFlush(tkTK);
     }
 

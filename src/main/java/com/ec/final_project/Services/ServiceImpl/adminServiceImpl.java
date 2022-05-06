@@ -1,6 +1,6 @@
 package com.ec.final_project.Services.ServiceImpl;
 
-import com.ec.final_project.Repositories.lichsugiaodichRepository;
+import com.ec.final_project.Repositories.transaction_historyRepository;
 import com.ec.final_project.Services.Services.adminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.util.List;
 public class adminServiceImpl implements adminService {
 
     @Autowired
-    private lichsugiaodichRepository lsGDRepository;
+    private transaction_historyRepository lsGDRepository;
 
     @Override
     public List<Object> getFlucts() {

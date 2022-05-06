@@ -1,6 +1,6 @@
 package com.ec.final_project.Repositories;
 
-import com.ec.final_project.Beans.taikhoan_tietkiem;
+import com.ec.final_project.Entity.saving_account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,21 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface taikhoan_tietkiemRepository extends JpaRepository<taikhoan_tietkiem, Integer> {
+public interface saving_accountRepository extends JpaRepository<saving_account, Integer> {
     @Modifying
     @Query(value = "insert into taikhoan_tietkiem ( SoTien,SoTaiKhoan, Acc_id)\n" +
             "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
     @Transactional
     void addtkTK(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
-    @Query("SELECT tk,tkTK,tkTT FROM thongtintk tk LEFT JOIN taikhoan_tietkiem tkTK ON tk.Acc_id = tkTK.Acc.Acc_id LEFT join taikhoan_thanhtoan tkTT on tk.Acc_id=tkTT.Acc.Acc_id")
+    @Query("SELECT tk,tkTK,tkTT FROM account tk LEFT JOIN saving_account tkTK ON tk.Acc_id = tkTK.Acc.Acc_id LEFT join pay_account tkTT on tk.Acc_id=tkTT.Acc.Acc_id")
     List<Object> getAccount();
 
     @Query(value = "SELECT * from taikhoan_tietkiem where Acc_id=:acc_id", nativeQuery = true)
-    List<taikhoan_tietkiem> getAllByAcc_id(@Param("acc_id") int acc_id);
+    List<saving_account> getAllByAcc_id(@Param("acc_id") int acc_id);
 
     @Query(value = "SELECT * from taikhoan_tietkiem;", nativeQuery = true)
-    List<taikhoan_tietkiem> getAll();
+    List<saving_account> getAll();
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update taikhoan_thanhtoan tkTT set tkTT.SoTien=tkTT.SoTien+(select tkTK.SoTien*0.001*(DATEDIFF(CURDATE(),tkTK.NgayGui)/360)  from taikhoan_tietkiem tkTK where tkTK.id=:id)" +

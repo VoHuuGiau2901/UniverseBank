@@ -1,9 +1,9 @@
 package com.ec.final_project.Controllers;
 
-import com.ec.final_project.Beans.thongtintk;
-import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
-import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
-import com.ec.final_project.Services.Services.thongtintkService;
+import com.ec.final_project.Entity.account;
+import com.ec.final_project.Services.Services.pay_accountService;
+import com.ec.final_project.Services.Services.saving_accountService;
+import com.ec.final_project.Services.Services.accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,27 +15,27 @@ import java.util.*;
 public class thongtintkController {
 
     @Autowired
-    private thongtintkService Acc_Service;
+    private accountService Acc_Service;
 
     @Autowired
-    private taikhoan_thanhtoanService pay_Acc_Service;
+    private pay_accountService pay_Acc_Service;
 
     @Autowired
-    private taikhoan_tietkiemService saving_Acc_Service;
+    private saving_accountService saving_Acc_Service;
 
     @PostMapping("/Register")
-    public String add(@RequestBody thongtintk tk) {
+    public String add(@RequestBody account tk) {
         if (Acc_Service.CheckExist(tk)) {
             return "account already taken";
         } else {
             Acc_Service.Create(tk);
-            pay_Acc_Service.Create(0, tk.getTaikhoan(), tk.getAcc_id());
+            pay_Acc_Service.Create(0, tk.getUsername(), tk.getAcc_id());
             return "new account added";
         }
     }
 
     @GetMapping("/Login")
-    public List<thongtintk> logIn() {
+    public List<account> logIn() {
         return Acc_Service.getAll();
     }
 

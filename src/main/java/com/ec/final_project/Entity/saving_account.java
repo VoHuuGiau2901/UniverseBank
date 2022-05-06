@@ -1,31 +1,30 @@
-package com.ec.final_project.Beans;
-
-import org.hibernate.annotations.Cascade;
+package com.ec.final_project.Entity;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 
 @Entity
-public class taikhoan_tietkiem {
+@Table(name = "saving_account")
+public class saving_account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 //    private int acc_id;
 
-    private double sotien;
-    private Date ngaygui;
-    private Date ngaydaohan;
-    private String tuychon;
-    private String sotaikhoan;
+    private double deposit;
+    private Date start_date;
+    private Date end_date;
+    private String saving_option;
+    private String account_number;
 
     @ManyToOne
     @JoinColumn(name = "acc_id")
-    private thongtintk Acc;
+    private account Acc;
 
     @OneToOne
-    @JoinColumn(name = "kyhan")
-    private laisuat ls;
+    @JoinColumn(name = "period")
+    private interest_rate ls;
 
     public int getId() {
         return id;
@@ -35,44 +34,44 @@ public class taikhoan_tietkiem {
         this.id = id;
     }
 
-    public double getSotien() {
-        return sotien;
+    public double getDeposit() {
+        return deposit;
     }
 
-    public void setSotien(double sotien) {
-        this.sotien = sotien;
+    public void setDeposit(double sotien) {
+        this.deposit = sotien;
     }
 
-    public Date getNgaygui() {
-        return ngaygui;
+    public Date getStart_date() {
+        return start_date;
     }
 
-    public void setNgaygui(Date ngaygui) {
-        this.ngaygui = ngaygui;
+    public void setStart_date(Date ngaygui) {
+        this.start_date = ngaygui;
     }
 
-    public Date getNgaydaohan() {
-        return ngaydaohan;
+    public Date getEnd_date() {
+        return end_date;
     }
 
-    public void setNgaydaohan(Date ngaydaohan) {
-        this.ngaydaohan = ngaydaohan;
+    public void setEnd_date(Date ngaydaohan) {
+        this.end_date = ngaydaohan;
     }
 
-    public String getTuychon() {
-        return tuychon;
+    public String getSaving_option() {
+        return saving_option;
     }
 
-    public void setTuychon(String tuychon) {
-        this.tuychon = tuychon;
+    public void setSaving_option(String tuychon) {
+        this.saving_option = tuychon;
     }
 
-    public String getSotaikhoan() {
-        return sotaikhoan;
+    public String getAccount_number() {
+        return account_number;
     }
 
-    public void setSotaikhoan(String sotaikhoan) {
-        this.sotaikhoan = sotaikhoan;
+    public void setAccount_number(String sotaikhoan) {
+        this.account_number = sotaikhoan;
     }
 
     public int getAcc_id() {
@@ -80,17 +79,17 @@ public class taikhoan_tietkiem {
     }
 
     public void setAcc_id(int acc_id) {
-        Acc = new thongtintk();
+        Acc = new account();
         this.Acc.setAcc_id(acc_id);
     }
 
-    public String getKyhan() {
-        return this.ls.getKyhan();
+    public String getPeriod() {
+        return this.ls.getPeriod();
     }
 
-    public void setKyhan(String kyhan) {
-        ls = new laisuat();
-        this.ls.setKyhan(kyhan);
+    public void setPeriod(String kyhan) {
+        ls = new interest_rate();
+        this.ls.setPeriod(kyhan);
     }
 
 //    public taikhoan_tietkiem(int id, double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
@@ -114,6 +113,6 @@ public class taikhoan_tietkiem {
 //        this.kyhan = kyhan;
 //    }
 
-    public taikhoan_tietkiem() {
+    public saving_account() {
     }
 }

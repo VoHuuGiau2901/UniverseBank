@@ -1,6 +1,6 @@
 package com.ec.final_project.Repositories;
 
-import com.ec.final_project.Beans.taikhoan_thanhtoan;
+import com.ec.final_project.Entity.pay_account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface taikhoan_thanhtoanRepository extends JpaRepository<taikhoan_thanhtoan, Integer> {
+public interface pay_accountRepository extends JpaRepository<pay_account, Integer> {
     @Modifying
     @Query(value = "insert into taikhoan_thanhtoan ( SoTien,SoTaiKhoan, Acc_id)\n" +
             "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)

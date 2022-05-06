@@ -1,17 +1,17 @@
 package com.ec.final_project.Services.ServiceImpl;
 
-import com.ec.final_project.Repositories.taikhoan_thanhtoanRepository;
-import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
+import com.ec.final_project.Repositories.pay_accountRepository;
+import com.ec.final_project.Services.Services.pay_accountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class taikhoan_thanhtoanServiceImpl implements taikhoan_thanhtoanService {
+public class pay_accountServiceImpl implements pay_accountService {
 
     @Autowired
-    private taikhoan_thanhtoanRepository tkTTRepository;
+    private pay_accountRepository tkTTRepository;
 
     @Override
     public void Create(double sotien, String sotaikhoan, int acc_id) {

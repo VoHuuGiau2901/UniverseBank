@@ -1,10 +1,10 @@
 package com.ec.final_project.Controllers;
 
-import com.ec.final_project.Beans.lichsugiaodich;
-import com.ec.final_project.Beans.taikhoan_tietkiem;
-import com.ec.final_project.Services.Services.lichsugiaodichService;
-import com.ec.final_project.Services.Services.taikhoan_thanhtoanService;
-import com.ec.final_project.Services.Services.taikhoan_tietkiemService;
+import com.ec.final_project.Entity.transaction_history;
+import com.ec.final_project.Entity.saving_account;
+import com.ec.final_project.Services.Services.transaction_hisotryService;
+import com.ec.final_project.Services.Services.pay_accountService;
+import com.ec.final_project.Services.Services.saving_accountService;
 import com.ec.final_project.Utils.ControllerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,27 +18,27 @@ import java.util.Map;
 public class transactionController {
 
     @Autowired
-    private taikhoan_tietkiemService saving_Acc_Service;
+    private saving_accountService saving_Acc_Service;
 
     @Autowired
-    private  taikhoan_thanhtoanService pay_Acc_Service;
+    private pay_accountService pay_Acc_Service;
 
     @Autowired
-    private lichsugiaodichService trans_His_Service;
+    private transaction_hisotryService trans_His_Service;
 
     @PostMapping("/Deposit")
     public String naptien(@RequestBody Map<String, String> json) {
         pay_Acc_Service.Update(Double.parseDouble(json.get("sotien")), Integer.parseInt(json.get("acc_id")));
-        lichsugiaodich lsGD = new lichsugiaodich(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotien")), 1, Integer.parseInt(json.get("acc_id")));
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotien")), 1, Integer.parseInt(json.get("acc_id")));
         trans_His_Service.Create(lsGD);
         return "money transfer completed";
     }
 
     @PostMapping("/SaveMoney")
-    public String guitietkiem(@RequestBody taikhoan_tietkiem tkTK) {
+    public String guitietkiem(@RequestBody saving_account tkTK) {
         saving_Acc_Service.Create(tkTK);
-        pay_Acc_Service.Update(-tkTK.getSotien(), tkTK.getAcc_id());
-        lichsugiaodich lsGD = new lichsugiaodich(ControllerUtils.getCurrentDate(), tkTK.getSotien(), 3, tkTK.getAcc_id());
+        pay_Acc_Service.Update(-tkTK.getDeposit(), tkTK.getAcc_id());
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), tkTK.getDeposit(), 3, tkTK.getAcc_id());
         trans_His_Service.Create(lsGD);
         return "save money complete";
     }
@@ -46,13 +46,13 @@ public class transactionController {
     @PostMapping("/Withdraw")
     public String ruttien(@RequestBody Map<String, String> json) {
         pay_Acc_Service.Update(-Double.parseDouble(json.get("sotienrut")), Integer.parseInt(json.get("acc_id")));
-        lichsugiaodich lsGD = new lichsugiaodich(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotienrut")), 2, Integer.parseInt(json.get("acc_id")));
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotienrut")), 2, Integer.parseInt(json.get("acc_id")));
         trans_His_Service.Create(lsGD);
         return "money transfer completed";
     }
 
     @GetMapping("/CheckMy_Saving_tk")
-    public List<taikhoan_tietkiem> xem_tk_TK() {
+    public List<saving_account> xem_tk_TK() {
         return saving_Acc_Service.getAll();
     }
 
@@ -63,7 +63,7 @@ public class transactionController {
     }
 
     @GetMapping("/My_Transaction_History")
-    public List<lichsugiaodich> get_history() {
+    public List<transaction_history> get_history() {
         return trans_His_Service.getAll();
     }
 }
