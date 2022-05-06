@@ -38,20 +38,19 @@ public class accountController {
 //    }
 
     @PostMapping("/Login")
-    public Object login(@RequestBody Map<String, String> json){
-        String username=json.get("username");
-        String password=json.get("password");
+    public int login(@RequestBody Map<String, String> json) {
+        String username = json.get("username");
+        String password = json.get("password");
 
-        if(Acc_Service.validate(username,password)!=null){
-            int acc_id=Acc_Service.validate(username,password).getAcc_id();
-            return saving_Acc_Service.getAccount(acc_id);
-        }else return "error";
+        if (Acc_Service.validate(username, password) != null) {
+            return Acc_Service.validate(username, password).getAcc_id();
+        } else return -1;
     }
 
-//    @GetMapping("/UserArea")
-//    public List<Object> get(@RequestBody Map<String, String> json) {
-//        return saving_Acc_Service.getAccount(json.get("username"));
-//    }
+    @GetMapping("/UserArea")
+    public Object get(@RequestBody Map<String, String> json) {
+        return saving_Acc_Service.getAccount(Integer.parseInt(json.get("acc_id")));
+    }
 
     @GetMapping("/Delete_Acc")
     public void delete_Acc(@RequestBody Map<String, String> json) {
