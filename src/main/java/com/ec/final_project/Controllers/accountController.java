@@ -49,7 +49,7 @@ public class accountController {
 
     @PostMapping("/UserArea")
     public Object get(@RequestBody Map<String, String> json) {
-        return saving_Acc_Service.getAccount(Integer.parseInt(json.get("acc_id")));
+        return saving_Acc_Service.getAccount(Integer.parseInt(json.get("userID")));
     }
 
     @GetMapping("/Delete_Acc")
