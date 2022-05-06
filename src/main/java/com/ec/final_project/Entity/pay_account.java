@@ -13,7 +13,7 @@ public class pay_account {
 
     @OneToOne
     @JoinColumn(name = "acc_id")
-    private account Acc;
+    private useraccount Acc;
 
     public int getId() {
         return id;

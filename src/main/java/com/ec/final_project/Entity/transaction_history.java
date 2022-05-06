@@ -16,7 +16,7 @@ public class transaction_history {
     private int acc_id;
 
     @ManyToOne
-    private account Acc;
+    private useraccount Acc;
 
     public int getId() {
         return id;

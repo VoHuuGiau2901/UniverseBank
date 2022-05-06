@@ -29,8 +29,8 @@ public class saving_accountServiceImpl implements saving_accountService {
     }
 
     @Override
-    public List<Object> getAccount() {
-        return tkTKRepository.getAccount();
+    public Object getAccount(String username) {
+        return tkTKRepository.getAccount(username);
     }
 
     @Override

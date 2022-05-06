@@ -20,7 +20,7 @@ public class saving_account {
 
     @ManyToOne
     @JoinColumn(name = "acc_id")
-    private account Acc;
+    private useraccount Acc;
 
     @OneToOne
     @JoinColumn(name = "period")
@@ -79,7 +79,7 @@ public class saving_account {
     }
 
     public void setAcc_id(int acc_id) {
-        Acc = new account();
+        Acc = new useraccount();
         this.Acc.setAcc_id(acc_id);
     }
 

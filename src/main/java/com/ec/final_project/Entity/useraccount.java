@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "account")
-public class account {
+@Table(name = "useraccount")
+public class useraccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Acc_id;
@@ -25,10 +25,10 @@ public class account {
     @PrimaryKeyJoinColumn
     private List<saving_account> saving_Acc;
 
-    public account() {
+    public useraccount() {
     }
 
-    public account(int acc_id, String username, String password, String ten, int role, String sdt, String email, String soCMND) {
+    public useraccount(int acc_id, String username, String password, String ten, int role, String sdt, String email, String soCMND) {
         Acc_id = acc_id;
         this.username = username;
         this.password = password;
@@ -39,7 +39,7 @@ public class account {
         this.identity_number = soCMND;
     }
 
-    public account(String username, String password, String ten, int role, String sdt, String email, String soCMND) {
+    public useraccount(String username, String password, String ten, int role, String sdt, String email, String soCMND) {
         this.username = username;
         this.password = password;
         this.name = ten;

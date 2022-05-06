@@ -1,12 +1,10 @@
 package com.ec.final_project.Controllers;
 
-import com.ec.final_project.Entity.account;
-import com.ec.final_project.Services.ServiceImpl.accountServiceImpl;
-import com.ec.final_project.Services.ServiceImpl.pay_accountServiceImpl;
-import com.ec.final_project.Services.ServiceImpl.saving_accountServiceImpl;
+import com.ec.final_project.Entity.useraccount;
 import com.ec.final_project.Services.Services.pay_accountService;
 import com.ec.final_project.Services.Services.saving_accountService;
 import com.ec.final_project.Services.Services.accountService;
+import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +22,7 @@ public class accountController {
     private saving_accountService saving_Acc_Service;
 
     @PostMapping("/Register")
-    public String add(@RequestBody account tk) {
+    public String add(@RequestBody useraccount tk) {
         if (Acc_Service.CheckExist(tk)) {
             return "account already taken";
         } else {
@@ -34,15 +32,25 @@ public class accountController {
         }
     }
 
-    @GetMapping("/Login")
-    public List<account> logIn() {
-        return Acc_Service.getAll();
+//    @GetMapping("/Login")
+//    public List<account> logIn() {
+//        return Acc_Service.getAll();
+//    }
+
+    @PostMapping("/Login")
+    public Object login(@RequestBody Map<String, String> json){
+        String username=json.get("username");
+        String password=json.get("password");
+
+        if(Acc_Service.validate(username,password)!=null){
+            return saving_Acc_Service.getAccount(username);
+        }else return "error";
     }
 
-    @GetMapping("/UserArea")
-    public List<Object> get() {
-        return saving_Acc_Service.getAccount();
-    }
+//    @GetMapping("/UserArea")
+//    public List<Object> get(@RequestBody Map<String, String> json) {
+//        return saving_Acc_Service.getAccount(json.get("username"));
+//    }
 
     @GetMapping("/Delete_Acc")
     public void delete_Acc(@RequestBody Map<String, String> json) {

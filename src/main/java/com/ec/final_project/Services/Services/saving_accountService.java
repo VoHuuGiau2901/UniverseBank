@@ -8,7 +8,7 @@ public interface saving_accountService {
     List<saving_account> getAll();
     List<saving_account> getAllByAcc_id(int id);
     void Create(saving_account tkTK);
-    List<Object> getAccount();
+    Object getAccount(String username);
     void Cancel_Saving(int id);
     void check();
 }
