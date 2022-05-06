@@ -8,29 +8,29 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface transaction_historyRepository extends JpaRepository<transaction_history,Integer> {
+public interface transaction_historyRepository extends JpaRepository<transaction_history, Integer> {
 
-    @Query(value = "SELECT (SELECT count(DISTINCT tk.Acc_id) from thongtintk tk)a,\n" +
-            "       (SELECT sum(tkTK.SoTien) as total_payment_money FROM taikhoan_tietkiem tkTK)b,\n" +
-            "       (SELECT sum(tkTT.SoTien) FROM taikhoan_thanhtoan tkTT)c;",nativeQuery = true)
+    @Query(value = "SELECT (SELECT count(DISTINCT tk.Acc_id) from account tk)a,\n" +
+            "       (SELECT sum(tkTK.deposit) as total_payment_money FROM saving_account tkTK)b,\n" +
+            "       (SELECT sum(tkTT.balance) FROM pay_account tkTT)c;", nativeQuery = true)
     Object get_total_user_and_money();
 
-    @Query(value = "SELECT b.tongtien, (b.tongtien/a.tongtien)*100 -100 , b.KyHan\n" +
-            "from (SELECT sum(tkTK.SoTien) as tongtien, tkTK.KyHan\n" +
-            "      FROM taikhoan_tietkiem tkTK\n" +
-            "      WHERE YEAR(tkTK.NgayGui) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)\n" +
-            "        AND MONTH(tkTK.NgayGui) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)\n" +
-            "      group by tkTK.KyHan) a,\n" +
-            "     (SELECT sum(tkTK.SoTien) as tongtien, tkTK.KyHan\n" +
-            "      FROM taikhoan_tietkiem tkTK\n" +
-            "      WHERE YEAR(tkTK.NgayGui) = YEAR(CURRENT_DATE)\n" +
-            "        AND MONTH(tkTK.NgayGui) = MONTH(CURRENT_DATE)\n" +
-            "      group by tkTK.KyHan) b\n" +
-            "where b.KyHan = a.KyHan\n" +
-            "group by b.KyHan;",nativeQuery = true)
+    @Query(value = "SELECT b.tongtien, (b.tongtien/a.tongtien)*100 -100 , b.period\n" +
+            "from (SELECT sum(tkTK.deposit) as tongtien, tkTK.period\n" +
+            "      FROM saving_account tkTK\n" +
+            "      WHERE YEAR(tkTK.start_date) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)\n" +
+            "        AND MONTH(tkTK.start_date) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)\n" +
+            "      group by tkTK.period) a,\n" +
+            "     (SELECT sum(tkTK.deposit) as tongtien, tkTK.period\n" +
+            "      FROM saving_account tkTK\n" +
+            "      WHERE YEAR(tkTK.start_date) = YEAR(CURRENT_DATE)\n" +
+            "        AND MONTH(tkTK.start_date) = MONTH(CURRENT_DATE)\n" +
+            "      group by tkTK.period) b\n" +
+            "where b.period = a.period\n" +
+            "group by b.period;", nativeQuery = true)
     List<Object> getFlucts();
 
 
-    @Query(value = "SELECT *from lichsugiaodich",nativeQuery = true)
+    @Query(value = "SELECT *from transaction_history", nativeQuery = true)
     List<transaction_history> getAll_lsGD();
 }

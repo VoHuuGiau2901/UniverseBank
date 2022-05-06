@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "winst_history")
-public class winst_history {
+@Table(name = "profit_history")
+public class profit_history {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int interest_rate;
 
-    private int winst;
+    private int profit;
 
     private Date date;
 
@@ -37,12 +37,12 @@ public class winst_history {
         this.interest_rate = interest_rate;
     }
 
-    public int getWinst() {
-        return winst;
+    public int getProfit() {
+        return profit;
     }
 
-    public void setWinst(int winst) {
-        this.winst = winst;
+    public void setProfit(int winst) {
+        this.profit = winst;
     }
 
     public Date getDate() {

@@ -47,14 +47,14 @@ public class pay_account {
         this.balance = sotien;
     }
 
-//    public taikhoan_thanhtoan(int id, int acc_id, String sotaikhoan, double sotien) {
+//    public pay_account(int id, int acc_id, String sotaikhoan, double sotien) {
 //        this.id = id;
 //        this.acc_id = acc_id;
 //        this.sotaikhoan = sotaikhoan;
 //        this.sotien = sotien;
 //    }
 //
-//    public taikhoan_thanhtoan(int acc_id, String sotaikhoan, double sotien) {
+//    public pay_account(int acc_id, String sotaikhoan, double sotien) {
 //        this.acc_id = acc_id;
 //        this.sotaikhoan = sotaikhoan;
 //        this.sotien = sotien;

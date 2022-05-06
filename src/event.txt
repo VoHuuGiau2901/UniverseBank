@@ -8,37 +8,37 @@ CREATE EVENT Check_ngay_dao_han_neu_toi_thi_tang_tien
     begin
         #  them vao lich su tang tien
         insert into lichsustonk (id, NgayStonk, LaiSuat, Stonk, thongtintk_Acc_id)
-        select tkTK.id, tkTK.NgayDaoHan, LS.LaiSuat, tkTK.SoTien * LS.LaiSuat, tkTK.Acc_id
-        from taikhoan_tietkiem tkTK
+        select tkTK.id, tkTK.end_date, LS.LaiSuat, tkTK.SoTien * LS.LaiSuat, tkTK.Acc_id
+        from saving_account tkTK
                  join laisuat LS on tkTK.KyHan = LS.KyHan
-        where tkTK.NgayDaoHan = CURDATE();
+        where tkTK.end_date = CURDATE();
 
         # cap nhat tk thanh toan
-        update taikhoan_thanhtoan tkTT
+        update pay_account tkTT
         set tkTT.SoTien=tkTT.SoTien + (
             select sum(tkTK.SoTien * ls.LaiSuat)
-            from taikhoan_tietkiem tkTK
+            from saving_account tkTK
                      join laisuat ls on ls.KyHan = tkTK.KyHan
-            where tkTK.NgayDaoHan = CURDATE());
+            where tkTK.end_date = CURDATE());
 
         # cong vao lai trong tk tt neu la tat toan
-        update taikhoan_thanhtoan tkTT
+        update pay_account tkTT
         set tkTT.SoTien=tkTT.SoTien + (
             select sum(tkTK.SoTien)
-            from taikhoan_tietkiem tkTK
-            where tkTK.NgayDaoHan = CURDATE()
+            from saving_account tkTK
+            where tkTK.end_date = CURDATE()
               and tkTK.TuyChon = 2);
         # check tuy chon de xem co xoa tai khooan tietkiem k
         delete
-        from taikhoan_tietkiem tkTK
-        where tkTK.NgayDaoHan = CURDATE()
+        from saving_account tkTK
+        where tkTK.end_date = CURDATE()
           and tkTK.TuyChon = 2;
 
         #update lai cac tai khoan tai tuc
-        update taikhoan_tietkiem tkTK
-        set tkTK.NgayDaoHan=DATE_ADD(tkTK.NgayDaoHan, INTERVAL tkTK.KyHan month),
-            tkTK.NgayGui= CURDATE()
-        where tkTK.NgayDaoHan = CURDATE()
+        update saving_account tkTK
+        set tkTK.end_date=DATE_ADD(tkTK.end_date, INTERVAL tkTK.KyHan month),
+            tkTK.start_date= CURDATE()
+        where tkTK.end_date = CURDATE()
           and tkTK.TuyChon = 1;
     end;
 

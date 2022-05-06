@@ -13,22 +13,22 @@ import java.util.List;
 @Repository
 public interface pay_accountRepository extends JpaRepository<pay_account, Integer> {
     @Modifying
-    @Query(value = "insert into taikhoan_thanhtoan ( SoTien,SoTaiKhoan, Acc_id)\n" +
-            "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
+    @Query(value = "insert into pay_account ( balance,account_number, acc_id)\n" +
+            "values (:balance,:account_number,:acc_id);", nativeQuery = true)
     @Transactional
-    void addtkTT(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
+    void addtkTT(@Param("balance") double balance, @Param("account_number") String account_number, @Param("acc_id") int acc_id);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "update taikhoan_thanhtoan " +
-            "set SoTien=SoTien+:sotien " +
-            "where Acc_id=:acc_id", nativeQuery = true)
+    @Query(value = "update pay_account " +
+            "set balance=balance+:balance " +
+            "where acc_id=:acc_id", nativeQuery = true)
     @Transactional
-    void Update(@Param("sotien") double s, @Param("acc_id") int a);
+    void Update(@Param("balance") double balance, @Param("acc_id") int acc_id);
 
-    @Query(value = "select ttTK.*,tkTT.SoTien,a.tong_so_taiKhoan from\n" +
-            "thongtintk ttTK join taikhoan_thanhtoan tkTT on ttTK.acc_id = tkTT.acc_id\n" +
+    @Query(value = "select ttTK.*,tkTT.balance,a.tong_so_taiKhoan from\n" +
+            "account ttTK join pay_account tkTT on ttTK.acc_id = tkTT.acc_id\n" +
             " left join (select count(tkTK.id) as tong_so_taiKhoan,tkTK.acc_id\n" +
-            "      from taikhoan_tietkiem tkTK group by tkTK.Acc_id)a on ttTK.Acc_id=a.acc_id",nativeQuery = true)
+            "      from saving_account tkTK group by tkTK.Acc_id)a on ttTK.Acc_id=a.acc_id",nativeQuery = true)
     List<Object> getAll();
 }
 

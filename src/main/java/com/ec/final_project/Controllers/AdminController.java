@@ -34,7 +34,7 @@ public class AdminController {
         return Admin_Service.getAllCustomer();
     }
 
-    @GetMapping("/Stonk_Per_Period")
+    @GetMapping("/Profit_Per_Period")
     public List<Object> getChanges() {
         return Admin_Service.getFlucts();
     }

@@ -46,16 +46,16 @@ public class saving_account {
         return start_date;
     }
 
-    public void setStart_date(Date ngaygui) {
-        this.start_date = ngaygui;
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
     }
 
     public Date getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Date ngaydaohan) {
-        this.end_date = ngaydaohan;
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
     }
 
     public String getSaving_option() {
@@ -92,21 +92,21 @@ public class saving_account {
         this.ls.setPeriod(kyhan);
     }
 
-//    public taikhoan_tietkiem(int id, double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
+//    public saving_account(int id, double sotien, Date start_date, Date end_date, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
 //        this.id = id;
 //        this.sotien = sotien;
-//        this.ngaygui = ngaygui;
-//        this.ngaydaohan = ngaydaohan;
+//        this.start_date = start_date;
+//        this.end_date = end_date;
 //        this.tuychon = tuychon;
 //        this.sotaikhoan = sotaikhoan;
 //        this.acc_id = acc_id;
 //        this.kyhan = kyhan;
 //    }
 //
-//    public taikhoan_tietkiem(double sotien, Date ngaygui, Date ngaydaohan, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
+//    public saving_account(double sotien, Date start_date, Date end_date, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
 //        this.sotien = sotien;
-//        this.ngaygui = ngaygui;
-//        this.ngaydaohan = ngaydaohan;
+//        this.start_date = start_date;
+//        this.end_date = end_date;
 //        this.tuychon = tuychon;
 //        this.sotaikhoan = sotaikhoan;
 //        this.acc_id = acc_id;

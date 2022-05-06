@@ -1,6 +1,9 @@
 package com.ec.final_project.Controllers;
 
 import com.ec.final_project.Entity.account;
+import com.ec.final_project.Services.ServiceImpl.accountServiceImpl;
+import com.ec.final_project.Services.ServiceImpl.pay_accountServiceImpl;
+import com.ec.final_project.Services.ServiceImpl.saving_accountServiceImpl;
 import com.ec.final_project.Services.Services.pay_accountService;
 import com.ec.final_project.Services.Services.saving_accountService;
 import com.ec.final_project.Services.Services.accountService;
@@ -12,14 +15,11 @@ import java.util.*;
 @RestController
 @RequestMapping("/Welcome")
 @CrossOrigin
-public class thongtintkController {
-
+public class accountController {
     @Autowired
     private accountService Acc_Service;
-
     @Autowired
     private pay_accountService pay_Acc_Service;
-
     @Autowired
     private saving_accountService saving_Acc_Service;
 
