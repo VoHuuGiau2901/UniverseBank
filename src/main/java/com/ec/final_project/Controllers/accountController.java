@@ -47,7 +47,7 @@ public class accountController {
         } else return -1;
     }
 
-    @GetMapping("/UserArea")
+    @PostMapping("/UserArea")
     public Object get(@RequestBody Map<String, String> json) {
         return saving_Acc_Service.getAccount(Integer.parseInt(json.get("acc_id")));
     }
