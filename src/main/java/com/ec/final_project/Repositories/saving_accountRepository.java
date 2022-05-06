@@ -18,8 +18,8 @@ public interface saving_accountRepository extends JpaRepository<saving_account, 
     @Transactional
     void addtkTK(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
 
-    @Query("SELECT tk,tkTT,tkTK FROM useraccount tk LEFT JOIN saving_account tkTK ON tk.Acc_id = tkTK.Acc.Acc_id LEFT join pay_account tkTT on tk.Acc_id=tkTT.Acc.Acc_id where tk.username=:username")
-    List<Object> getAccount(@Param("username")String username);
+    @Query("SELECT tk,tkTT,tkTK,tk.Acc_id FROM useraccount tk LEFT JOIN saving_account tkTK ON tk.Acc_id = tkTK.Acc.Acc_id LEFT join pay_account tkTT on tk.Acc_id=tkTT.Acc.Acc_id where tk.Acc_id=:acc_id")
+    List<Object> getAccount(@Param("acc_id")int acc_id);
 
     @Query(value = "SELECT * from saving_account where Acc_id=:acc_id", nativeQuery = true)
     List<saving_account> getAllByAcc_id(@Param("acc_id") int acc_id);

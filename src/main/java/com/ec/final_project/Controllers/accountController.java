@@ -43,7 +43,8 @@ public class accountController {
         String password=json.get("password");
 
         if(Acc_Service.validate(username,password)!=null){
-            return saving_Acc_Service.getAccount(username);
+            int acc_id=Acc_Service.validate(username,password).getAcc_id();
+            return saving_Acc_Service.getAccount(acc_id);
         }else return "error";
     }
 
