@@ -27,7 +27,7 @@ public class accountController {
             return "account already taken";
         } else {
             Acc_Service.Create(tk);
-            pay_Acc_Service.Create(0, tk.getUsername(), tk.getAcc_id());
+            pay_Acc_Service.Create(0, tk.getPhone(), tk.getAcc_id());
             return "new account added";
         }
     }
