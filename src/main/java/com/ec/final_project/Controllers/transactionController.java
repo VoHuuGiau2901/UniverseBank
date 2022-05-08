@@ -63,7 +63,7 @@ public class transactionController {
     }
 
     @GetMapping("/My_Transaction_History")
-    public List<transaction_history> get_history() {
-        return trans_His_Service.getAll();
+    public List<transaction_history> get_history(@RequestBody Map<String, String> json) {
+        return trans_His_Service.getAll(Integer.parseInt(json.get("acc_id")));
     }
 }

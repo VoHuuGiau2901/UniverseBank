@@ -15,8 +15,8 @@ public class transaction_historyServiceImpl implements transaction_hisotryServic
     private transaction_historyRepository lsGDRepository;
 
     @Override
-    public List<transaction_history> getAll() {
-        return lsGDRepository.getAll_lsGD();
+    public List<transaction_history> getAll(int acc_id) {
+        return lsGDRepository.getAll_lsGDByID(acc_id);
     }
 
     @Override

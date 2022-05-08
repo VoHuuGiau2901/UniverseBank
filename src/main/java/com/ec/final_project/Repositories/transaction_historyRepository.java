@@ -3,6 +3,7 @@ package com.ec.final_project.Repositories;
 import com.ec.final_project.Entity.transaction_history;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 @Repository
 public interface transaction_historyRepository extends JpaRepository<transaction_history, Integer> {
 
-    @Query(value = "SELECT (SELECT count(DISTINCT tk.Acc_id) from account tk)a,\n" +
+    @Query(value = "SELECT (SELECT count(DISTINCT tk.Acc_id) from useraccount tk)a,\n" +
             "       (SELECT sum(tkTK.deposit) as total_payment_money FROM saving_account tkTK)b,\n" +
             "       (SELECT sum(tkTT.balance) FROM pay_account tkTT)c;", nativeQuery = true)
     Object get_total_user_and_money();
@@ -31,6 +32,6 @@ public interface transaction_historyRepository extends JpaRepository<transaction
     List<Object> getFlucts();
 
 
-    @Query(value = "SELECT *from transaction_history", nativeQuery = true)
-    List<transaction_history> getAll_lsGD();
+    @Query(value = "SELECT *from transaction_history where acc_id=:acc_id", nativeQuery = true)
+    List<transaction_history> getAll_lsGDByID(@Param("acc_id") int acc_id);
 }
