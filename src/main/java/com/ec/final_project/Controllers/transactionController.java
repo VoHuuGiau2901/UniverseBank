@@ -51,7 +51,7 @@ public class transactionController {
         return "Money transfer completed";
     }
 
-    @PostMapping("/CheckMy_Saving_Acc")
+    @GetMapping("/CheckMy_Saving_Acc")
     public List<saving_account> xem_tk_TK(@RequestBody Map<String, String> json) {
         return saving_Acc_Service.getAllByAcc_id(Integer.parseInt(json.get("userID")));
     }
