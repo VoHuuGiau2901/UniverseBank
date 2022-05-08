@@ -62,7 +62,7 @@ public class transactionController {
         return "cancel success";
     }
 
-    @GetMapping("/My_Transaction_History")
+    @PostMapping("/My_Transaction_History")
     public List<transaction_history> get_history(@RequestBody Map<String, String> json) {
         return trans_His_Service.getAll(Integer.parseInt(json.get("acc_id")));
     }
