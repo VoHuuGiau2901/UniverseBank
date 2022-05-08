@@ -17,14 +17,6 @@ public class useraccount {
     private String email;
     private String identity_number;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @PrimaryKeyJoinColumn
-    private pay_account pay_Acc;
-
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @PrimaryKeyJoinColumn
-    private List<saving_account> saving_Acc;
-
     public useraccount() {
     }
 

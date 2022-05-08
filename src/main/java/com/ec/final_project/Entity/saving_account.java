@@ -1,7 +1,11 @@
 package com.ec.final_project.Entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -19,6 +23,7 @@ public class saving_account {
     private String account_number;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "acc_id")
     private useraccount Acc;
 
@@ -91,27 +96,6 @@ public class saving_account {
         ls = new interest_rate();
         this.ls.setPeriod(kyhan);
     }
-
-//    public saving_account(int id, double sotien, Date start_date, Date end_date, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
-//        this.id = id;
-//        this.sotien = sotien;
-//        this.start_date = start_date;
-//        this.end_date = end_date;
-//        this.tuychon = tuychon;
-//        this.sotaikhoan = sotaikhoan;
-//        this.acc_id = acc_id;
-//        this.kyhan = kyhan;
-//    }
-//
-//    public saving_account(double sotien, Date start_date, Date end_date, String tuychon, String sotaikhoan, int acc_id, String kyhan) {
-//        this.sotien = sotien;
-//        this.start_date = start_date;
-//        this.end_date = end_date;
-//        this.tuychon = tuychon;
-//        this.sotaikhoan = sotaikhoan;
-//        this.acc_id = acc_id;
-//        this.kyhan = kyhan;
-//    }
 
     public saving_account() {
     }

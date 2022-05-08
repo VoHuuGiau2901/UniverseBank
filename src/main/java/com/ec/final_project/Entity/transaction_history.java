@@ -1,5 +1,8 @@
 package com.ec.final_project.Entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -13,10 +16,11 @@ public class transaction_history {
     private Date date;
     private double amount;
     private int transaction_type;
-    private int acc_id;
 
     @ManyToOne
-    private useraccount Acc;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "acc_id")
+    private useraccount Acc = new useraccount();;
 
     public int getId() {
         return id;
@@ -51,26 +55,18 @@ public class transaction_history {
     }
 
     public int getAcc_id() {
-        return acc_id;
+        return Acc.getAcc_id();
     }
 
     public void setAcc_id(int acc_id) {
-        this.acc_id = acc_id;
-    }
-
-    public transaction_history(int lichsu_id, Date ngay, double sotiengiaodich, int hinhthuc, int acc_id) {
-        this.id = lichsu_id;
-        this.date = ngay;
-        this.amount = sotiengiaodich;
-        this.transaction_type = hinhthuc;
-        this.acc_id = acc_id;
+        this.Acc.setAcc_id(acc_id);
     }
 
     public transaction_history(Date ngay, double sotiengiaodich, int hinhthuc, int acc_id) {
         this.date = ngay;
         this.amount = sotiengiaodich;
         this.transaction_type = hinhthuc;
-        this.acc_id = acc_id;
+        this.Acc.setAcc_id(acc_id);
     }
 
     public transaction_history() {

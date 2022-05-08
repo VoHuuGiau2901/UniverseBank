@@ -1,5 +1,8 @@
 package com.ec.final_project.Entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +15,7 @@ public class pay_account {
     private double balance;
 
     @OneToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "acc_id")
     private useraccount Acc;
 
@@ -46,19 +50,6 @@ public class pay_account {
     public void setBalance(double sotien) {
         this.balance = sotien;
     }
-
-//    public pay_account(int id, int acc_id, String sotaikhoan, double sotien) {
-//        this.id = id;
-//        this.acc_id = acc_id;
-//        this.sotaikhoan = sotaikhoan;
-//        this.sotien = sotien;
-//    }
-//
-//    public pay_account(int acc_id, String sotaikhoan, double sotien) {
-//        this.acc_id = acc_id;
-//        this.sotaikhoan = sotaikhoan;
-//        this.sotien = sotien;
-//    }
 
     public pay_account() {
     }

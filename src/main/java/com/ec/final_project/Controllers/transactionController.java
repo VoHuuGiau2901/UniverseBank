@@ -29,7 +29,7 @@ public class transactionController {
     @PostMapping("/Deposit")
     public String naptien(@RequestBody Map<String, String> json) {
         pay_Acc_Service.Update(Double.parseDouble(json.get("money")), Integer.parseInt(json.get("acc_id")));
-        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotien")), 1, Integer.parseInt(json.get("acc_id")));
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("money")), 1, Integer.parseInt(json.get("acc_id")));
         trans_His_Service.Create(lsGD);
         return "Money transfer completed";
     }
