@@ -28,10 +28,10 @@ public class transactionController {
 
     @PostMapping("/Deposit")
     public String naptien(@RequestBody Map<String, String> json) {
-        pay_Acc_Service.Update(Double.parseDouble(json.get("sotien")), Integer.parseInt(json.get("acc_id")));
+        pay_Acc_Service.Update(Double.parseDouble(json.get("money")), Integer.parseInt(json.get("acc_id")));
         transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotien")), 1, Integer.parseInt(json.get("acc_id")));
         trans_His_Service.Create(lsGD);
-        return "money transfer completed";
+        return "Money transfer completed";
     }
 
     @PostMapping("/SaveMoney")
@@ -40,7 +40,7 @@ public class transactionController {
         pay_Acc_Service.Update(-tkTK.getDeposit(), tkTK.getAcc_id());
         transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), tkTK.getDeposit(), 3, tkTK.getAcc_id());
         trans_His_Service.Create(lsGD);
-        return "save money complete";
+        return "Save money complete";
     }
 
     @PostMapping("/Withdraw")
@@ -48,10 +48,10 @@ public class transactionController {
         pay_Acc_Service.Update(-Double.parseDouble(json.get("sotienrut")), Integer.parseInt(json.get("acc_id")));
         transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotienrut")), 2, Integer.parseInt(json.get("acc_id")));
         trans_His_Service.Create(lsGD);
-        return "money transfer completed";
+        return "Money transfer completed";
     }
 
-    @GetMapping("/CheckMy_Saving_tk")
+    @GetMapping("/CheckMy_Saving_Acc")
     public List<saving_account> xem_tk_TK(@RequestBody Map<String, String> json) {
         return saving_Acc_Service.getAllByAcc_id(Integer.parseInt(json.get("userID")));
     }
