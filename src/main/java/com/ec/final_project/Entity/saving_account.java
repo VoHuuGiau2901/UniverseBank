@@ -20,7 +20,6 @@ public class saving_account {
     private Date start_date;
     private Date end_date;
     private String saving_option;
-    private String account_number;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -71,13 +70,6 @@ public class saving_account {
         this.saving_option = tuychon;
     }
 
-    public String getAccount_number() {
-        return account_number;
-    }
-
-    public void setAccount_number(String sotaikhoan) {
-        this.account_number = sotaikhoan;
-    }
 
     public int getAcc_id() {
         return this.Acc.getAcc_id();

@@ -45,13 +45,13 @@ public class transactionController {
 
     @PostMapping("/Withdraw")
     public String ruttien(@RequestBody Map<String, String> json) {
-        pay_Acc_Service.Update(-Double.parseDouble(json.get("sotienrut")), Integer.parseInt(json.get("acc_id")));
-        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("sotienrut")), 2, Integer.parseInt(json.get("acc_id")));
+        pay_Acc_Service.Update(-Double.parseDouble(json.get("withdrawMoney")), Integer.parseInt(json.get("acc_id")));
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("withdrawMoney")), 2, Integer.parseInt(json.get("acc_id")));
         trans_His_Service.Create(lsGD);
         return "Money transfer completed";
     }
 
-    @GetMapping("/CheckMy_Saving_Acc")
+    @PostMapping("/CheckMy_Saving_Acc")
     public List<saving_account> xem_tk_TK(@RequestBody Map<String, String> json) {
         return saving_Acc_Service.getAllByAcc_id(Integer.parseInt(json.get("userID")));
     }
