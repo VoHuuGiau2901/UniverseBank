@@ -12,12 +12,6 @@ import java.util.List;
 
 @Repository
 public interface saving_accountRepository extends JpaRepository<saving_account, Integer> {
-    @Modifying
-    @Query(value = "insert into saving_account ( deposit,account_number, Acc_id)\n" +
-            "values (:sotien,:sotaikhoan,:acc_id);", nativeQuery = true)
-    @Transactional
-    void addtkTK(@Param("sotien") double sotien, @Param("sotaikhoan") String sotaikhoan, @Param("acc_id") int acc_id);
-
     @Query("SELECT tk,tkTT,tk.Acc_id FROM useraccount tk LEFT join pay_account tkTT on tk.Acc_id=tkTT.Acc.Acc_id where tk.Acc_id=:acc_id")
     List<Object> getAccount(@Param("acc_id") int acc_id);
 
@@ -32,6 +26,11 @@ public interface saving_accountRepository extends JpaRepository<saving_account, 
             " + (select tkTK.deposit from saving_account tkTK where tkTK.id=:id)", nativeQuery = true)
     @Transactional
     void Cancel_Saving(@Param("id") int id);
+
+    @Modifying(clearAutomatically = true)
+    @Query(value = "update saving_account set deposit=deposit-:amount where id=:id", nativeQuery = true)
+    @Transactional
+    void Update(@Param("id") int id, @Param("id") int amount);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into profit_history (id, date, interest_rate,profit , saving_account_id)\n" +

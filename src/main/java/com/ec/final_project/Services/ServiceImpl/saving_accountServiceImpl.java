@@ -40,6 +40,11 @@ public class saving_accountServiceImpl implements saving_accountService {
     }
 
     @Override
+    public void Update(int id, int amount) {
+        tkTKRepository.Update(id, amount);
+    }
+
+    @Override
     public void check() {
         tkTKRepository.check();
     }

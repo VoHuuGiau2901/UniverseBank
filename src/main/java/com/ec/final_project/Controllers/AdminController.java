@@ -40,7 +40,7 @@ public class AdminController {
     }
 
     @PostMapping("/All_Saving_Account")
-    public List<saving_account> getall() {
+    public List<saving_account> getAll() {
         return saving_Acc_Service.getAll();
     }
 
@@ -49,17 +49,17 @@ public class AdminController {
         return pay_Acc_Service.getAll();
     }
 
-    @GetMapping("/All_laisuat")
+    @GetMapping("/All_interestRate")
     public List<interest_rate> getAll_laiSuat() {
         return IR_Service.getAll();
     }
 
-    @PostMapping("/Change_laisuat")
+    @PostMapping("/Change_interestRate")
     public String change(@RequestBody Map<String, String> json) {
         float l, k;
-        k = Float.parseFloat(json.get("kyhan"));
-        l = Float.parseFloat(json.get("laisuat")) / 1200 * k;
-        IR_Service.Update(l, json.get("kyhan"));
+        k = Float.parseFloat(json.get("period"));
+        l = Float.parseFloat(json.get("interest_rate")) / 1200 * k;
+        IR_Service.Update(l, json.get("period"));
         return "change complete";
     }
 }

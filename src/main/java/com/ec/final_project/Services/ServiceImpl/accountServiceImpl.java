@@ -38,4 +38,9 @@ public class accountServiceImpl implements accountService {
     public useraccount validate(String username, String password) {
         return tkRepository.validate(username, password);
     }
+
+    @Override
+    public useraccount FindByEmail(String email) {
+        return null;
+    }
 }

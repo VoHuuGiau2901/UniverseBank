@@ -6,8 +6,14 @@ import java.util.List;
 
 public interface accountService {
     boolean CheckExist(useraccount tk);
+
     void Create(useraccount tk);
+
     List<useraccount> getAll();
+
     void delete_Acc(int id);
-    useraccount validate(String username,String password);
+
+    useraccount validate(String username, String password);
+
+    useraccount FindByEmail(String email);
 }

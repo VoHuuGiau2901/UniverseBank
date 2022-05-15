@@ -52,6 +52,11 @@ public class accountController {
         return saving_Acc_Service.getAccount(Integer.parseInt(json.get("userID")));
     }
 
+    @PostMapping("/Forget_Password")
+    public void Forget_Password(@RequestBody Map<String, String> json) {
+        useraccount acc = Acc_Service.FindByEmail(String.valueOf(json.get("email")));
+    }
+
     @GetMapping("/Delete_Acc")
     public void delete_Acc(@RequestBody Map<String, String> json) {
         Acc_Service.delete_Acc(Integer.parseInt(json.get("id")));
