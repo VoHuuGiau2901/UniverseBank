@@ -55,11 +55,11 @@ public class AdminController {
     }
 
     @PostMapping("/Change_interestRate")
-    public String change(@RequestBody Map<String, String> json) {
+    public String change(@RequestBody Map<String, String> req) {
         float l, k;
-        k = Float.parseFloat(json.get("period"));
-        l = Float.parseFloat(json.get("interest_rate")) / 1200 * k;
-        IR_Service.Update(l, json.get("period"));
+        k = Float.parseFloat(req.get("period"));
+        l = Float.parseFloat(req.get("interest_rate")) / 1200 * k;
+        IR_Service.Update(l, req.get("period"));
         return "change complete";
     }
 }

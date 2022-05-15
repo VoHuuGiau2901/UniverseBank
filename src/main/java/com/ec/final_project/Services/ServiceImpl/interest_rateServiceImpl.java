@@ -11,20 +11,20 @@ import java.util.List;
 @Service
 public class interest_rateServiceImpl implements interest_rateService {
     @Autowired
-    private interest_rateRepository lsRepository;
+    private interest_rateRepository interest_repo;
 
     @Override
     public List<interest_rate> getAll() {
-        return lsRepository.findAll();
+        return interest_repo.findAll();
     }
 
     @Override
     public void Update(double l, String k) {
-        lsRepository.Update(l, k);
+        interest_repo.Update(l, k);
     }
 
     @Override
     public void Insert_First(double l, String k) {
-        lsRepository.Insert_First(l, k);
+        interest_repo.Insert_First(l, k);
     }
 }

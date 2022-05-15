@@ -16,4 +16,6 @@ public interface accountService {
     useraccount validate(String username, String password);
 
     useraccount FindByEmail(String email);
+
+    void UpdatePassword(int acc_id,String newPassword);
 }

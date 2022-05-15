@@ -11,41 +11,41 @@ import java.util.List;
 @Service
 public class saving_accountServiceImpl implements saving_accountService {
     @Autowired
-    private saving_accountRepository tkTKRepository;
+    private saving_accountRepository saving_acc_repo;
 
     @Override
     public List<saving_account> getAll() {
-        return tkTKRepository.getAll();
+        return saving_acc_repo.getAll();
     }
 
     @Override
     public List<saving_account> getAllByAcc_id(int id) {
-        return tkTKRepository.getAllByAcc_id(id);
+        return saving_acc_repo.getAllByAcc_id(id);
     }
 
     @Override
     public void Create(saving_account tkTK) {
-        tkTKRepository.saveAndFlush(tkTK);
+        saving_acc_repo.saveAndFlush(tkTK);
     }
 
     @Override
     public Object getAccount(int acc_id) {
-        return tkTKRepository.getAccount(acc_id);
+        return saving_acc_repo.getAccount(acc_id);
     }
 
     @Override
     public void Cancel_Saving(int id) {
-        tkTKRepository.Cancel_Saving(id);
-        tkTKRepository.deleteById(id);
+        saving_acc_repo.Cancel_Saving(id);
+        saving_acc_repo.deleteById(id);
     }
 
     @Override
     public void Update(int id, int amount) {
-        tkTKRepository.Update(id, amount);
+        saving_acc_repo.Update(id, amount);
     }
 
     @Override
     public void check() {
-        tkTKRepository.check();
+        saving_acc_repo.check();
     }
 }

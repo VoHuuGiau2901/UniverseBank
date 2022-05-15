@@ -12,35 +12,40 @@ import java.util.List;
 public class accountServiceImpl implements accountService {
 
     @Autowired
-    private accountRepository tkRepository;
+    private accountRepository acc_repo;
 
     @Override
     public boolean CheckExist(useraccount tk) {
-        return tkRepository.checkExists(tk.getUsername(), tk.getPhone(), tk.getEmail(), tk.getIdentity_number()) != null;
+        return acc_repo.checkExists(tk.getUsername(), tk.getPhone(), tk.getEmail(), tk.getIdentity_number()) != null;
     }
 
     @Override
     public void Create(useraccount tk) {
-        tkRepository.saveAndFlush(tk);
+        acc_repo.saveAndFlush(tk);
     }
 
     @Override
     public List<useraccount> getAll() {
-        return tkRepository.findAll();
+        return acc_repo.findAll();
     }
 
     @Override
     public void delete_Acc(int id) {
-        tkRepository.deleteById(id);
+        acc_repo.deleteById(id);
     }
 
     @Override
     public useraccount validate(String username, String password) {
-        return tkRepository.validate(username, password);
+        return acc_repo.validate(username, password);
     }
 
     @Override
     public useraccount FindByEmail(String email) {
-        return null;
+        return acc_repo.FindByEmail(email);
+    }
+
+    @Override
+    public void UpdatePassword(int acc_id, String newPassword) {
+        acc_repo.UpdatePassword(acc_id, newPassword);
     }
 }

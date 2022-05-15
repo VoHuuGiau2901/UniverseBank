@@ -11,11 +11,11 @@ import java.util.List;
 public class adminServiceImpl implements adminService {
 
     @Autowired
-    private transaction_historyRepository lsGDRepository;
+    private transaction_historyRepository trans_history_repo;
 
     @Override
     public List<Object> getFlucts() {
-        return lsGDRepository.getFlucts();
+        return trans_history_repo.getFlucts();
     }
 
     @Override

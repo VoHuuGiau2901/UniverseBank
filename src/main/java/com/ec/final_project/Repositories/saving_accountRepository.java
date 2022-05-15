@@ -30,7 +30,7 @@ public interface saving_accountRepository extends JpaRepository<saving_account, 
     @Modifying(clearAutomatically = true)
     @Query(value = "update saving_account set deposit=deposit-:amount where id=:id", nativeQuery = true)
     @Transactional
-    void Update(@Param("id") int id, @Param("id") int amount);
+    void Update(@Param("id") int id, @Param("amount") int amount);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into profit_history (id, date, interest_rate,profit , saving_account_id)\n" +

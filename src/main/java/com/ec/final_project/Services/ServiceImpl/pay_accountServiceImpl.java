@@ -11,21 +11,21 @@ import java.util.List;
 public class pay_accountServiceImpl implements pay_accountService {
 
     @Autowired
-    private pay_accountRepository tkTTRepository;
+    private pay_accountRepository pay_acc_repo;
 
     @Override
     public void Create(double sotien, String sotaikhoan, int acc_id) {
-        tkTTRepository.addtkTT(sotien,sotaikhoan,acc_id);
+        pay_acc_repo.addtkTT(sotien,sotaikhoan,acc_id);
     }
 
     @Override
     public void Update(double sotien, int acc_id) {
-        tkTTRepository.Update(sotien,acc_id);
+        pay_acc_repo.Update(sotien,acc_id);
     }
 
     @Override
     public List<Object> getAll() {
-        return tkTTRepository.getAll();
+        return pay_acc_repo.getAll();
     }
 
 }

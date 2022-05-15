@@ -27,9 +27,9 @@ public class transactionController {
     private transaction_hisotryService trans_His_Service;
 
     @PostMapping("/Deposit")
-    public String Deposit(@RequestBody Map<String, String> json) {
-        pay_Acc_Service.Update(Double.parseDouble(json.get("money")), Integer.parseInt(json.get("acc_id")));
-        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("money")), 1, Integer.parseInt(json.get("acc_id")));
+    public String Deposit(@RequestBody Map<String, String> req) {
+        pay_Acc_Service.Update(Double.parseDouble(req.get("money")), Integer.parseInt(req.get("acc_id")));
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(req.get("money")), 1, Integer.parseInt(req.get("acc_id")));
         trans_His_Service.Create(lsGD);
         return "Money transfer completed";
     }
@@ -44,32 +44,32 @@ public class transactionController {
     }
 
     @PostMapping("/Withdraw")
-    public String Withdraw(@RequestBody Map<String, String> json) {
-        pay_Acc_Service.Update(-Double.parseDouble(json.get("withdrawMoney")), Integer.parseInt(json.get("acc_id")));
-        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(json.get("withdrawMoney")), 2, Integer.parseInt(json.get("acc_id")));
+    public String Withdraw(@RequestBody Map<String, String> req) {
+        pay_Acc_Service.Update(-Double.parseDouble(req.get("withdrawMoney")), Integer.parseInt(req.get("acc_id")));
+        transaction_history lsGD = new transaction_history(ControllerUtils.getCurrentDate(), Double.parseDouble(req.get("withdrawMoney")), 2, Integer.parseInt(req.get("acc_id")));
         trans_His_Service.Create(lsGD);
         return "Money transfer completed";
     }
 
     @PostMapping("/CheckMy_Saving_Acc")
-    public List<saving_account> xem_tk_TK(@RequestBody Map<String, String> json) {
-        return saving_Acc_Service.getAllByAcc_id(Integer.parseInt(json.get("userID")));
+    public List<saving_account> xem_tk_TK(@RequestBody Map<String, String> req) {
+        return saving_Acc_Service.getAllByAcc_id(Integer.parseInt(req.get("userID")));
     }
 
     @PostMapping("/Cancel_Saving")
-    public String cancel(@RequestBody Map<String, String> json) {
-        saving_Acc_Service.Cancel_Saving(Integer.parseInt(json.get("id")));
+    public String cancel(@RequestBody Map<String, String> req) {
+        saving_Acc_Service.Cancel_Saving(Integer.parseInt(req.get("id")));
         return "cancel success";
     }
 
     @PostMapping("/Withdraw_Saving_Acc")
-    public String Withdraw_Saving_Acc(@RequestBody Map<String, String> json) {
-        saving_Acc_Service.Update(Integer.parseInt(json.get("id")), Integer.parseInt(json.get("amount")));
+    public String Withdraw_Saving_Acc(@RequestBody Map<String, String> req) {
+        saving_Acc_Service.Update(Integer.parseInt(req.get("id")), Integer.parseInt(req.get("amount")));
         return "finished";
     }
 
     @PostMapping("/My_Transaction_History")
-    public List<transaction_history> get_history(@RequestBody Map<String, String> json) {
-        return trans_His_Service.getAll(Integer.parseInt(json.get("acc_id")));
+    public List<transaction_history> get_history(@RequestBody Map<String, String> req) {
+        return trans_His_Service.getAll(Integer.parseInt(req.get("acc_id")));
     }
 }

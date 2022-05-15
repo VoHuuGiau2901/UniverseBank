@@ -12,15 +12,15 @@ import java.util.List;
 public class transaction_historyServiceImpl implements transaction_hisotryService {
 
     @Autowired
-    private transaction_historyRepository lsGDRepository;
+    private transaction_historyRepository trans_history_repo;
 
     @Override
     public List<transaction_history> getAll(int acc_id) {
-        return lsGDRepository.getAll_lsGDByID(acc_id);
+        return trans_history_repo.getAll_lsGDByID(acc_id);
     }
 
     @Override
     public void Create(transaction_history lsGD) {
-        lsGDRepository.saveAndFlush(lsGD);
+        trans_history_repo.saveAndFlush(lsGD);
     }
 }
