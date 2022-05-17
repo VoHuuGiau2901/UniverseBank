@@ -27,12 +27,12 @@ public class accountController {
     }
 
     @PostMapping("/Register")
-    public Object Register(@RequestBody useraccount tk) {
-        if (Acc_Service.CheckExist(tk)) {
+    public Object Register(@RequestBody useraccount acc) {
+        if (Acc_Service.CheckExist(acc)) {
             return "account already taken";
         } else {
             int verify_code = ControllerUtils.Get_OTP();
-            MailSender.send(tk.getEmail(), "Verify Email Code", "Use this code to verify your account: " + verify_code);
+            MailSender.send(acc.getEmail(), "Verify Email Code", "Use this code to verify your account: " + verify_code);
             HashMap<String, String> res = new HashMap<>();
             res.put("verify_code", String.format("%06d", verify_code));
             return res;
@@ -40,9 +40,9 @@ public class accountController {
     }
 
     @PostMapping("/Register/CreateAccount")
-    public Object CreateAccount(@RequestBody useraccount tk) {
-        Acc_Service.Create(tk);
-        pay_Acc_Service.Create(0, tk.getPhone(), tk.getAcc_id());
+    public Object CreateAccount(@RequestBody useraccount acc) {
+        Acc_Service.Create(acc);
+        pay_Acc_Service.Create(0, acc.getPhone(), acc.getAcc_id());
         return "new account added";
     }
 
