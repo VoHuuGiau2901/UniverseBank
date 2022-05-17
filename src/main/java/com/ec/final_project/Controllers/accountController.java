@@ -4,6 +4,7 @@ import com.ec.final_project.Entity.useraccount;
 import com.ec.final_project.Services.Services.pay_accountService;
 import com.ec.final_project.Services.Services.saving_accountService;
 import com.ec.final_project.Services.Services.accountService;
+import com.ec.final_project.Utils.MailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,6 +57,9 @@ public class accountController {
         if (acc != null) {
             Random r = new Random();
             int verify_code = r.nextInt(999999);
+
+            MailSender.send(acc.getEmail(), "Renew Password Code", "Use this code to verify your account: " + verify_code);
+
             HashMap<String, String> res = new HashMap<>();
             res.put("verify_code", String.format("%06d", verify_code));
             res.put("acc_id", String.valueOf(acc.getAcc_id()));
