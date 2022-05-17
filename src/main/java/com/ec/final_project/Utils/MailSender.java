@@ -25,7 +25,7 @@ public class MailSender {
                 }
             });
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(fromServer));
+            message.setFrom(new InternetAddress(fromServer,"DigitalBank"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail_to));
             message.setHeader("Content-Type", "text/plain; charset=UTF-8");
             message.setSubject(header);
