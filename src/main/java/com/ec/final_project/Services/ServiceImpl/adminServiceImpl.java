@@ -33,6 +33,6 @@ public class adminServiceImpl implements adminService {
 
     @Override
     public Object getAllCustomer() {
-        return null;
+        return trans_history_repo.get_total_user_and_money();
     }
 }
