@@ -65,6 +65,7 @@ public class transactionController {
     @PostMapping("/Withdraw_Saving_Acc")
     public String Withdraw_Saving_Acc(@RequestBody Map<String, String> req) {
         saving_Acc_Service.Update(Integer.parseInt(req.get("id")), Integer.parseInt(req.get("amount")));
+        pay_Acc_Service.Update(Integer.parseInt(req.get("amount")), Integer.parseInt(req.get("acc_id")));
         return "finished";
     }
 

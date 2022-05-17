@@ -26,7 +26,7 @@ public interface pay_accountRepository extends JpaRepository<pay_account, Intege
     void Update(@Param("balance") double balance, @Param("acc_id") int acc_id);
 
     @Query(value = "select ttTK.*,tkTT.balance,a.tong_so_taiKhoan from\n" +
-            "account ttTK join pay_account tkTT on ttTK.acc_id = tkTT.acc_id\n" +
+            "useraccount ttTK join pay_account tkTT on ttTK.acc_id = tkTT.acc_id\n" +
             " left join (select count(tkTK.id) as tong_so_taiKhoan,tkTK.acc_id\n" +
             "      from saving_account tkTK group by tkTK.Acc_id)a on ttTK.Acc_id=a.acc_id",nativeQuery = true)
     List<Object> getAll();
