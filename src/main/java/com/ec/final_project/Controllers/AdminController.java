@@ -74,6 +74,6 @@ public class AdminController {
 
         if (Admin_Service.validate(username, password) != null) {
             return Admin_Service.validate(username, password).getRole();
-        } else return "null";
+        } else return null;
     }
 }
