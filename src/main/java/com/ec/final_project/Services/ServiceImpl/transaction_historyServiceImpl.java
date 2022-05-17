@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class transaction_historyServiceImpl implements transaction_hisotryService {
 
+    private final transaction_historyRepository trans_history_repo;
+
     @Autowired
-    private transaction_historyRepository trans_history_repo;
+    public transaction_historyServiceImpl(transaction_historyRepository trans_history_repo) {
+        this.trans_history_repo = trans_history_repo;
+    }
 
     @Override
     public List<transaction_history> getAll(int acc_id) {

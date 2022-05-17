@@ -10,8 +10,11 @@ import java.util.List;
 @Service
 public class pay_accountServiceImpl implements pay_accountService {
 
-    @Autowired
     private pay_accountRepository pay_acc_repo;
+    @Autowired
+    public pay_accountServiceImpl(pay_accountRepository pay_acc_repo) {
+        this.pay_acc_repo = pay_acc_repo;
+    }
 
     @Override
     public void Create(double sotien, String sotaikhoan, int acc_id) {

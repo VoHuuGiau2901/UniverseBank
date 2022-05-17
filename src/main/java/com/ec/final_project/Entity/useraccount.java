@@ -12,7 +12,6 @@ public class useraccount {
     private String username;
     private String password;
     private String name;
-    private int role;
     private String phone;
     private String email;
     private String identity_number;
@@ -20,22 +19,20 @@ public class useraccount {
     public useraccount() {
     }
 
-    public useraccount(int acc_id, String username, String password, String ten, int role, String sdt, String email, String soCMND) {
+    public useraccount(int acc_id, String username, String password, String ten, String sdt, String email, String soCMND) {
         Acc_id = acc_id;
         this.username = username;
         this.password = password;
         this.name = ten;
-        this.role = role;
         this.phone = sdt;
         this.email = email;
         this.identity_number = soCMND;
     }
 
-    public useraccount(String username, String password, String ten, int role, String sdt, String email, String soCMND) {
+    public useraccount(String username, String password, String ten, String sdt, String email, String soCMND) {
         this.username = username;
         this.password = password;
         this.name = ten;
-        this.role = role;
         this.phone = sdt;
         this.email = email;
         this.identity_number = soCMND;
@@ -71,14 +68,6 @@ public class useraccount {
 
     public void setPassword(String matkhau) {
         this.password = matkhau;
-    }
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
     }
 
     public String getPhone() {

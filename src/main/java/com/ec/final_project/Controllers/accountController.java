@@ -13,12 +13,16 @@ import java.util.*;
 @RequestMapping("/Welcome")
 @CrossOrigin
 public class accountController {
+    private final accountService Acc_Service;
+    private final pay_accountService pay_Acc_Service;
+    private final saving_accountService saving_Acc_Service;
+
     @Autowired
-    private accountService Acc_Service;
-    @Autowired
-    private pay_accountService pay_Acc_Service;
-    @Autowired
-    private saving_accountService saving_Acc_Service;
+    public accountController(accountService acc_Service, pay_accountService pay_Acc_Service, saving_accountService saving_Acc_Service) {
+        Acc_Service = acc_Service;
+        this.pay_Acc_Service = pay_Acc_Service;
+        this.saving_Acc_Service = saving_Acc_Service;
+    }
 
     @PostMapping("/Register")
     public String add(@RequestBody useraccount tk) {

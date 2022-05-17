@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class interest_rateServiceImpl implements interest_rateService {
+    private final interest_rateRepository interest_repo;
+
     @Autowired
-    private interest_rateRepository interest_repo;
+    public interest_rateServiceImpl(interest_rateRepository interest_repo) {
+        this.interest_repo = interest_repo;
+    }
 
     @Override
     public List<interest_rate> getAll() {

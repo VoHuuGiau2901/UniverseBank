@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class saving_accountServiceImpl implements saving_accountService {
+    private final saving_accountRepository saving_acc_repo;
+
     @Autowired
-    private saving_accountRepository saving_acc_repo;
+    public saving_accountServiceImpl(saving_accountRepository saving_acc_repo) {
+        this.saving_acc_repo = saving_acc_repo;
+    }
 
     @Override
     public List<saving_account> getAll() {

@@ -13,21 +13,25 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/Welcome/Administrator")
+@RequestMapping("/Admin")
 @CrossOrigin
 public class AdminController {
 
-    @Autowired
-    private pay_accountService pay_Acc_Service;
+    private final pay_accountService pay_Acc_Service;
+
+    private final saving_accountService saving_Acc_Service;
+
+    private final interest_rateService IR_Service;
+
+    private final adminService Admin_Service;
 
     @Autowired
-    private saving_accountService saving_Acc_Service;
-
-    @Autowired
-    private interest_rateService IR_Service;
-
-    @Autowired
-    private adminService Admin_Service;
+    public AdminController(pay_accountService pay_Acc_Service, saving_accountService saving_Acc_Service, interest_rateService IR_Service, adminService admin_Service) {
+        this.pay_Acc_Service = pay_Acc_Service;
+        this.saving_Acc_Service = saving_Acc_Service;
+        this.IR_Service = IR_Service;
+        Admin_Service = admin_Service;
+    }
 
     @GetMapping("/AllUserStatus")
     public Object GetAllUser_Status() {
@@ -36,7 +40,7 @@ public class AdminController {
 
     @GetMapping("/Profit_Per_Period")
     public List<Object> getChanges() {
-        return Admin_Service.getFlucts();
+        return Admin_Service.getFluctuates();
     }
 
     @PostMapping("/All_Saving_Account")
@@ -45,7 +49,7 @@ public class AdminController {
     }
 
     @GetMapping("/AllCustomers_And_their_Pay_money")
-    public List<Object> thongtinTK_and_sotien_thanhtoan() {
+    public List<Object> AllCustomers_And_their_Pay_money() {
         return pay_Acc_Service.getAll();
     }
 
@@ -61,5 +65,15 @@ public class AdminController {
         l = Float.parseFloat(req.get("interest_rate")) / 1200 * k;
         IR_Service.Update(l, req.get("period"));
         return "change complete";
+    }
+
+    @PostMapping("/Login")
+    public String login(@RequestBody Map<String, String> req) {
+        String username = req.get("adminAccount");
+        String password = req.get("adminPassword");
+
+        if (Admin_Service.validate(username, password) != null) {
+            return Admin_Service.validate(username, password).getRole();
+        } else return "null";
     }
 }

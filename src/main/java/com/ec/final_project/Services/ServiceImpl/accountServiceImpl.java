@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class accountServiceImpl implements accountService {
 
+    private final accountRepository acc_repo;
+
     @Autowired
-    private accountRepository acc_repo;
+    public accountServiceImpl(accountRepository acc_repo) {
+        this.acc_repo = acc_repo;
+    }
 
     @Override
     public boolean CheckExist(useraccount tk) {

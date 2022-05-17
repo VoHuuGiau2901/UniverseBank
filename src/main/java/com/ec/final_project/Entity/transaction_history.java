@@ -20,7 +20,7 @@ public class transaction_history {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "acc_id")
-    private useraccount Acc = new useraccount();;
+    private final useraccount Acc = new useraccount();
 
     public int getId() {
         return id;

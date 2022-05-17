@@ -29,7 +29,7 @@ public interface transaction_historyRepository extends JpaRepository<transaction
             "      group by tkTK.period) b\n" +
             "where b.period = a.period\n" +
             "group by b.period;", nativeQuery = true)
-    List<Object> getFlucts();
+    List<Object> getFluctuates();
 
 
     @Query(value = "SELECT *from transaction_history where acc_id=:acc_id", nativeQuery = true)

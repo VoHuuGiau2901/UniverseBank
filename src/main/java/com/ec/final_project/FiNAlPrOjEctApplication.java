@@ -12,5 +12,4 @@ public class FiNAlPrOjEctApplication {
 
         System.out.println("server Started !!!");
     }
-
 }

@@ -17,14 +17,18 @@ import java.util.Map;
 @CrossOrigin
 public class transactionController {
 
-    @Autowired
-    private saving_accountService saving_Acc_Service;
+    private final saving_accountService saving_Acc_Service;
+
+    private final pay_accountService pay_Acc_Service;
+
+    private final transaction_hisotryService trans_His_Service;
 
     @Autowired
-    private pay_accountService pay_Acc_Service;
-
-    @Autowired
-    private transaction_hisotryService trans_His_Service;
+    public transactionController(saving_accountService saving_Acc_Service, pay_accountService pay_Acc_Service, transaction_hisotryService trans_His_Service) {
+        this.saving_Acc_Service = saving_Acc_Service;
+        this.pay_Acc_Service = pay_Acc_Service;
+        this.trans_His_Service = trans_His_Service;
+    }
 
     @PostMapping("/Deposit")
     public String Deposit(@RequestBody Map<String, String> req) {
