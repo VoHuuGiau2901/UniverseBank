@@ -49,7 +49,7 @@ public class accountServiceImpl implements accountService {
     }
 
     @Override
-    public useraccount findByIdentityNumber(String identityNumber) {
+    public Object findByIdentityNumber(String identityNumber) {
         return acc_repo.findByIdentityNumber(identityNumber);
     }
 

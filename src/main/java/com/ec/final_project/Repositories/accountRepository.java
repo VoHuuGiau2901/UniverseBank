@@ -31,5 +31,5 @@ public interface accountRepository extends JpaRepository<useraccount, Integer> {
             "             left join (select count(tkTK.id) as tong_so_taiKhoan,tkTK.acc_id\n" +
             "                  from saving_account tkTK group by tkTK.Acc_id)a on ttTK.Acc_id=a.acc_id" +
             "    where identity_number=:identityNumber", nativeQuery = true)
-    useraccount findByIdentityNumber(@Param("identityNumber") String identityNumber);
+    Object findByIdentityNumber(@Param("identityNumber") String identityNumber);
 }
