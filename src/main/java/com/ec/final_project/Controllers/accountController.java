@@ -31,7 +31,7 @@ public class accountController {
         if (Acc_Service.CheckExist(acc)) {
             return "account already taken";
         } else {
-            String verify_code = String.format("%06d", ControllerUtils.Get_OTP());
+            String verify_code = String.format("%06d" , ControllerUtils.Get_OTP());
             MailSender.send(acc.getEmail(), "Verify Email Code", "Use this code to verify your account: " + verify_code);
             HashMap<String, String> res = new HashMap<>();
             res.put("verify_code", verify_code);
