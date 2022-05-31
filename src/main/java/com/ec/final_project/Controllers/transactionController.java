@@ -68,9 +68,9 @@ public class transactionController {
 
     @PostMapping("/Withdraw_Saving_Acc")
     public String Withdraw_Saving_Acc(@RequestBody Map<String, String> req) {
-        saving_account saving_acc = saving_Acc_Service.FindByAccID(Integer.parseInt(req.get("acc_id")));
+        saving_account saving_acc = saving_Acc_Service.FindByAccID(Integer.parseInt(req.get("id")));
         if (saving_acc.getDeposit() == Integer.parseInt(req.get("amount"))) {
-            saving_Acc_Service.Cancel_Saving(Integer.parseInt(req.get("acc_id")));
+            saving_Acc_Service.Cancel_Saving(Integer.parseInt(req.get("id")));
         } else
             saving_Acc_Service.Update(Integer.parseInt(req.get("id")), Integer.parseInt(req.get("amount")));
         pay_Acc_Service.Update(Integer.parseInt(req.get("amount")), Integer.parseInt(req.get("acc_id")));
