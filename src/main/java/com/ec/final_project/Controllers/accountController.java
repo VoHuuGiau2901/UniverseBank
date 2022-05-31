@@ -65,10 +65,10 @@ public class accountController {
     public Object Forget_Password(@RequestBody Map<String, String> req) {
         useraccount acc = Acc_Service.FindByEmail(String.valueOf(req.get("email")));
         if (acc != null) {
-            int verify_code = ControllerUtils.Get_OTP();
+            String verify_code = String.format("%06d" , ControllerUtils.Get_OTP());
             MailSender.send(acc.getEmail(), "Renew Password Code", "Use this code to verify your account: " + verify_code);
             HashMap<String, String> res = new HashMap<>();
-            res.put("verify_code", String.format("%06d", verify_code));
+            res.put("verify_code", verify_code);
             res.put("acc_id", String.valueOf(acc.getAcc_id()));
             return res;
         } else {
