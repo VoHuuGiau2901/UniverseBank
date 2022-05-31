@@ -2,10 +2,7 @@ package com.ec.final_project.Controllers;
 
 import com.ec.final_project.Entity.interest_rate;
 import com.ec.final_project.Entity.saving_account;
-import com.ec.final_project.Services.Services.adminService;
-import com.ec.final_project.Services.Services.interest_rateService;
-import com.ec.final_project.Services.Services.pay_accountService;
-import com.ec.final_project.Services.Services.saving_accountService;
+import com.ec.final_project.Services.Services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +22,15 @@ public class AdminController {
 
     private final adminService Admin_Service;
 
+    private final accountService Acc_Service;
+
     @Autowired
-    public AdminController(pay_accountService pay_Acc_Service, saving_accountService saving_Acc_Service, interest_rateService IR_Service, adminService admin_Service) {
+    public AdminController(pay_accountService pay_Acc_Service, saving_accountService saving_Acc_Service, interest_rateService IR_Service, adminService admin_Service, accountService acc_service) {
         this.pay_Acc_Service = pay_Acc_Service;
         this.saving_Acc_Service = saving_Acc_Service;
         this.IR_Service = IR_Service;
         Admin_Service = admin_Service;
+        Acc_Service = acc_service;
     }
 
     @GetMapping("/AllUserStatus")
@@ -39,8 +39,8 @@ public class AdminController {
     }
 
     @GetMapping("/Profit_Per_Period")
-    public List<Object> getChanges() {
-        return Admin_Service.getFluctuates();
+    public List<Object> getProfit() {
+        return Admin_Service.getProfit();
     }
 
     @PostMapping("/All_Saving_Account")
@@ -65,6 +65,11 @@ public class AdminController {
         l = Float.parseFloat(req.get("interest_rate")) / 1200 * k;
         IR_Service.Update(l, req.get("period"));
         return "change complete";
+    }
+
+    @PostMapping("/FindUserByIdentityNumber")
+    public Object findByIdentityNumber(String identityNumber){
+        return Acc_Service.findByIdentityNumber(identityNumber);
     }
 
     @PostMapping("/Login")

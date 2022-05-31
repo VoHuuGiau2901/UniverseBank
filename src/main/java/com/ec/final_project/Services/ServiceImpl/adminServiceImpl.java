@@ -22,8 +22,8 @@ public class adminServiceImpl implements adminService {
     }
 
     @Override
-    public List<Object> getFluctuates() {
-        return trans_history_repo.getFluctuates();
+    public List<Object> getProfit() {
+        return trans_history_repo.getProfit();
     }
 
     @Override

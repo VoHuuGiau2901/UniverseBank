@@ -24,4 +24,9 @@ public interface accountRepository extends JpaRepository<useraccount, Integer> {
     @Query(value = "update useraccount set password=:password where acc_id=:acc_id", nativeQuery = true)
     @Transactional
     void UpdatePassword(@Param("acc_id") int acc_id, @Param("password") String password);
+
+    @Query(value = "select * from useraccount left join pay_account pa on useraccount.acc_id = pa.acc_id \n" +
+            "    left join saving_account sa on useraccount.acc_id = sa.acc_id\n" +
+            "    where identity_number=:identityNumber", nativeQuery = true)
+    useraccount findByIdentityNumber(@Param("identityNumber") String identityNumber);
 }

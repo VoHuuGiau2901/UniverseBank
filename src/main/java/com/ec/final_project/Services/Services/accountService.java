@@ -17,5 +17,7 @@ public interface accountService {
 
     useraccount FindByEmail(String email);
 
-    void UpdatePassword(int acc_id,String newPassword);
+    useraccount findByIdentityNumber(String identityNumber);
+
+    void UpdatePassword(int acc_id, String newPassword);
 }

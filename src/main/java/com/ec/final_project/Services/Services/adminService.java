@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface adminService {
     Object getAllCustomer();
-    List<Object> getFluctuates();
+    List<Object> getProfit();
     admin validate(String username, String password);
 }

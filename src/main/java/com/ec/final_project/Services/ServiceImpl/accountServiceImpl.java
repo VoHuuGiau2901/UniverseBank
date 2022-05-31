@@ -49,6 +49,11 @@ public class accountServiceImpl implements accountService {
     }
 
     @Override
+    public useraccount findByIdentityNumber(String identityNumber) {
+        return acc_repo.findByIdentityNumber(identityNumber);
+    }
+
+    @Override
     public void UpdatePassword(int acc_id, String newPassword) {
         acc_repo.UpdatePassword(acc_id, newPassword);
     }
