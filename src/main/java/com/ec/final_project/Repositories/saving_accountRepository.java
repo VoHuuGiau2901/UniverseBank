@@ -33,8 +33,8 @@ public interface saving_accountRepository extends JpaRepository<saving_account, 
     @Transactional
     void Update(@Param("id") int id, @Param("amount") int amount);
 
-    @Query(value = "select * from saving_acc where acc_id=:acc_id",nativeQuery = true)
-    saving_account FindByAccID(@Param("acc_id") int acc_id);
+    @Query(value = "select * from saving_account where id=:id",nativeQuery = true)
+    saving_account FindByAccID(@Param("id") int acc_id);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into profit_history (id, date, interest_rate,profit , saving_account_id)\n" +
