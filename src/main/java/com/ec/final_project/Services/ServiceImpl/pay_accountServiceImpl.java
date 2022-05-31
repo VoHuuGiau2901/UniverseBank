@@ -1,5 +1,6 @@
 package com.ec.final_project.Services.ServiceImpl;
 
+import com.ec.final_project.Entity.pay_account;
 import com.ec.final_project.Repositories.pay_accountRepository;
 import com.ec.final_project.Services.Services.pay_accountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 public class pay_accountServiceImpl implements pay_accountService {
 
-    private pay_accountRepository pay_acc_repo;
+    private final pay_accountRepository pay_acc_repo;
     @Autowired
     public pay_accountServiceImpl(pay_accountRepository pay_acc_repo) {
         this.pay_acc_repo = pay_acc_repo;

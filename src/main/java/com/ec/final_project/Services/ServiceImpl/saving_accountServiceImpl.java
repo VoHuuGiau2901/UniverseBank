@@ -52,4 +52,9 @@ public class saving_accountServiceImpl implements saving_accountService {
     public void check() {
         saving_acc_repo.check();
     }
+
+    @Override
+    public saving_account FindByAccID(int acc_id) {
+        return saving_acc_repo.FindByAccID(acc_id);
+    }
 }

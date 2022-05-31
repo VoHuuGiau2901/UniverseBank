@@ -1,5 +1,7 @@
 package com.ec.final_project.Services.Services;
 
+import com.ec.final_project.Entity.pay_account;
+
 import java.util.List;
 
 public interface pay_accountService {

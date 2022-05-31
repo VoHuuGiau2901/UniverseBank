@@ -57,7 +57,7 @@ public class accountController {
     }
 
     @PostMapping("/UserArea")
-    public Object get(@RequestBody Map<String, String> req) {
+    public Object getAccount(@RequestBody Map<String, String> req) {
         return saving_Acc_Service.getAccount(Integer.parseInt(req.get("userID")));
     }
 

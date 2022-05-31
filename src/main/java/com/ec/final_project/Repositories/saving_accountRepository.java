@@ -1,5 +1,6 @@
 package com.ec.final_project.Repositories;
 
+import com.ec.final_project.Entity.pay_account;
 import com.ec.final_project.Entity.saving_account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -31,6 +32,9 @@ public interface saving_accountRepository extends JpaRepository<saving_account, 
     @Query(value = "update saving_account set deposit=deposit-:amount where id=:id", nativeQuery = true)
     @Transactional
     void Update(@Param("id") int id, @Param("amount") int amount);
+
+    @Query(value = "select * from saving_acc where acc_id=:acc_id",nativeQuery = true)
+    saving_account FindByAccID(@Param("acc_id") int acc_id);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "insert into profit_history (id, date, interest_rate,profit , saving_account_id)\n" +
