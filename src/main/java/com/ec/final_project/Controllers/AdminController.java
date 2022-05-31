@@ -54,7 +54,7 @@ public class AdminController {
     }
 
     @GetMapping("/All_interestRate")
-    public List<interest_rate> getAll_laiSuat() {
+    public List<interest_rate> getAll_interestRate() {
         return IR_Service.getAll();
     }
 

@@ -78,7 +78,7 @@ public class transactionController {
     }
 
     @PostMapping("/My_Transaction_History")
-    public List<transaction_history> get_history(@RequestBody Map<String, String> req) {
+    public List<transaction_history> get_Transaction_History(@RequestBody Map<String, String> req) {
         return trans_His_Service.getAll(Integer.parseInt(req.get("acc_id")));
     }
 }
