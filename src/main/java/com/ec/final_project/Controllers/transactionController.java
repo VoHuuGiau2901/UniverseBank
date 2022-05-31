@@ -71,9 +71,10 @@ public class transactionController {
         saving_account saving_acc = saving_Acc_Service.FindByAccID(Integer.parseInt(req.get("id")));
         if (saving_acc.getDeposit() == Integer.parseInt(req.get("amount"))) {
             saving_Acc_Service.Cancel_Saving(Integer.parseInt(req.get("id")));
-        } else
+        } else {
             saving_Acc_Service.Update(Integer.parseInt(req.get("id")), Integer.parseInt(req.get("amount")));
-        pay_Acc_Service.Update(Integer.parseInt(req.get("amount")), Integer.parseInt(req.get("acc_id")));
+            pay_Acc_Service.Update(Integer.parseInt(req.get("amount")), Integer.parseInt(req.get("acc_id")));
+        }
         return "finished";
     }
 
