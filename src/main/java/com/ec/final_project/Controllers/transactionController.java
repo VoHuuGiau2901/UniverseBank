@@ -56,12 +56,12 @@ public class transactionController {
     }
 
     @PostMapping("/CheckMy_Saving_Acc")
-    public List<saving_account> CheckMy_Saving_Acc(@RequestBody Map<String, String> req) {
+    public List<saving_account> xem_tk_TK(@RequestBody Map<String, String> req) {
         return saving_Acc_Service.getAllByAcc_id(Integer.parseInt(req.get("userID")));
     }
 
     @PostMapping("/Cancel_Saving")
-    public String cancel(@RequestBody Map<String, String> req) {
+    public String Cancel_Saving(@RequestBody Map<String, String> req) {
         saving_Acc_Service.Cancel_Saving(Integer.parseInt(req.get("id")));
         return "cancel success";
     }
@@ -72,7 +72,8 @@ public class transactionController {
         if (saving_acc.getDeposit() == Integer.parseInt(req.get("amount"))) {
             saving_Acc_Service.Cancel_Saving(Integer.parseInt(req.get("acc_id")));
         } else
-            pay_Acc_Service.Update(Integer.parseInt(req.get("amount")), Integer.parseInt(req.get("acc_id")));
+            saving_Acc_Service.Update(Integer.parseInt(req.get("id")), Integer.parseInt(req.get("amount")));
+        pay_Acc_Service.Update(Integer.parseInt(req.get("amount")), Integer.parseInt(req.get("acc_id")));
         return "finished";
     }
 
