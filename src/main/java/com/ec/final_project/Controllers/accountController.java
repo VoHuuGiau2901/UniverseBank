@@ -31,7 +31,7 @@ public class accountController {
         if (Acc_Service.CheckExist(acc)) {
             return "account already taken";
         } else {
-            String verify_code = String.format("%06d" , ControllerUtils.Get_OTP());
+            String verify_code = ControllerUtils.Get_OTP();
             MailSender.send(acc.getEmail(), "Verify Email Code", "Use this code to verify your account: " + verify_code);
             HashMap<String, String> res = new HashMap<>();
             res.put("verify_code", verify_code);
@@ -65,7 +65,7 @@ public class accountController {
     public Object Forget_Password(@RequestBody Map<String, String> req) {
         useraccount acc = Acc_Service.FindByEmail(String.valueOf(req.get("email")));
         if (acc != null) {
-            String verify_code = String.format("%06d" , ControllerUtils.Get_OTP());
+            String verify_code = ControllerUtils.Get_OTP();
             MailSender.send(acc.getEmail(), "Renew Password Code", "Use this code to verify your account: " + verify_code);
             HashMap<String, String> res = new HashMap<>();
             res.put("verify_code", verify_code);

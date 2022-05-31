@@ -9,8 +9,8 @@ public class ControllerUtils {
         return new Date(Calendar.getInstance().getTime().getTime());
     }
 
-    public static int Get_OTP(){
+    public static String Get_OTP() {
         Random r = new Random();
-        return r.nextInt(999999);
+        return String.format("%06d", r.nextInt(999999));
     }
 }
