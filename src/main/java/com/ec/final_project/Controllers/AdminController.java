@@ -68,8 +68,8 @@ public class AdminController {
     }
 
     @PostMapping("/FindUserByIdentityNumber")
-    public Object findByIdentityNumber(String identityNumber){
-        return Acc_Service.findByIdentityNumber(identityNumber);
+    public Object findByIdentityNumber(@RequestBody Map<String, String> req) {
+        return Acc_Service.findByIdentityNumber(String.valueOf(req.get("identityNumber")));
     }
 
     @PostMapping("/Login")
