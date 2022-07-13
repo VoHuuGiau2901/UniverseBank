@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface accountRepository extends JpaRepository<useraccount, Integer> {
 
+    useraccount findByUsername(String username);
+
     @Query("SELECT tk FROM useraccount tk WHERE tk.username = :username or tk.phone=:phone or tk.email=:email or tk.identity_number=:identity_number")
     useraccount checkExists(@Param("username") String username, @Param("phone") String phone, @Param("email") String email, @Param("identity_number") String identity_number);
 

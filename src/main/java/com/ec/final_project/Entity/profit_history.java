@@ -14,7 +14,7 @@ public class profit_history {
 
     private int profit;
 
-    private Date date;
+    private Date Stonkdate;
 
     private int saving_account_id;
 
@@ -45,12 +45,12 @@ public class profit_history {
         this.profit = winst;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStonkdate() {
+        return Stonkdate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStonkdate(Date date) {
+        this.Stonkdate = date;
     }
 
     public int getSaving_account_id() {

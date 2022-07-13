@@ -37,43 +37,40 @@ public interface saving_accountRepository extends JpaRepository<saving_account, 
     saving_account FindByAccID(@Param("id") int acc_id);
 
     @Modifying(clearAutomatically = true)
-    @Query(value = "insert into profit_history (id, date, interest_rate,profit , saving_account_id)\n" +
-            "select tkTK.id,\n" +
-            "       tkTK.end_date,\n" +
-            "       LS.interest_rate,\n" +
-            "       tkTK.deposit * LS.interest_rate,\n" +
-            "       tkTK.Acc_id\n" +
-            "from saving_account tkTK\n" +
-            "         join interest_rate LS on tkTK.period = LS.period\n" +
+    @Query(value = "insert into profit_history (id, Stonkdate, interest_rate, profit, saving_account_id)\n" +
+            "select tkTK.id,tkTK.end_date,LS.interest_rate,tkTK.deposit * LS.interest_rate as money,tkTK.Acc_id\n" +
+            "from saving_account tkTK join interest_rate LS on tkTK.period = LS.period\n" +
             "where tkTK.end_date = CURDATE();\n" +
             "\n" +
             "update pay_account tkTT,(select sum(deposit * interest_rate) as sotien, Acc_id\n" +
-            "                                from saving_account\n" +
-            "                                         join interest_rate l on saving_account.period = l.period\n" +
-            "                                where end_date = CURDATE()\n" +
-            "                                group by Acc_id) as tkTK\n" +
+            "                         from saving_account\n" +
+            "                                  join interest_rate l on saving_account.period = l.period\n" +
+            "                         where end_date = CURDATE()\n" +
+            "                         group by Acc_id) as tkTK\n" +
             "set tkTT.balance=tkTT.balance + tkTK.sotien\n" +
             "where tkTT.Acc_id = tkTK.Acc_id;\n" +
             "update pay_account tkTT,(select sum(deposit) as sotien, Acc_id\n" +
-            "                                from saving_account\n" +
-            "                                where end_date = CURDATE()\n" +
-            "                                group by Acc_id) as tkTK\n" +
+            "                         from saving_account\n" +
+            "                         where end_date = CURDATE()\n" +
+            "                         group by Acc_id) as tkTK\n" +
             "set tkTT.balance=tkTT.balance + tkTK.sotien\n" +
             "where tkTT.Acc_id = tkTK.Acc_id;\n" +
-            "\n" +
             "delete\n" +
             "from saving_account tkTK\n" +
             "where tkTK.end_date = CURDATE()\n" +
             "  and tkTK.saving_option = 2;\n" +
-            "\n" +
             "update saving_account t ,(select tkTK.deposit, tkTK.start_date, tkTK.end_date, l.interest_rate, l.period\n" +
-            "                             from saving_account tkTK\n" +
-            "                                      inner join interest_rate l on tkTK.period = l.period\n" +
-            "                             where end_date = CURDATE()) as TK\n" +
+            "                          from saving_account tkTK\n" +
+            "                                   inner join interest_rate l on tkTK.period = l.period\n" +
+            "                          where end_date = CURDATE()) as TK\n" +
             "set t.end_date=DATE_ADD(t.end_date, INTERVAL t.period month),\n" +
             "    t.start_date= CURDATE(),\n" +
             "    t.deposit=t.deposit + (TK.deposit * TK.interest_rate)\n" +
             "where t.end_date = CURDATE();", nativeQuery = true)
     @Transactional
-    void check();
+    void checkandUpdate();
+
+    @Modifying
+    @Query(value = "SET SQL_SAFE_UPDATES = 0;",nativeQuery = true)
+    void changeDefault();
 }

@@ -17,7 +17,7 @@ public interface saving_accountService {
 
     void Update(int id, int amount);
 
-    void check();
+    void checkandUpdate();
 
     saving_account FindByAccID(int acc_id);
 }

@@ -49,8 +49,9 @@ public class saving_accountServiceImpl implements saving_accountService {
     }
 
     @Override
-    public void check() {
-        saving_acc_repo.check();
+    public void checkandUpdate() {
+//        saving_acc_repo.changeDefault();
+        saving_acc_repo.checkandUpdate();
     }
 
     @Override
