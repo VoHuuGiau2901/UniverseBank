@@ -5,12 +5,10 @@ import com.auth0.jwt.algorithms.Algorithm;
 import java.util.Date;
 
 public class SecurityUtils {
-    public static Algorithm ENCODE_ALGORITHM() {
-        return Algorithm.HMAC256("SECRET_KEY".getBytes());
-    }
+    public static final Algorithm ENCODE_ALGORITHM = Algorithm.HMAC256("SECRET_KEY".getBytes());
 
-    public static Date TIME_EXPIRED(){
-        return new Date(System.currentTimeMillis()+10*60*1000);
-    }
+    public static final Date ACCESS_TIME_EXPIRED = new Date(System.currentTimeMillis() +  30 * 1000);
+
+    public static final Date REFRESH_TIME_EXPIRED = new Date(System.currentTimeMillis() + 60 * 1000);
 
 }
