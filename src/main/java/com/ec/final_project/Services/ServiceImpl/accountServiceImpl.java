@@ -67,10 +67,15 @@ public class accountServiceImpl implements accountService, UserDetailsService {
     }
 
     @Override
+    public useraccount findByUsername(String username) {
+        return acc_repo.findByUsername(username);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         useraccount u = acc_repo.findByUsername(username);
         if (u == null) {
-            System.out.println("user not found "+username);
+            System.out.println("user not found " + username);
             throw new UsernameNotFoundException("User not in db");
         }
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();

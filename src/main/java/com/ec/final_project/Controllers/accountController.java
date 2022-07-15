@@ -111,10 +111,11 @@ public class accountController {
                 DecodedJWT decodedJWT = jwtVerifier.verify(refresh_token);
 
                 String username = decodedJWT.getSubject();
+                useraccount useraccount = Acc_Service.findByUsername(username);
 //                String role = decodedJWT.getClaim("role").asString();
 
                 String access_token = JWT.create()
-                        .withSubject(username)
+                        .withSubject(useraccount.getUsername())
                         .withExpiresAt(SecurityUtils.ACCESS_TIME_EXPIRED)
                         .withIssuer(request.getRequestURL().toString())
                         .withClaim("role", "USER")

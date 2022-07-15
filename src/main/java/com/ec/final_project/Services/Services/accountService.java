@@ -20,4 +20,6 @@ public interface accountService {
     Object findByIdentityNumber(String identityNumber);
 
     void UpdatePassword(int acc_id, String newPassword);
+
+    useraccount findByUsername(String username);
 }
