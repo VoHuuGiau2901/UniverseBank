@@ -1,6 +1,7 @@
 package com.ec.final_project.security;
 
 import com.auth0.jwt.JWT;
+import com.ec.final_project.Services.Services.accountService;
 import com.ec.final_project.Utils.SecurityUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,9 +23,11 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
+    private final accountService accountService;
 
-    public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager, com.ec.final_project.Services.Services.accountService accountService) {
         this.authenticationManager = authenticationManager;
+        this.accountService = accountService;
     }
 
     @Override
@@ -37,13 +40,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 //            e.printStackTrace();
         }
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(login_req.get("username"), login_req.get("password"));
+
         return authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException {
+        response.setContentType(APPLICATION_JSON_VALUE);
+        new ObjectMapper().writeValue(response.getOutputStream(), "USER_NOT_FOUND");
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         System.out.println("successfulAuthentication");
         User user = (User) authResult.getPrincipal();
+        int UserId= accountService.findByUsername(user.getUsername()).getAcc_id();
         String access_token = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(SecurityUtils.ACCESS_TIME_EXPIRED)
@@ -60,6 +71,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Map<String, String> tokens = new HashMap<>();
         tokens.put("access_token", access_token);
         tokens.put("refresh_token", refresh_token);
+        tokens.put("userId", String.valueOf(UserId));
 
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);

@@ -3,6 +3,7 @@ package com.ec.final_project.Controllers;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.ec.final_project.Controllers.Notification.NotificationVar;
 import com.ec.final_project.Entity.useraccount;
 import com.ec.final_project.Services.Services.pay_accountService;
 import com.ec.final_project.Services.Services.saving_accountService;
@@ -13,6 +14,7 @@ import com.ec.final_project.Utils.SecurityUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,19 +26,28 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
+
 @RestController
 @RequestMapping("/Welcome")
-@CrossOrigin
+@CrossOrigin("*")
 public class accountController {
     private final accountService Acc_Service;
     private final pay_accountService pay_Acc_Service;
     private final saving_accountService saving_Acc_Service;
+    private final SimpMessagingTemplate simpMessagingTemplate;
 
     @Autowired
-    public accountController(accountService acc_Service, pay_accountService pay_Acc_Service, saving_accountService saving_Acc_Service) {
+    public accountController(accountService acc_Service, pay_accountService pay_Acc_Service, saving_accountService saving_Acc_Service, SimpMessagingTemplate simpMessagingTemplate) {
         Acc_Service = acc_Service;
         this.pay_Acc_Service = pay_Acc_Service;
         this.saving_Acc_Service = saving_Acc_Service;
+        this.simpMessagingTemplate = simpMessagingTemplate;
+    }
+
+    @GetMapping("/hehe")
+    public void welcome(@RequestBody String message) {
+        System.out.println(message);
+        simpMessagingTemplate.convertAndSendToUser("hehe", NotificationVar.destination, message);
     }
 
     @PostMapping("/Register")
@@ -57,16 +68,6 @@ public class accountController {
         Acc_Service.Create(acc);
         pay_Acc_Service.Create(0, acc.getPhone(), acc.getAcc_id());
         return "new account added";
-    }
-
-    @PostMapping("/Login")
-    public int login(@RequestBody Map<String, String> req) {
-        String username = req.get("username");
-        String password = req.get("password");
-
-        if (Acc_Service.validate(username, password) != null) {
-            return Acc_Service.validate(username, password).getAcc_id();
-        } else return -1;
     }
 
     @PostMapping("/UserArea")

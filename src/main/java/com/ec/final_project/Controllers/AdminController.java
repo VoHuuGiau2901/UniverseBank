@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Admin")
-@CrossOrigin
+@CrossOrigin("*")
 public class AdminController {
 
     private final pay_accountService pay_Acc_Service;
